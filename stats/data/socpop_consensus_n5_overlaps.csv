@@ -1,0 +1,116 @@
+﻿˛ˇBegin time,End time,Duration,Caregiver nonlinguistic,Caregiver linguistic-ov,Caregiver linguistic-same,Caregiver linguistic-ov-dur,Caregiver linguistic-no-ann,Caregiver linguistic-value,Caregiver linguistic-bt-to-bt-After,Caregiver linguistic-et-to-bt-After,Caregiver linguistic-et-to-et-After,Caregiver linguistic-bt-After,Caregiver linguistic-et-After,Caregiver linguistic-value-After,,id
+/Volumes/langlearninglab$/General/Studies/socpop/3. ELAN files/CONSENSUS/217_18m_socpop_consensus.eaf,,,,,,,,,,,,,,,,
+510453,515617,5164,hold out/give,1,0,540,2,"label - object imaginary, label - object imaginary",42267,37103,38111,552720,553728,label - object present,,217
+522640,523400,760,touching w/ open hand,0,0,0,0,,30080,29320,30328,552720,553728,label - object present,,217
+526080,527027,947,touching w/ open hand,0,0,0,0,,26640,25693,26701,552720,553728,label - object present,,217
+549258,551913,2655,hold out/give,0,0,0,0,,3462,807,1815,552720,553728,label - object present,,217
+558360,561160,2800,hold out/give,0,0,0,0,,19300,16500,17249,577660,578409,label - object present,,217
+589538,592323,2785,hold out/give,1,0,615,1,label - object present,5012,2227,3188,594550,595511,label - object present,,217
+597745,598206,461,extended index finger,0,0,0,0,,1608,1147,2010,599353,600216,label - object present,,217
+600421,602673,2252,hold out/give,0,0,0,0,,2292,40,768,602713,603441,label - object present,,217
+606480,608911,2431,hold out/give,0,0,0,0,,3038,607,1939,609518,610850,label - object present,,217
+625152,628435,3283,hold out/give,1,0,1511,2,"label - object present, label - object present",27652,24369,25181,652804,653616,label - object present,,217
+668292,675057,6765,hold out/give,1,0,284,1,label - object present,39984,33219,34242,708276,709299,label - object present,,217
+696184,698999,2815,hold out/give,0,0,0,0,,12092,9277,10300,708276,709299,label - object present,,217
+716315,717598,1283,hold out/give,0,0,0,0,,3292,2009,2585,719607,720183,label - object present,,217
+731600,734100,2500,hold out/give,0,0,0,0,,4051,1551,2000,735651,736100,label - object present,,217
+735221,738673,3452,hold out/give,1,0,885,2,"label - object present, label - object present",7897,4445,4815,743118,743488,label - object present,,217
+741020,743055,2035,hold out/give,0,0,0,0,,2098,63,433,743118,743488,label - object present,,217
+745240,751700,6460,hold out/give,1,0,1557,1,label - object present,21107,14647,15067,766347,766767,label - object present,,217
+765684,767038,1354,extended index finger,1,0,420,1,label - object present,5076,3722,4250,770760,771288,label - object present,,217
+769194,770631,1437,extended index finger,0,0,0,0,,1566,129,657,770760,771288,label - object present,,217
+774200,777758,3558,hold out/give,1,0,667,1,label - object present,8388,4830,5615,782588,783373,label - object present,,217
+782813,795294,12481,hold out/give,1,0,560,1,label - object present,23592,11111,11731,806405,807025,label - object present,,217
+811125,815124,3999,hold out/give,1,0,558,1,label - object present,28960,24961,25571,840085,840695,label - object present,,217
+832433,834359,1926,hold out/give,0,0,0,0,,7652,5726,6336,840085,840695,label - object present,,217
+838531,848091,9560,hold out/give,1,0,1499,3,"label - object present, label - object present, label - object present",12454,2894,3309,850985,851400,label - object present,,217
+855055,859382,4327,hold out/give,1,0,376,1,label - object present,14519,10192,10624,869574,870006,label - object present,,217
+865399,870661,5262,extended index finger,1,0,432,1,label - object present,21636,16374,17053,887035,887714,label - object imaginary,,217
+887521,888921,1400,touching w/ open hand,1,0,193,1,label - object imaginary,0,0,0,0,0,,,217
+890160,890400,240,touching w/ open hand,0,0,0,0,,0,0,0,0,0,,,217
+,,,,,,,,,,,,,,,,
+/Volumes/langlearninglab$/General/Studies/socpop/3. ELAN files/CONSENSUS/230_18m_socpop_consensus.eaf,,,,,,,,,,,,,,,,
+438600,440960,2360,hold out/give,1,0,1000,1,label - object present,8120,5760,6400,446720,447360,label - object present,,230
+449900,452340,2440,hold out/give,1,0,800,1,label - object present,4300,1860,2340,454200,454680,label - object present,,230
+461280,463660,2380,hold out/give,1,0,380,1,label - object present,3380,1000,1220,464660,464880,label - object present,,230
+472140,479820,7680,hold out/give,1,0,740,1,label - object present,25180,17500,18160,497320,497980,label - object present,,230
+499180,501860,2680,hold out/give,1,0,600,1,label - object present,2680,0,640,501860,502500,label - object present,,230
+505840,508580,2740,hold out/give,1,0,620,1,label - object present,14440,11700,12200,520280,520780,label - object present,,230
+520040,521880,1840,hold out/give,1,0,500,1,label - object present,9240,7400,7920,529280,529800,label - object present,,230
+536840,538240,1400,hold out/give,0,0,0,0,,4800,3400,3940,541640,542180,label - object present,,230
+540920,542680,1760,hold out/give,1,0,540,1,label - object present,9000,7240,7740,549920,550420,label - object present,,230
+563780,566000,2220,hold out/give,1,0,140,1,label - object present,3080,860,1420,566860,567420,label - object present,,230
+574900,578260,3360,hold out/give,1,0,400,1,label - object present,8660,5300,6100,583560,584360,label - object present,,230
+582040,588060,6020,hold out/give,1,0,2080,3,"label - object present, label - object present, label - object present",9420,3400,4000,591460,592060,label - object present,,230
+589140,600560,11420,hold out/give,1,0,1960,3,"label - object present, label - object present, label - object present",15800,4380,5100,604940,605660,label - object present,,230
+604500,608800,4300,hold out/give,1,0,720,1,label - object present,10560,6260,7082,615060,615882,label - object present,,230
+614353,622760,8407,hold out/give,1,0,822,1,label - object present,8707,300,1120,623060,623880,label - object present,,230
+636400,641240,4840,hold out/give,1,0,420,1,label - object present,7330,2490,2850,643730,644090,label - object present,,230
+643120,648920,5800,hold out/give,1,0,1260,3,"label - object present, label - object present, label - object present",10380,4580,5140,653500,654060,label - object present,,230
+652760,654080,1320,hold out/give,1,0,560,1,label - object present,2800,1480,2080,655560,656160,label - object present,,230
+693200,699600,6400,hold out/give,1,0,1920,2,"label - object present, label - object present",15620,9220,9880,708820,709480,label - object present,,230
+708740,712760,4020,hold out/give,1,0,1320,2,"label - object present, label - object present",6540,2520,3240,715280,716000,label - object present,,230
+714960,720520,5560,hold out/give,1,0,1320,2,"label - object present, label - object present",8680,3120,3700,723640,724220,label - object present,,230
+725640,728480,2840,hold out/give,1,0,600,1,label - object present,3560,720,1640,729200,730120,label - object present,,230
+748320,750920,2600,hold out/give,1,0,720,1,label - object present,8300,5700,6320,756620,757240,label - object present,,230
+754520,758060,3540,hold out/give,1,0,620,1,label - object present,27640,24100,24560,782160,782620,label - object present,,230
+775180,779860,4680,hold out/give,0,0,0,0,,6980,2300,2760,782160,782620,label - object present,,230
+793500,794900,1400,hold out/give,0,0,0,0,,0,0,0,0,0,,,230
+821450,824850,3400,hold out/give,0,0,0,0,,0,0,0,0,0,,,230
+,,,,,,,,,,,,,,,,
+/Volumes/langlearninglab$/General/Studies/socpop/3. ELAN files/CONSENSUS/283_18m_socpop_consensus.eaf,,,,,,,,,,,,,,,,
+401238,403198,1960,hold out/give,1,0,760,1,label - object present,11422,9462,10129,412660,413327,label - object present,,283
+405918,406438,520,extended index finger,0,0,0,0,,6742,6222,6889,412660,413327,label - object present,,283
+428834,429721,887,extended index finger,0,0,0,0,,22022,21135,21824,450856,451545,label - object present,,283
+432624,433638,1014,extended index finger,0,0,0,0,,18232,17218,17907,450856,451545,label - object present,,283
+452121,452788,667,extended index finger,0,0,0,0,,4426,3759,4459,456547,457247,label - object present,,283
+471704,472378,674,extended index finger,0,0,0,0,,3691,3017,3462,475395,475840,label - object present,,283
+475138,479718,4580,extended index finger,1,0,1206,3,"label - object present, label - object present, label - object present",5373,793,1390,480511,481108,label - object present,,283
+480228,483068,2840,extended index finger,1,0,794,2,"label - object present, label - object present",14625,11785,12806,494853,495874,label - object present,,283
+492948,494727,1779,extended index finger,0,0,0,0,,1905,126,1147,494853,495874,label - object present,,283
+507058,507598,540,extended index finger,0,0,0,0,,50143,49603,50177,557201,557775,label - object present,,283
+517418,518064,646,extended index finger,0,0,0,0,,39783,39137,39711,557201,557775,label - object present,,283
+523001,525748,2747,extended index finger,0,0,0,0,,34200,31453,32027,557201,557775,label - object present,,283
+531244,532105,861,extended index finger,0,0,0,0,,25957,25096,25670,557201,557775,label - object present,,283
+553104,553491,387,extended index finger,0,0,0,0,,4097,3710,4284,557201,557775,label - object present,,283
+570231,572053,1822,hold out/give,1,0,896,1,label - object present,20430,18608,19022,590661,591075,label - object present,,283
+588280,590800,2520,hold out/give,1,0,139,1,label - object present,18830,16310,17139,607110,607939,label - object present,,283
+591327,591927,600,extended index finger,0,0,0,0,,15783,15183,16012,607110,607939,label - object present,,283
+592897,593671,774,extended index finger,0,0,0,0,,14213,13439,14268,607110,607939,label - object present,,283
+610573,614427,3854,extended index finger,0,0,0,0,,17722,13868,14082,628295,628509,label - object present,,283
+627260,628453,1193,extended index finger,1,0,158,1,label - object present,3148,1955,2220,630408,630673,label - object present,,283
+629416,630290,874,extended index finger,0,0,0,0,,992,118,383,630408,630673,label - object present,,283
+632433,633779,1346,hold out/give,0,0,0,0,,2834,1488,1754,635267,635533,label - object present,,283
+647000,647280,280,extended index finger,0,0,0,0,,897,617,911,647897,648191,label - object present,,283
+650463,650990,527,extended index finger,1,0,306,1,label - object present,5199,4672,5061,655662,656051,label - object present,,283
+662229,666709,4480,hold out/give,1,0,210,1,label - object present,4860,380,673,667089,667382,label - object present,,283
+668603,670737,2134,extended index finger,1,0,608,2,"label - object present, label - object present",6364,4230,4761,674967,675498,label - object present,,283
+697806,698833,1027,extended index finger,1,0,554,1,label - object present,3848,2821,2997,701654,701830,label - object present,,283
+702286,709776,7490,extended index finger,1,0,1520,5,"label - object present, label - object present, label - object present, label - object present, label - object present",8573,1083,1403,710859,711179,label - object present,,283
+711626,716301,4675,hold out/give,1,0,760,2,"label - object present, label - object present",5078,403,697,716704,716998,label - object present,,283
+,,,,,,,,,,,,,,,,
+/Volumes/langlearninglab$/General/Studies/socpop/3. ELAN files/CONSENSUS/311_18m_socpop_consensus.eaf,,,,,,,,,,,,,,,,
+375700,378601,2901,descriptive or iconic gesture,0,0,0,0,,0,0,0,0,0,,,311
+382633,385233,2600,hold out/give,0,0,0,0,,0,0,0,0,0,,,311
+402133,404033,1900,hold out/give,0,0,0,0,,0,0,0,0,0,,,311
+418483,421383,2900,hold out/give,0,0,0,0,,0,0,0,0,0,,,311
+428583,438183,9600,hold out/give,0,0,0,0,,0,0,0,0,0,,,311
+458583,471783,13200,hold out/give,0,0,0,0,,0,0,0,0,0,,,311
+474533,476533,2000,hold out/give,0,0,0,0,,0,0,0,0,0,,,311
+485083,486483,1400,hold out/give,0,0,0,0,,0,0,0,0,0,,,311
+488683,489883,1200,hold out/give,0,0,0,0,,0,0,0,0,0,,,311
+546033,548333,2300,hold out/give,0,0,0,0,,0,0,0,0,0,,,311
+615600,618600,3000,hold out/give,0,0,0,0,,0,0,0,0,0,,,311
+659400,660000,600,extended index finger,0,0,0,0,,0,0,0,0,0,,,311
+,,,,,,,,,,,,,,,,
+/Volumes/langlearninglab$/General/Studies/socpop/3. ELAN files/CONSENSUS/319_18m_socpop_consensus.eaf,,,,,,,,,,,,,,,,
+464680,466120,1440,hold out/give,1,0,600,1,label - object present,24040,22600,23440,488720,489560,label - object present,,319
+476600,478700,2100,hold out/give,0,0,0,0,,12120,10020,10860,488720,489560,label - object present,,319
+486860,488832,1972,hold out/give,1,0,112,1,label - object present,5380,3408,3808,492240,492640,label - object present,,319
+497900,499800,1900,hold out/give,0,0,0,0,,68500,66600,67000,566400,566800,label - object present,,319
+508480,510320,1840,hold out/give,0,0,0,0,,57920,56080,56480,566400,566800,label - object present,,319
+516420,517940,1520,hold out/give,0,0,0,0,,49980,48460,48860,566400,566800,label - object present,,319
+519606,520006,400,extended index finger,0,0,0,0,,46794,46394,46794,566400,566800,label - object present,,319
+527820,529740,1920,hold out/give,0,0,0,0,,38580,36660,37060,566400,566800,label - object present,,319
+573220,583220,10000,hold out/give,1,0,480,1,label - object present,10340,340,860,583560,584080,label - object present,,319
+612800,614600,1800,hold out/give,0,0,0,0,,0,0,0,0,0,,,319

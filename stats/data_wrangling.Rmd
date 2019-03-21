@@ -1,0 +1,60 @@
+---
+title: "SocPop data wrangling"
+author: "M. Bohn"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+
+library(tidyverse)
+
+```
+
+```{r}
+non_ling <- read_csv("./data/test.csv", col_names = F)%>%
+  rename(start = X3,
+         stop = X4,
+         code = X1,
+         id = X7)%>%
+  select(id,code, start,stop)%>%
+  filter(code == "Caregiver nonlinguistic")
+
+
+ling <- read_csv("./data/test.csv", col_names = F)%>%
+  rename(start = X3,
+         stop = X4,
+         code = X1,
+         id = X7)%>%
+  select(id,code, start,stop)%>%
+  filter(code == "Caregiver linguistic")
+
+
+overlap_sum <-  non_ling %>%
+  mutate(start = start -0 ,
+         stop = stop + 0)%>%
+  group_by(id, code, start, stop)%>%
+  expand(label_start = ling$start)%>%
+  mutate(overlap_start = ifelse(start <= label_start & stop >= label_start, T,F))%>%
+  group_by(id, code, start, stop)%>%
+  summarise(overlap_start = sum(overlap_start))%>%
+  group_by(id, code, start, stop, overlap_start)%>%
+  expand(label_stop = ling$stop)%>%
+  mutate(overlap_stop = ifelse(start <= label_stop & stop >= label_stop, T,F))%>%
+  group_by(id, code, start, stop,overlap_start)%>%
+  summarise(overlap_stop = sum(overlap_stop))%>%
+  mutate(overlap = ifelse(sum(overlap_start,overlap_stop) > 0, T,F))%>%
+  group_by(id)%>%
+  summarise(overlap = sum(overlap))
+         
+non_ling_sum <- non_ling %>%
+  group_by(id)%>%
+  summarise(gestures = n())
+
+ling_sum <- ling %>%
+  group_by(id)%>%
+  summarise(labels = n())
+
+data <- plyr::join_all(list(non_ling_sum,ling_sum,overlap_sum), by='id', type='left')
+
+```
+
