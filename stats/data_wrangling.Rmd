@@ -1,6 +1,5 @@
 ---
 title: "SocPop data wrangling"
-author: "M. Bohn"
 output: html_document
 ---
 
@@ -11,7 +10,7 @@ library(tidyverse)
 ```
 
 ```{r}
-non_ling <- read_csv("./data/test.csv", col_names = F)%>%
+gesture <- read_csv("./data/test.csv", col_names = F)%>%
   rename(start = X3,
          stop = X4,
          code = X1,
@@ -20,7 +19,7 @@ non_ling <- read_csv("./data/test.csv", col_names = F)%>%
   filter(code == "Caregiver nonlinguistic")
 
 
-ling <- read_csv("./data/test.csv", col_names = F)%>%
+label <- read_csv("./data/test.csv", col_names = F)%>%
   rename(start = X3,
          stop = X4,
          code = X1,
@@ -28,33 +27,68 @@ ling <- read_csv("./data/test.csv", col_names = F)%>%
   select(id,code, start,stop)%>%
   filter(code == "Caregiver linguistic")
 
+```
 
-overlap_sum <-  non_ling %>%
+# Gesture perspective
+
+For each gesture, does it overlap with a label?
+
+```{r}
+overlap_ges <-  gesture %>%
   mutate(start = start -0 ,
          stop = stop + 0)%>%
   group_by(id, code, start, stop)%>%
-  expand(label_start = ling$start)%>%
-  mutate(overlap_start = ifelse(start <= label_start & stop >= label_start, T,F))%>%
+  expand(gesture_start = nesting(label$start,label$stop,label$id))%>%
+  filter(id == `label$id`)%>%
+  mutate(overlap_start = ifelse(start <= `label$start` & stop >= `label$start`, T,F),
+         overlap_stop = ifelse(start <= `label$stop` & stop >= `label$stop`, T,F))%>%
   group_by(id, code, start, stop)%>%
-  summarise(overlap_start = sum(overlap_start))%>%
-  group_by(id, code, start, stop, overlap_start)%>%
-  expand(label_stop = ling$stop)%>%
-  mutate(overlap_stop = ifelse(start <= label_stop & stop >= label_stop, T,F))%>%
-  group_by(id, code, start, stop,overlap_start)%>%
-  summarise(overlap_stop = sum(overlap_stop))%>%
+  summarise(overlap_start = sum(overlap_start),
+            overlap_stop = sum(overlap_stop))%>%
   mutate(overlap = ifelse(sum(overlap_start,overlap_stop) > 0, T,F))%>%
   group_by(id)%>%
-  summarise(overlap = sum(overlap))
+  summarise(gestures_w_labels = sum(overlap))
          
-non_ling_sum <- non_ling %>%
+gesture_sum <- non_ling %>%
   group_by(id)%>%
   summarise(gestures = n())
 
-ling_sum <- ling %>%
+label_sum <- ling %>%
   group_by(id)%>%
   summarise(labels = n())
 
-data <- plyr::join_all(list(non_ling_sum,ling_sum,overlap_sum), by='id', type='left')
-
+data_ges <- plyr::join_all(list(gesture_sum,label_sum,overlap_ges), by='id', type='left')
 ```
+
+# Label perspective
+
+For each label, does it overlap with a gesture
+
+```{r}
+overlap_label <-  label %>%
+  mutate(start = start -1 ,
+         stop = stop + 1)%>%
+  group_by(id, code, start, stop)%>%
+  expand(gesture_start = nesting(gesture$start,gesture$stop,gesture$id))%>%
+  filter(id == `gesture$id`)%>%
+  mutate(overlap_start = ifelse(start <= `gesture$start` & stop >= `gesture$start`, T,F),
+         overlap_stop = ifelse(start <= `gesture$stop` & stop >= `gesture$stop`, T,F))%>%
+  group_by(id, code, start, stop)%>%
+  summarise(overlap_start = sum(overlap_start),
+            overlap_stop = sum(overlap_stop))%>%
+  mutate(overlap = ifelse(sum(overlap_start,overlap_stop) > 0, T,F))%>%
+  group_by(id)%>%
+  summarise(labels_w_gestures = sum(overlap))
+         
+gesture_sum <- non_ling %>%
+  group_by(id)%>%
+  summarise(gestures = n())
+
+label_sum <- ling %>%
+  group_by(id)%>%
+  summarise(labels = n())
+
+data_label <- plyr::join_all(list(gesture_sum,label_sum,overlap_label), by='id', type='left')
+```
+
 
