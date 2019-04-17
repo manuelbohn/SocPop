@@ -35,8 +35,8 @@ For each gesture, does it overlap with a label?
 
 ```{r}
 overlap_ges <-  gesture %>%
-  mutate(start = start -0 ,
-         stop = stop + 0)%>%
+  mutate(start = start -1 ,
+         stop = stop + 1)%>%
   group_by(id, code, start, stop)%>%
   expand(gesture_start = nesting(label$start,label$stop,label$id))%>%
   filter(id == `label$id`)%>%
@@ -49,11 +49,11 @@ overlap_ges <-  gesture %>%
   group_by(id)%>%
   summarise(gestures_w_labels = sum(overlap))
          
-gesture_sum <- non_ling %>%
+gesture_sum <- gesture %>%
   group_by(id)%>%
   summarise(gestures = n())
 
-label_sum <- ling %>%
+label_sum <- label %>%
   group_by(id)%>%
   summarise(labels = n())
 
@@ -80,11 +80,11 @@ overlap_label <-  label %>%
   group_by(id)%>%
   summarise(labels_w_gestures = sum(overlap))
          
-gesture_sum <- non_ling %>%
+gesture_sum <- gesture %>%
   group_by(id)%>%
   summarise(gestures = n())
 
-label_sum <- ling %>%
+label_sum <- label %>%
   group_by(id)%>%
   summarise(labels = n())
 
