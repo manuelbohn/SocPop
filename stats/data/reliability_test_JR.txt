@@ -1,0 +1,257 @@
+Caregiver nonlinguistic		33.268	34.5	1.232	hold out/give	87_18m_socpop_JR.eaf
+Caregiver nonlinguistic		58.277	62.9	4.623	hold out/give	87_18m_socpop_JR.eaf
+Caregiver nonlinguistic		68.416	74.08	5.664	hold out/give	87_18m_socpop_JR.eaf
+Caregiver nonlinguistic		76.7	81.58	4.88	hold out/give	87_18m_socpop_JR.eaf
+Caregiver nonlinguistic		84.185	86.81	2.625	hold out/give	87_18m_socpop_JR.eaf
+Caregiver nonlinguistic		96.464	99.916	3.452	hold out/give	87_18m_socpop_JR.eaf
+Caregiver nonlinguistic		114.22	117.96	3.74	hold out/give	87_18m_socpop_JR.eaf
+Caregiver nonlinguistic		120.734	122.77	2.036	hold out/give	87_18m_socpop_JR.eaf
+Caregiver nonlinguistic		124.2	133.72	9.52	hold out/give	87_18m_socpop_JR.eaf
+Caregiver nonlinguistic		146.9	151.16	4.26	hold out/give	87_18m_socpop_JR.eaf
+Caregiver nonlinguistic		159.23	164.43	5.2	hold out/give	87_18m_socpop_JR.eaf
+Caregiver nonlinguistic		190.31	191.19	0.88	hold out/give	87_18m_socpop_JR.eaf
+Caregiver nonlinguistic		218.07	220.13	2.06	hold out/give	87_18m_socpop_JR.eaf
+Caregiver nonlinguistic		222.86	226.54	3.68	hold out/give	87_18m_socpop_JR.eaf
+Caregiver nonlinguistic		234.42	239.12	4.7	hold out/give	87_18m_socpop_JR.eaf
+Caregiver nonlinguistic		256.86	260.3	3.44	hold out/give	87_18m_socpop_JR.eaf
+Caregiver nonlinguistic		277.68	280.3	2.62	hold out/give	87_18m_socpop_JR.eaf
+Caregiver nonlinguistic		292.81	300.246	7.436	hold out/give	87_18m_socpop_JR.eaf
+Caregiver nonlinguistic		316.4	317.916	1.516	hold out/give	87_18m_socpop_JR.eaf
+Caregiver nonlinguistic		328.54	329.98	1.44	hold out/give	87_18m_socpop_JR.eaf
+Caregiver nonlinguistic		359.607	361.62	2.013	hold out/give	87_18m_socpop_JR.eaf
+Caregiver nonlinguistic		365.57	367.13	1.56	hold out/give	87_18m_socpop_JR.eaf
+Caregiver nonlinguistic		514.373	515.6	1.227	hold out/give	217_18m_socpop_JR.eaf
+Caregiver nonlinguistic		549.494	552.0	2.506	hold out/give	217_18m_socpop_JR.eaf
+Caregiver nonlinguistic		589.64	592.32	2.68	hold out/give	217_18m_socpop_JR.eaf
+Caregiver nonlinguistic		597.64	598.24	0.6	extended index finger	217_18m_socpop_JR.eaf
+Caregiver nonlinguistic		600.946	602.54	1.594	hold out/give	217_18m_socpop_JR.eaf
+Caregiver nonlinguistic		606.7	608.84	2.14	hold out/give	217_18m_socpop_JR.eaf
+Caregiver nonlinguistic		625.241	628.46	3.219	hold out/give	217_18m_socpop_JR.eaf
+Caregiver nonlinguistic		668.2	674.254	6.054	hold out/give	217_18m_socpop_JR.eaf
+Caregiver nonlinguistic		696.72	698.84	2.12	hold out/give	217_18m_socpop_JR.eaf
+Caregiver nonlinguistic		716.2	719.12	2.92	hold out/give	217_18m_socpop_JR.eaf
+Caregiver nonlinguistic		731.82	733.82	2.0	hold out/give	217_18m_socpop_JR.eaf
+Caregiver nonlinguistic		734.7	738.46	3.76	hold out/give	217_18m_socpop_JR.eaf
+Caregiver nonlinguistic		741.441	743.86	2.419	hold out/give	217_18m_socpop_JR.eaf
+Caregiver nonlinguistic		745.46	750.42	4.96	hold out/give	217_18m_socpop_JR.eaf
+Caregiver nonlinguistic		765.487	767.133	1.646	extended index finger	217_18m_socpop_JR.eaf
+Caregiver nonlinguistic		769.539	770.44	0.901	extended index finger	217_18m_socpop_JR.eaf
+Caregiver nonlinguistic		774.253	775.922	1.669	hold out/give	217_18m_socpop_JR.eaf
+Caregiver nonlinguistic		782.96	794.92	11.96	hold out/give	217_18m_socpop_JR.eaf
+Caregiver nonlinguistic		811.302	815.281	3.979	hold out/give	217_18m_socpop_JR.eaf
+Caregiver nonlinguistic		832.72	834.6	1.88	hold out/give	217_18m_socpop_JR.eaf
+Caregiver nonlinguistic		838.92	848.54	9.62	hold out/give	217_18m_socpop_JR.eaf
+Caregiver nonlinguistic		849.48	850.52	1.04	hold out/give	217_18m_socpop_JR.eaf
+Caregiver nonlinguistic		855.5	859.74	4.24	hold out/give	217_18m_socpop_JR.eaf
+Caregiver nonlinguistic		868.86	870.66	1.8	extended index finger	217_18m_socpop_JR.eaf
+Caregiver nonlinguistic		887.887	890.64	2.753	touching w/ open hand	217_18m_socpop_JR.eaf
+Caregiver linguistic		437.461	438.403	0.942	label - object present	230_18m_socpop_JR.eaf
+Caregiver linguistic		439.292	440.212	0.92	label - object present	230_18m_socpop_JR.eaf
+Caregiver linguistic		446.712	447.472	0.76	label - object present	230_18m_socpop_JR.eaf
+Caregiver linguistic		450.072	451.332	1.26	label - object present	230_18m_socpop_JR.eaf
+Caregiver linguistic		454.345	455.032	0.687	label - object present	230_18m_socpop_JR.eaf
+Caregiver linguistic		462.059	462.612	0.553	label - object present	230_18m_socpop_JR.eaf
+Caregiver linguistic		464.478	464.905	0.427	label - object present	230_18m_socpop_JR.eaf
+Caregiver linguistic		473.932	474.807	0.875	label - object imaginary	230_18m_socpop_JR.eaf
+Caregiver linguistic		497.48	498.12	0.64	label - object present	230_18m_socpop_JR.eaf
+Caregiver linguistic		499.152	500.06	0.908	label - object present	230_18m_socpop_JR.eaf
+Caregiver linguistic		501.834	502.64	0.806	label - object present	230_18m_socpop_JR.eaf
+Caregiver linguistic		507.345	508.246	0.901	label - object present	230_18m_socpop_JR.eaf
+Caregiver linguistic		520.295	521.202	0.907	label - object present	230_18m_socpop_JR.eaf
+Caregiver linguistic		529.154	530.434	1.28	label - object present	230_18m_socpop_JR.eaf
+Caregiver linguistic		531.514	532.434	0.92	label - object present	230_18m_socpop_JR.eaf
+Caregiver linguistic		533.139	534.086	0.947	label - object present	230_18m_socpop_JR.eaf
+Caregiver linguistic		541.551	542.511	0.96	label - object present	230_18m_socpop_JR.eaf
+Caregiver linguistic		549.872	550.552	0.68	label - object present	230_18m_socpop_JR.eaf
+Caregiver linguistic		563.557	564.111	0.554	label - object present	230_18m_socpop_JR.eaf
+Caregiver linguistic		577.755	578.188	0.433	label - object present	230_18m_socpop_JR.eaf
+Caregiver linguistic		583.471	584.16	0.689	label - object present	230_18m_socpop_JR.eaf
+Caregiver linguistic		585.133	585.782	0.649	label - object imaginary	230_18m_socpop_JR.eaf
+Caregiver linguistic		587.214	587.809	0.595	label - object present	230_18m_socpop_JR.eaf
+Caregiver linguistic		591.417	592.076	0.659	label - object present	230_18m_socpop_JR.eaf
+Caregiver linguistic		594.993	595.62	0.627	label - object present	230_18m_socpop_JR.eaf
+Caregiver linguistic		599.729	600.553	0.824	label - object present	230_18m_socpop_JR.eaf
+Caregiver linguistic		604.966	605.723	0.757	label - object present	230_18m_socpop_JR.eaf
+Caregiver linguistic		615.071	615.733	0.662	label - object present	230_18m_socpop_JR.eaf
+Caregiver linguistic		623.152	623.936	0.784	label - object present	230_18m_socpop_JR.eaf
+Caregiver linguistic		634.679	635.436	0.757	label - object present	230_18m_socpop_JR.eaf
+Caregiver linguistic		637.747	638.373	0.626	label - object present	230_18m_socpop_JR.eaf
+Caregiver linguistic		643.733	644.139	0.406	label - object present	230_18m_socpop_JR.eaf
+Caregiver linguistic		646.985	647.228	0.243	label - object present	230_18m_socpop_JR.eaf
+Caregiver linguistic		648.431	648.768	0.337	label - object present	230_18m_socpop_JR.eaf
+Caregiver linguistic		653.488	654.015	0.527	label - object present	230_18m_socpop_JR.eaf
+Caregiver linguistic		655.517	656.017	0.5	label - object present	230_18m_socpop_JR.eaf
+Caregiver linguistic		670.955	671.78	0.825	label - object present	230_18m_socpop_JR.eaf
+Caregiver linguistic		684.97	685.334	0.364	label - object present	230_18m_socpop_JR.eaf
+Caregiver linguistic		693.501	694.596	1.095	label - object present	230_18m_socpop_JR.eaf
+Caregiver linguistic		698.313	699.313	1.0	label - object present	230_18m_socpop_JR.eaf
+Caregiver linguistic		708.344	709.533	1.189	label - object present	230_18m_socpop_JR.eaf
+Caregiver linguistic		710.645	711.794	1.149	label - object present	230_18m_socpop_JR.eaf
+Caregiver linguistic		715.253	716.132	0.879	label - object present	230_18m_socpop_JR.eaf
+Caregiver linguistic		718.31	719.039	0.729	label - object present	230_18m_socpop_JR.eaf
+Caregiver linguistic		723.611	724.301	0.69	label - object present	230_18m_socpop_JR.eaf
+Caregiver linguistic		726.271	727.014	0.743	label - object present	230_18m_socpop_JR.eaf
+Caregiver linguistic		729.242	729.836	0.594	label - object present	230_18m_socpop_JR.eaf
+Caregiver linguistic		750.096	750.893	0.797	label - object present	230_18m_socpop_JR.eaf
+Caregiver linguistic		756.228	757.26	1.032	label - object present	230_18m_socpop_JR.eaf
+Caregiver linguistic		782.133	782.67	0.537	label - object present	230_18m_socpop_JR.eaf
+Caregiver nonlinguistic		438.774	440.88	2.106	hold out/give	230_18m_socpop_JR.eaf
+Caregiver nonlinguistic		449.867	452.294	2.427	hold out/give	230_18m_socpop_JR.eaf
+Caregiver nonlinguistic		461.367	463.614	2.247	hold out/give	230_18m_socpop_JR.eaf
+Caregiver nonlinguistic		472.221	479.747	7.526	hold out/give	230_18m_socpop_JR.eaf
+Caregiver nonlinguistic		499.394	501.753	2.359	hold out/give	230_18m_socpop_JR.eaf
+Caregiver nonlinguistic		506.041	508.447	2.406	hold out/give	230_18m_socpop_JR.eaf
+Caregiver nonlinguistic		519.468	521.6	2.132	hold out/give	230_18m_socpop_JR.eaf
+Caregiver nonlinguistic		536.96	538.12	1.16	hold out/give	230_18m_socpop_JR.eaf
+Caregiver nonlinguistic		540.987	542.56	1.573	hold out/give	230_18m_socpop_JR.eaf
+Caregiver nonlinguistic		564.064	565.82	1.756	hold out/give	230_18m_socpop_JR.eaf
+Caregiver nonlinguistic		575.007	578.16	3.153	hold out/give	230_18m_socpop_JR.eaf
+Caregiver nonlinguistic		582.481	588.001	5.52	hold out/give	230_18m_socpop_JR.eaf
+Caregiver nonlinguistic		589.089	600.727	11.638	hold out/give	230_18m_socpop_JR.eaf
+Caregiver nonlinguistic		604.36	608.72	4.36	hold out/give	230_18m_socpop_JR.eaf
+Caregiver nonlinguistic		614.407	622.461	8.054	hold out/give	230_18m_socpop_JR.eaf
+Caregiver nonlinguistic		633.1	635.66	2.56	hold out/give	230_18m_socpop_JR.eaf
+Caregiver nonlinguistic		636.826	641.78	4.954	hold out/give	230_18m_socpop_JR.eaf
+Caregiver nonlinguistic		643.383	648.917	5.534	hold out/give	230_18m_socpop_JR.eaf
+Caregiver nonlinguistic		652.903	654.197	1.294	hold out/give	230_18m_socpop_JR.eaf
+Caregiver nonlinguistic		682.714	686.629	3.915	hold out/give	230_18m_socpop_JR.eaf
+Caregiver nonlinguistic		693.648	699.553	5.905	hold out/give	230_18m_socpop_JR.eaf
+Caregiver nonlinguistic		708.941	712.62	3.679	hold out/give	230_18m_socpop_JR.eaf
+Caregiver nonlinguistic		714.548	720.28	5.732	hold out/give	230_18m_socpop_JR.eaf
+Caregiver nonlinguistic		725.776	728.736	2.96	hold out/give	230_18m_socpop_JR.eaf
+Caregiver nonlinguistic		730.979	732.819	1.84	hold out/give	230_18m_socpop_JR.eaf
+Caregiver nonlinguistic		748.681	750.433	1.752	hold out/give	230_18m_socpop_JR.eaf
+Caregiver nonlinguistic		754.699	758.053	3.354	hold out/give	230_18m_socpop_JR.eaf
+Caregiver nonlinguistic		775.219	779.739	4.52	hold out/give	230_18m_socpop_JR.eaf
+Caregiver nonlinguistic		793.859	794.759	0.9	hold out/give	230_18m_socpop_JR.eaf
+Caregiver nonlinguistic		821.329	824.79	3.461	hold out/give	230_18m_socpop_JR.eaf
+Caregiver nonlinguistic		434.986	442.219	7.233	extended index finger	266_18m_socpop_JR.eaf
+Caregiver nonlinguistic		495.109	507.689	12.58	hold out/give	266_18m_socpop_JR.eaf
+Caregiver nonlinguistic		515.199	516.299	1.1	touching w/ open hand	266_18m_socpop_JR.eaf
+Caregiver nonlinguistic		522.402	524.929	2.527	hold out/give	266_18m_socpop_JR.eaf
+Caregiver nonlinguistic		536.143	539.009	2.866	hold out/give	266_18m_socpop_JR.eaf
+Caregiver nonlinguistic		543.119	553.246	10.127	hold out/give	266_18m_socpop_JR.eaf
+Caregiver nonlinguistic		584.499	586.039	1.54	extended index finger	266_18m_socpop_JR.eaf
+Caregiver nonlinguistic		591.43	592.788	1.358	hold out/give	266_18m_socpop_JR.eaf
+Caregiver nonlinguistic		592.999	593.378	0.379	touching w/ open hand	266_18m_socpop_JR.eaf
+Caregiver nonlinguistic		600.817	601.249	0.432	touching w/ open hand	266_18m_socpop_JR.eaf
+Caregiver nonlinguistic		610.996	613.549	2.553	hold out/give	266_18m_socpop_JR.eaf
+Caregiver nonlinguistic		621.496	623.982	2.486	hold out/give	266_18m_socpop_JR.eaf
+Caregiver nonlinguistic		626.284	630.629	4.345	hold out/give	266_18m_socpop_JR.eaf
+Caregiver nonlinguistic		632.43	634.769	2.339	hold out/give	266_18m_socpop_JR.eaf
+Caregiver nonlinguistic		647.989	649.75	1.761	hold out/give	266_18m_socpop_JR.eaf
+Caregiver nonlinguistic		661.959	663.799	1.84	hold out/give	266_18m_socpop_JR.eaf
+Caregiver nonlinguistic		688.846	689.352	0.506	extended index finger	266_18m_socpop_JR.eaf
+Caregiver nonlinguistic		722.78	724.252	1.472	extended index finger	266_18m_socpop_JR.eaf
+Caregiver nonlinguistic		730.976	732.329	1.353	extended index finger	266_18m_socpop_JR.eaf
+Caregiver nonlinguistic		740.003	742.16	2.157	extended index finger	266_18m_socpop_JR.eaf
+Caregiver linguistic	283	397.835	398.795	0.96	label - object present	283_18m_socpop_JR.eaf
+Caregiver linguistic	283	402.367	403.375	1.008	label - object present	283_18m_socpop_JR.eaf
+Caregiver linguistic	283	412.527	413.575	1.048	label - object present	283_18m_socpop_JR.eaf
+Caregiver linguistic	283	450.775	451.815	1.04	label - object present	283_18m_socpop_JR.eaf
+Caregiver linguistic	283	456.635	457.479	0.844	label - object present	283_18m_socpop_JR.eaf
+Caregiver linguistic	283	475.431	475.896	0.465	label - object present	283_18m_socpop_JR.eaf
+Caregiver linguistic	283	477.498	477.977	0.479	label - object present	283_18m_socpop_JR.eaf
+Caregiver linguistic	283	479.065	479.425	0.36	label - object present	283_18m_socpop_JR.eaf
+Caregiver linguistic	283	480.405	481.085	0.68	label - object present	283_18m_socpop_JR.eaf
+Caregiver linguistic	283	482.225	482.549	0.324	label - object present	283_18m_socpop_JR.eaf
+Caregiver linguistic	283	494.806	495.92	1.114	label - object present	283_18m_socpop_JR.eaf
+Caregiver linguistic	283	501.88	502.8	0.92	label - object present	283_18m_socpop_JR.eaf
+Caregiver linguistic	283	557.126	557.88	0.754	label - object present	283_18m_socpop_JR.eaf
+Caregiver linguistic	283	570.21	571.149	0.939	label - object present	283_18m_socpop_JR.eaf
+Caregiver linguistic	283	571.623	572.43	0.807	label - object present	283_18m_socpop_JR.eaf
+Caregiver linguistic	283	590.566	591.086	0.52	label - object present	283_18m_socpop_JR.eaf
+Caregiver linguistic	283	607.046	608.026	0.98	label - object present	283_18m_socpop_JR.eaf
+Caregiver linguistic	283	630.302	630.682	0.38	label - object present	283_18m_socpop_JR.eaf
+Caregiver linguistic	283	635.206	635.526	0.32	label - object present	283_18m_socpop_JR.eaf
+Caregiver linguistic	283	641.506	642.026	0.52	label - object present	283_18m_socpop_JR.eaf
+Caregiver linguistic	283	647.806	648.266	0.46	label - object present	283_18m_socpop_JR.eaf
+Caregiver linguistic	283	648.996	649.382	0.386	label - object present	283_18m_socpop_JR.eaf
+Caregiver linguistic	283	650.496	650.936	0.44	label - object present	283_18m_socpop_JR.eaf
+Caregiver linguistic	283	654.676	655.302	0.626	label - object present	283_18m_socpop_JR.eaf
+Caregiver linguistic	283	655.666	656.066	0.4	label - object present	283_18m_socpop_JR.eaf
+Caregiver linguistic	283	666.432	666.844	0.412	label - object present	283_18m_socpop_JR.eaf
+Caregiver linguistic	283	667.018	667.318	0.3	label - object present	283_18m_socpop_JR.eaf
+Caregiver linguistic	283	670.108	670.565	0.457	label - object present	283_18m_socpop_JR.eaf
+Caregiver linguistic	283	674.956	675.476	0.52	label - object present	283_18m_socpop_JR.eaf
+Caregiver linguistic	283	676.506	676.959	0.453	label - object present	283_18m_socpop_JR.eaf
+Caregiver linguistic	283	681.191	683.039	1.848	label - object present	283_18m_socpop_JR.eaf
+Caregiver linguistic	283	683.386	684.646	1.26	label - object present	283_18m_socpop_JR.eaf
+Caregiver linguistic	283	686.146	687.146	1.0	label - object present	283_18m_socpop_JR.eaf
+Caregiver linguistic	283	697.996	699.216	1.22	label - object present	283_18m_socpop_JR.eaf
+Caregiver linguistic	283	702.956	703.376	0.42	label - object present	283_18m_socpop_JR.eaf
+Caregiver linguistic	283	703.536	703.916	0.38	label - object present	283_18m_socpop_JR.eaf
+Caregiver linguistic	283	704.256	704.676	0.42	label - object present	283_18m_socpop_JR.eaf
+Caregiver linguistic	283	705.616	706.136	0.52	label - object present	283_18m_socpop_JR.eaf
+Caregiver linguistic	283	707.558	707.777	0.219	label - object present	283_18m_socpop_JR.eaf
+Caregiver linguistic	283	710.792	711.226	0.434	label - object present	283_18m_socpop_JR.eaf
+Caregiver linguistic	283	713.851	714.286	0.435	label - object present	283_18m_socpop_JR.eaf
+Caregiver linguistic	283	715.216	715.795	0.579	label - object present	283_18m_socpop_JR.eaf
+Caregiver linguistic	283	716.761	717.155	0.394	label - object present	283_18m_socpop_JR.eaf
+Caregiver nonlinguistic	283	401.356	403.159	1.803	hold out/give	283_18m_socpop_JR.eaf
+Caregiver nonlinguistic	283	405.59	406.348	0.758	extended index finger	283_18m_socpop_JR.eaf
+Caregiver nonlinguistic	283	428.751	429.772	1.021	extended index finger	283_18m_socpop_JR.eaf
+Caregiver nonlinguistic	283	432.601	433.545	0.944	extended index finger	283_18m_socpop_JR.eaf
+Caregiver nonlinguistic	283	452.163	452.711	0.548	extended index finger	283_18m_socpop_JR.eaf
+Caregiver nonlinguistic	283	471.733	472.418	0.685	extended index finger	283_18m_socpop_JR.eaf
+Caregiver nonlinguistic	283	475.34	483.807	8.467	extended index finger	283_18m_socpop_JR.eaf
+Caregiver nonlinguistic	283	493.023	494.739	1.716	extended index finger	283_18m_socpop_JR.eaf
+Caregiver nonlinguistic	283	506.999	507.481	0.482	extended index finger	283_18m_socpop_JR.eaf
+Caregiver nonlinguistic	283	517.36	518.058	0.698	extended index finger	283_18m_socpop_JR.eaf
+Caregiver nonlinguistic	283	523.055	525.762	2.707	extended index finger	283_18m_socpop_JR.eaf
+Caregiver nonlinguistic	283	531.229	532.156	0.927	extended index finger	283_18m_socpop_JR.eaf
+Caregiver nonlinguistic	283	552.98	553.68	0.7	extended index finger	283_18m_socpop_JR.eaf
+Caregiver nonlinguistic	283	570.533	572.3	1.767	hold out/give	283_18m_socpop_JR.eaf
+Caregiver nonlinguistic	283	588.28	590.789	2.509	hold out/give	283_18m_socpop_JR.eaf
+Caregiver nonlinguistic	283	591.37	591.97	0.6	extended index finger	283_18m_socpop_JR.eaf
+Caregiver nonlinguistic	283	592.9	593.56	0.66	extended index finger	283_18m_socpop_JR.eaf
+Caregiver nonlinguistic	283	610.557	614.503	3.946	extended index finger	283_18m_socpop_JR.eaf
+Caregiver nonlinguistic	283	627.23	628.47	1.24	extended index finger	283_18m_socpop_JR.eaf
+Caregiver nonlinguistic	283	629.39	630.434	1.044	extended index finger	283_18m_socpop_JR.eaf
+Caregiver nonlinguistic	283	632.6	633.867	1.267	hold out/give	283_18m_socpop_JR.eaf
+Caregiver nonlinguistic	283	647.021	647.387	0.366	extended index finger	283_18m_socpop_JR.eaf
+Caregiver nonlinguistic	283	650.412	650.962	0.55	extended index finger	283_18m_socpop_JR.eaf
+Caregiver nonlinguistic	283	662.377	666.667	4.29	hold out/give	283_18m_socpop_JR.eaf
+Caregiver nonlinguistic	283	668.568	670.808	2.24	extended index finger	283_18m_socpop_JR.eaf
+Caregiver nonlinguistic	283	697.697	698.803	1.106	extended index finger	283_18m_socpop_JR.eaf
+Caregiver nonlinguistic	283	702.253	709.856	7.603	extended index finger	283_18m_socpop_JR.eaf
+Caregiver nonlinguistic	283	711.953	716.33	4.377	hold out/give	283_18m_socpop_JR.eaf
+Caregiver nonlinguistic		377.079	378.72	1.641	descriptive or iconic gesture	311_18m_socpop_JR.eaf
+Caregiver nonlinguistic		382.746	385.58	2.834	hold out/give	311_18m_socpop_JR.eaf
+Caregiver nonlinguistic		402.106	405.646	3.54	hold out/give	311_18m_socpop_JR.eaf
+Caregiver nonlinguistic		418.54	420.133	1.593	hold out/give	311_18m_socpop_JR.eaf
+Caregiver nonlinguistic		428.64	438.08	9.44	hold out/give	311_18m_socpop_JR.eaf
+Caregiver nonlinguistic		459.08	472.84	13.76	hold out/give	311_18m_socpop_JR.eaf
+Caregiver nonlinguistic		474.466	476.46	1.994	hold out/give	311_18m_socpop_JR.eaf
+Caregiver nonlinguistic		485.18	486.42	1.24	hold out/give	311_18m_socpop_JR.eaf
+Caregiver nonlinguistic		541.673	543.32	1.647	hold out/give	311_18m_socpop_JR.eaf
+Caregiver nonlinguistic		544.58	547.98	3.4	hold out/give	311_18m_socpop_JR.eaf
+Caregiver nonlinguistic		616.0	618.52	2.52	hold out/give	311_18m_socpop_JR.eaf
+Caregiver nonlinguistic		640.647	642.006	1.359	hold out/give	311_18m_socpop_JR.eaf
+Caregiver nonlinguistic		674.879	678.92	4.041	hold out/give	311_18m_socpop_JR.eaf
+Caregiver nonlinguistic		680.2	683.2	3.0	hold out/give	311_18m_socpop_JR.eaf
+Caregiver nonlinguistic		412.179	416.379	4.2	hold out/give	315_18m_socpop_JR.eaf
+Caregiver nonlinguistic		447.369	448.949	1.58	hold out/give	315_18m_socpop_JR.eaf
+Caregiver nonlinguistic		469.139	472.859	3.72	hold out/give	315_18m_socpop_JR.eaf
+Caregiver nonlinguistic		489.832	490.225	0.393	extended index finger	315_18m_socpop_JR.eaf
+Caregiver nonlinguistic		512.343	514.557	2.214	hold out/give	315_18m_socpop_JR.eaf
+Caregiver nonlinguistic		522.696	524.589	1.893	hold out/give	315_18m_socpop_JR.eaf
+Caregiver nonlinguistic		567.152	568.939	1.787	hold out/give	315_18m_socpop_JR.eaf
+Caregiver nonlinguistic		688.907	690.747	1.84	hold out/give	315_18m_socpop_JR.eaf
+Caregiver nonlinguistic		694.713	697.887	3.174	hold out/give	315_18m_socpop_JR.eaf
+Caregiver nonlinguistic		721.93	724.723	2.793	hold out/give	315_18m_socpop_JR.eaf
+Caregiver nonlinguistic		737.337	739.024	1.687	hold out/give	315_18m_socpop_JR.eaf
+Caregiver nonlinguistic		740.74	742.967	2.227	hold out/give	315_18m_socpop_JR.eaf
+Caregiver nonlinguistic		385.68	386.16	0.48	hold out/give	319_18m_socpop_JR.eaf
+Caregiver nonlinguistic		401.4	403.64	2.24	hold out/give	319_18m_socpop_JR.eaf
+Caregiver nonlinguistic		444.48	445.92	1.44	hold out/give	319_18m_socpop_JR.eaf
+Caregiver nonlinguistic		465.64	466.24	0.6	hold out/give	319_18m_socpop_JR.eaf
+Caregiver nonlinguistic		477.38	478.62	1.24	hold out/give	319_18m_socpop_JR.eaf
+Caregiver nonlinguistic		498.72	499.76	1.04	hold out/give	319_18m_socpop_JR.eaf
+Caregiver nonlinguistic		508.48	510.08	1.6	hold out/give	319_18m_socpop_JR.eaf
+Caregiver nonlinguistic		516.52	517.88	1.36	hold out/give	319_18m_socpop_JR.eaf
+Caregiver nonlinguistic		527.72	529.48	1.76	hold out/give	319_18m_socpop_JR.eaf
+Caregiver nonlinguistic		539.56	540.48	0.92	hold out/give	319_18m_socpop_JR.eaf
+Caregiver nonlinguistic		573.52	583.24	9.72	hold out/give	319_18m_socpop_JR.eaf
+Caregiver nonlinguistic		612.926	614.58	1.654	hold out/give	319_18m_socpop_JR.eaf
+Caregiver nonlinguistic		626.44	628.139	1.699	hold out/give	319_18m_socpop_JR.eaf
