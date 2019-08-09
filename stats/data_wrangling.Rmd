@@ -75,7 +75,7 @@ label_sum <- label %>%
   summarise(labels = n())
 
 data_ges <- plyr::join_all(list(gesture_sum,label_sum,overlap_ges), by='id', type='left')
-write.csv(data_ges, "data_ges.csv")
+write.csv(data_ges, "./data/data_ges.csv")
 ```
 
 # Label perspective
@@ -107,7 +107,7 @@ label_sum <- label %>%
   summarise(labels = n())
 
 data_label <- plyr::join_all(list(gesture_sum,label_sum,overlap_label), by='id', type='left')
-write.csv(data_label, "data_label.csv")
+write.csv(data_label, "./data/data_label.csv")
 ```
 
 
@@ -122,5 +122,5 @@ label2 <- label %>%
 
 comment_label <- comment %>% 
   left_join(label2, by = c("id", "start", "stop", "tier"))
-write.csv(comment_label, "comment_label.csv")
+write.csv(comment_label, "./data/comment_label.csv")
 ```
