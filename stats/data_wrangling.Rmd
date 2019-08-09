@@ -10,22 +10,39 @@ library(tidyverse)
 ```
 
 ```{r}
-gesture <- read_csv("./data/test.csv", col_names = F)%>%
+gesture <- read_csv("./data/data_190809.csv", col_names = F)%>%
   rename(start = X3,
          stop = X4,
-         code = X1,
+         tier = X1,
          id = X7)%>%
-  select(id,code, start,stop)%>%
-  filter(code == "Caregiver nonlinguistic")
+  select(id,tier, start,stop)%>%
+  filter(tier == "Caregiver nonlinguistic") %>% 
+  mutate(start = as.numeric(start), 
+         stop = as.numeric(stop))
 
 
-label <- read_csv("./data/test.csv", col_names = F)%>%
+label <- read_csv("./data/data_190809.csv", col_names = F)%>%
   rename(start = X3,
          stop = X4,
-         code = X1,
+         tier = X1,
          id = X7)%>%
-  select(id,code, start,stop)%>%
-  filter(code == "Caregiver linguistic")
+  select(id,tier, start,stop)%>%
+  filter(tier == "Caregiver linguistic") %>% 
+  mutate(start = as.numeric(start), 
+         stop = as.numeric(stop))
+
+comment <-
+    list.files(path = "./comments", 
+            pattern = "*.csv", 
+               full.names = T) %>% 
+    map_df(~read_csv(., col_types = cols(.default = "c"))) %>% 
+  rename("stop" = 3, "id" = 6) %>% 
+  mutate(start = as.numeric(start), 
+         stop = as.numeric(stop), 
+         duration = as.numeric(duration)) %>% 
+  mutate(start = round(start, 3), 
+         stop = round(stop, 3), 
+         duration = round(duration, 3))
 
 ```
 
@@ -36,13 +53,13 @@ For each gesture, does it overlap with a label?
 ```{r}
 overlap_ges <-  gesture %>%
   mutate(start = start -1 ,
-         stop = stop + 1)%>%
-  group_by(id, code, start, stop)%>%
+         stop = stop + 1) %>%
+  group_by(id, tier, start, stop)%>%
   expand(gesture_start = nesting(label$start,label$stop,label$id))%>%
   filter(id == `label$id`)%>%
   mutate(overlap_start = ifelse(start <= `label$start` & stop >= `label$start`, T,F),
          overlap_stop = ifelse(start <= `label$stop` & stop >= `label$stop`, T,F))%>%
-  group_by(id, code, start, stop)%>%
+  group_by(id, tier, start, stop)%>%
   summarise(overlap_start = sum(overlap_start),
             overlap_stop = sum(overlap_stop))%>%
   mutate(overlap = ifelse(sum(overlap_start,overlap_stop) > 0, T,F))%>%
@@ -58,6 +75,7 @@ label_sum <- label %>%
   summarise(labels = n())
 
 data_ges <- plyr::join_all(list(gesture_sum,label_sum,overlap_ges), by='id', type='left')
+write.csv(data_ges, "data_ges.csv")
 ```
 
 # Label perspective
@@ -68,12 +86,12 @@ For each label, does it overlap with a gesture
 overlap_label <-  label %>%
   mutate(start = start -1 ,
          stop = stop + 1)%>%
-  group_by(id, code, start, stop)%>%
+  group_by(id, tier, start, stop)%>%
   expand(gesture_start = nesting(gesture$start,gesture$stop,gesture$id))%>%
   filter(id == `gesture$id`)%>%
   mutate(overlap_start = ifelse(start <= `gesture$start` & stop >= `gesture$start`, T,F),
          overlap_stop = ifelse(start <= `gesture$stop` & stop >= `gesture$stop`, T,F))%>%
-  group_by(id, code, start, stop)%>%
+  group_by(id, tier, start, stop)%>%
   summarise(overlap_start = sum(overlap_start),
             overlap_stop = sum(overlap_stop))%>%
   mutate(overlap = ifelse(sum(overlap_start,overlap_stop) > 0, T,F))%>%
@@ -89,6 +107,20 @@ label_sum <- label %>%
   summarise(labels = n())
 
 data_label <- plyr::join_all(list(gesture_sum,label_sum,overlap_label), by='id', type='left')
+write.csv(data_label, "data_label.csv")
 ```
 
 
+
+# Merge all gestures, labels, and comments into one dataframe
+
+```{r}
+label2 <- label %>% 
+  mutate(id = substr(id, 1, 3)) %>%  
+  mutate(start = round(start, 3), 
+         stop = round(stop, 3))
+
+comment_label <- comment %>% 
+  left_join(label2, by = c("id", "start", "stop", "tier"))
+write.csv(comment_label, "comment_label.csv")
+```
