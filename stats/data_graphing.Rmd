@@ -1,0 +1,214 @@
+---
+title: "Graphs for SocPOP"
+author: "Joel Ramirez"
+date: "8/9/2019"
+output: html_document
+---
+
+---
+Import necessary packages
+---
+```{r setup, include=FALSE}
+library(tidyverse)
+library(gridExtra)
+library(Hmisc)
+library(psych)
+library(knitr)
+opts_chunk$set(echo=TRUE,
+              warning=FALSE, message=FALSE,
+              cache=FALSE)
+```
+
+# Plotting Our Data
+
+
+## Read in data and create one dataframe with demographic and outcome information, assuming you already ran data_wrangling!
+```{r}
+data_label <- read_csv("./data/data_label.csv") %>% 
+  select(-X1 )
+comment_label <- read_csv("./data/comment_label.csv")
+
+data_demo <- read_csv("./data/data_children.csv") %>% 
+  mutate(id = as.character(id)) %>% 
+  select(-c(child_born_US, dad_birth_country, dad_ed_L1_pre,
+            DRT_L1_postKnown, DRT_L1_postKnownN, DRT_L1_postKnownSD, notGoodRT_L1_post_reason, 
+            CDI_age_18m, CDI_understands_words_18m, CDI_produces_words_18m, CDI_age_25m)) %>% 
+  rename("rt_25m" = "GoodDRT_L1_postKnown", "cdi_25m" = "CDI_vocab_25m")
+
+
+# merge into 1 dataframe
+# note: 168 and 310 will be handcoded for their rt values
+socpop <- data_label %>% 
+  full_join(data_demo, by = "id")
+
+```
+
+
+
+## Plot the histograms for Lables, Gestures, and Overlaps. The red line in the histogram represents the median. This will create a png of the file in the data directory.
+```{r}
+
+# histogram for labels
+ggplot(socpop, aes(x = labels)) + 
+  geom_histogram(fill = "white", color = "black", binwidth = 20)  + 
+  labs(x = "number of labels") +
+  geom_vline(xintercept = median(data_label$labels), color="red")+
+  theme(text = element_text(size=20))
+sd(data_label$labels)
+ggsave("./figures/histogram_label.png", height = 8, width = 11, units = "in")
+
+# histogram for gestures
+ggplot(socpop, aes(x = gestures)) +
+  geom_histogram(fill = "white", color = "black", binwidth = 5) + 
+  labs(x = "number of gestures") +
+  geom_vline(xintercept = median(data_label$gestures), color="red") +
+  theme(text = element_text(size=20)) 
+sd(data_label$gestures)
+ggsave("./figures/histogram_gesture.png", height = 8, width = 11, units = "in")
+
+# histogram for overlaps
+ggplot(socpop, aes(x = labels_w_gestures)) +
+  geom_histogram(fill = "white", color = "black", binwidth = 5) +
+  labs(x = "number of overlaps")  +
+   geom_vline(xintercept = median(data_label$labels_w_gestures), color="red") +
+  theme(text = element_text(size=20))
+sd(data_label$labels_w_gestures)
+ggsave("./figures/histogram_overlaps.png", height = 8, width = 11, units = "in")
+```
+
+
+## Create scatterplots with the line of best fit for Labels & Gestures and Labels & Overlaps
+```{r}
+
+p1 <- ggplot(socpop, aes(x = labels, y = gestures))+
+  geom_point()+
+ labs(x = "number of labels", y = "number of gestures") +
+  geom_smooth(method = "lm") +
+   theme(text = element_text(size=20))
+
+ggsave("./figures/plot_labels_gestures.png", height = 8, width = 11, units = "in")
+  
+p2 <- ggplot(socpop, aes(x = labels, y = labels_w_gestures))+
+  geom_point()+
+  geom_smooth(method = "lm") +
+  labs(x = "number of labels", y = "number of overlaps") +
+  theme(text = element_text(size=20))
+ggsave("./figures/plot_labels_overlap.png", height = 8, width = 11, units = "in")
+
+grid.arrange(p1,p2, ncol = 2)
+```
+
+
+
+## Create data frames to plot against outcome data
+```{r}
+rt <- socpop %>% 
+  select( id, labels, gestures, labels_w_gestures, rt_25m) %>% 
+   na.omit()
+
+cdi <- socpop %>% 
+  select( id, labels, gestures, labels_w_gestures, cdi_25m) %>% 
+  na.omit()
+```
+
+
+## Creating three scatter plots with their lines of best fit. Here we are plotting the three input variables to RT at 25 months. 
+```{r}
+p3 <- ggplot(rt, aes(x = labels, y = rt_25m)) +
+  geom_point()+
+  geom_smooth(method = "lm")+
+  labs( x = "number of labels", y = "RT at 25m") +
+  theme(text = element_text(size=20))
+p4 <- ggplot(rt, aes(x = gestures, y = rt_25m)) +
+  geom_point() +
+  geom_smooth(method = "lm") +
+  labs( x = "number of gestures", y = "RT at 25m") +
+  theme(text = element_text(size=20))
+p5 <- ggplot(rt, aes(x = labels_w_gestures, y = rt_25m)) +
+  geom_point()+
+  geom_smooth(method = "lm")+
+  labs( x = "number of overlaps", y = "RT at 25m") +
+  theme(text = element_text(size=20))
+
+grid <-grid.arrange(p3, p4, p5, ncol = 3)
+ggsave("./figures/plot_input_RT.png", plot = grid, height = 8, width = 11, units = "in")
+```
+
+
+## Create three scatterplots with their lines of best fit. Here we are plotting the three input variables to CDI score at 25 months. 
+```{r}
+p3 <- ggplot(cdi, aes(x = labels, y = cdi_25m))+
+  geom_point()+
+  geom_smooth(method = "lm")+
+  labs( x = "number of labels", y = "CDI Score at 2m") +
+  theme(text = element_text(size=20))
+p4 <- ggplot(cdi, aes(x = gestures, y = cdi_25m))+
+  geom_point()+
+  geom_smooth(method = "lm")+
+  labs( x = "number of gestures", y = "CDI Score at 24m") +
+  theme(text = element_text(size=20))
+p5 <- ggplot(cdi, aes(x = labels_w_gestures, y = cdi_25m)) +
+  geom_point()+
+  geom_smooth(method = "lm")+
+  labs( x = "number of overlaps", y = "CDI Score at 24m") +
+  theme(text = element_text(size=20))
+
+grid <- grid.arrange(p3, p4, p5, ncol = 3)
+ggsave("./figures/plot_input_cdi.png", plot = grid, height = 8, width = 11, units = "in")
+```
+
+
+## Creates the correct data frame for ploting CDI to RT, both at 24 months, and finds their correlation and confidence interval. It also then plots with line of best fit.
+```{r}
+  cdi_rt <- socpop %>% 
+  select(id, cdi_25m, rt_25m) %>% 
+  na.omit()
+
+ ggplot(cdi_rt, aes(x = cdi_25m, y = rt_25m))+
+  geom_point()+
+  geom_smooth(method = "lm")
+
+cor.test(cdi_rt$cdi_25m, cdi_rt$rt_25m)
+
+
+```
+
+
+##  Here are all the correlations and their 95% confidence interval
+```{r}
+rt_matrix<- rt %>% 
+  select(-id) 
+rcorr(as.matrix(rt_matrix))
+
+
+cdi_matrix<- cdi %>% 
+  select(-id) 
+
+rcorr(as.matrix(cdi_matrix))
+
+cor.test(rt_matrix$labels, rt_matrix$rt_25m)
+cor.test(rt_matrix$gestures, rt_matrix$rt_25m)
+cor.test(rt_matrix$labels_w_gestures, rt_matrix$rt_25m)
+
+cor.test(cdi_matrix$labels, cdi_matrix$cdi_25m)
+cor.test(cdi_matrix$gestures, cdi_matrix$cdi_25m)
+cor.test(cdi_matrix$labels_w_gestures, cdi_matrix$cdi_25m)
+
+```
+
+## Creates the necessary data frame for proportion of labels and accompanying gestures and plots it in a histogram.
+```{r}
+socpop <- socpop %>% 
+  mutate(prop_overlaps_labels = labels_w_gestures/labels)
+
+ggplot(socpop, aes(x = prop_overlaps_labels)) +
+   geom_histogram(fill = "white", color = "black", binwidth = .05) +
+  geom_vline(xintercept = median(socpop$prop_overlaps_labels, na.rm = TRUE), color="red") +
+  labs(x = "proportion of labels with gestures") +
+  theme(text = element_text(size=20))
+  ggsave("./figures/hist_prop_overlaps_labels.png",height = 8, width = 11, units = "in")
+```
+
+
+
+
