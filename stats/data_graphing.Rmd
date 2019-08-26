@@ -1,6 +1,5 @@
 ---
 title: "Graphs for SocPOP"
-author: "Joel Ramirez"
 date: "8/9/2019"
 output: html_document
 ---
@@ -118,17 +117,17 @@ p3 <- ggplot(rt, aes(x = labels, y = rt_25m)) +
   geom_point()+
   geom_smooth(method = "lm")+
   labs( x = "number of labels", y = "RT at 25m") +
-  theme(text = element_text(size=20))
+  theme(text = element_text(size=15))
 p4 <- ggplot(rt, aes(x = gestures, y = rt_25m)) +
   geom_point() +
   geom_smooth(method = "lm") +
   labs( x = "number of gestures", y = "RT at 25m") +
-  theme(text = element_text(size=20))
+  theme(text = element_text(size=15))
 p5 <- ggplot(rt, aes(x = labels_w_gestures, y = rt_25m)) +
   geom_point()+
   geom_smooth(method = "lm")+
   labs( x = "number of overlaps", y = "RT at 25m") +
-  theme(text = element_text(size=20))
+  theme(text = element_text(size=15))
 
 grid <-grid.arrange(p3, p4, p5, ncol = 3)
 ggsave("./figures/plot_input_RT.png", plot = grid, height = 8, width = 11, units = "in")
@@ -140,25 +139,25 @@ ggsave("./figures/plot_input_RT.png", plot = grid, height = 8, width = 11, units
 p3 <- ggplot(cdi, aes(x = labels, y = cdi_25m))+
   geom_point()+
   geom_smooth(method = "lm")+
-  labs( x = "number of labels", y = "CDI Score at 2m") +
-  theme(text = element_text(size=20))
+  labs( x = "number of labels", y = "CDI Score at 25m") +
+  theme(text = element_text(size=15))
 p4 <- ggplot(cdi, aes(x = gestures, y = cdi_25m))+
   geom_point()+
   geom_smooth(method = "lm")+
-  labs( x = "number of gestures", y = "CDI Score at 24m") +
-  theme(text = element_text(size=20))
+  labs( x = "number of gestures", y = "CDI Score at 25m") +
+  theme(text = element_text(size=15))
 p5 <- ggplot(cdi, aes(x = labels_w_gestures, y = cdi_25m)) +
   geom_point()+
   geom_smooth(method = "lm")+
-  labs( x = "number of overlaps", y = "CDI Score at 24m") +
-  theme(text = element_text(size=20))
+  labs( x = "number of overlaps", y = "CDI Score at 25m") +
+  theme(text = element_text(size=15))
 
 grid <- grid.arrange(p3, p4, p5, ncol = 3)
 ggsave("./figures/plot_input_cdi.png", plot = grid, height = 8, width = 11, units = "in")
 ```
 
 
-## Creates the correct data frame for ploting CDI to RT, both at 24 months, and finds their correlation and confidence interval. It also then plots with line of best fit.
+## Creates the correct data frame for ploting CDI to RT, both at 25 months, and finds their correlation and confidence interval. It also then plots with line of best fit.
 ```{r}
   cdi_rt <- socpop %>% 
   select(id, cdi_25m, rt_25m) %>% 
@@ -166,8 +165,10 @@ ggsave("./figures/plot_input_cdi.png", plot = grid, height = 8, width = 11, unit
 
  ggplot(cdi_rt, aes(x = cdi_25m, y = rt_25m))+
   geom_point()+
-  geom_smooth(method = "lm")
-
+  geom_smooth(method = "lm")+
+  labs( x = "CDI at 25m", y = "RT at 25m") +
+  theme(text = element_text(size=15))
+ 
 cor.test(cdi_rt$cdi_25m, cdi_rt$rt_25m)
 
 
