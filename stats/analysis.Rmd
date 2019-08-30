@@ -74,7 +74,7 @@ ggplot(data_model, aes(x=rt_25m))+
   theme_few()
 ```
 
-#### Models
+#### Models RT
 
 ```{r}
 # run models only when new data is added
@@ -211,6 +211,169 @@ tidy(model_rt_gesture)%>%mutate(model = "gesture")#,
   
 ```
 
+### CDI as dependent variable
+
+```{r}
+# Prepare data file
+# center predictors at 0 by subtracting mean to facilitate model fitting
+# remove lines with NAs to allow centering
+
+data_cdi_model <- socpop %>%
+  filter(cdi_25m != "NA",
+         gestures != "NA",
+         labels != "NA")%>%
+  mutate(gestures = gestures - mean(gestures),
+         labels = labels - mean(labels),
+         labels_w_gestures = labels_w_gestures - mean(labels_w_gestures),
+         ses = ses - mean(ses))
+```
+
+#### Plotting DV
+
+```{r}
+# inspect DV - looks fine in this case
+ggplot(data_cdi_model, aes(x=cdi_25m))+
+  geom_density()+
+  xlim(-2000,2000)+
+  theme_few()
+```
+
+#### Models CDI
+
+```{r}
+# run models only when new data is added
+# otherwise, you can just load the saved model output
+# saves time, each model takes approx. 2 min to run
+# when you run the model, the output is automatically saved
+# even if you run the model, you need to load the saved file afterwards
+
+
+# model_cdi_label <- brm(cdi_25m ~ labels + ses,
+#                     data = data_cdi_model, family = gaussian(),
+#           control = list(adapt_delta = 0.95),
+#           save_all_pars = TRUE,
+#           iter = 6000)%>%
+#   add_criterion("waic")%>%
+#   saveRDS("saves/model_cdi_label.rds")
+
+model_cdi_label <- readRDS("saves/model_cdi_label.rds")
+
+# model_cdi_gesture <- brm(cdi_25m ~ gestures + ses,
+#                     data = data_cdi_model, family = gaussian(),
+#           control = list(adapt_delta = 0.95),
+#           save_all_pars = TRUE,
+#           iter = 6000)%>%
+#   add_criterion("waic")%>%
+#   saveRDS("saves/model_cdi_gesture.rds")
+
+model_cdi_gesture <- readRDS("saves/model_cdi_gesture.rds")
+
+# model_cdi_label_gesture <- brm(cdi_25m ~ labels + gestures + ses,
+#                     data = data_cdi_model, family = gaussian(),
+#           control = list(adapt_delta = 0.95),
+#           save_all_pars = TRUE,
+#           iter = 6000)%>%
+#   add_criterion("waic")%>%
+#   saveRDS("saves/model_cdi_label_gesture.rds")
+
+model_cdi_label_gesture <- readRDS("saves/model_cdi_label_gesture.rds")
+
+# model_cdi_label_gesture_int <- brm(cdi_25m ~ labels * gestures + ses,
+#                     data = data_cdi_model, family = gaussian(),
+#           control = list(adapt_delta = 0.95),
+#           save_all_pars = TRUE,
+#           iter = 6000)%>%
+#   add_criterion("waic")%>%
+#   saveRDS("saves/model_cdi_label_gesture_int.rds")
+
+model_cdi_label_gesture_int <- readRDS("saves/model_cdi_label_gesture_int.rds")
+
+# model_cdi_overlap <- brm(cdi_25m ~ labels_w_gestures + ses,
+#                     data = data_cdi_model, family = gaussian(),
+#           control = list(adapt_delta = 0.95),
+#           save_all_pars = TRUE,
+#           iter = 6000)%>%
+#   add_criterion("waic")%>%
+#   saveRDS("saves/model_cdi_overlap.rds")
+
+model_cdi_overlap <- readRDS("saves/model_cdi_overlap.rds")
+
+```
+
+#### Model comparison
+
+```{r}
+# WAIC scores for each model
+waic_cdi <- loo_compare(model_cdi_label, 
+                    model_cdi_gesture,
+                    model_cdi_label_gesture,
+                    model_cdi_label_gesture_int,
+                    model_cdi_overlap, 
+                    criterion = "waic")%>%
+  as_tibble()%>%
+  select(waic, se_waic)%>%
+  round(2)
+
+# WAIC weights
+weights_cdi <-model_weights(model_cdi_label, 
+                    model_cdi_gesture,
+                    model_cdi_label_gesture,
+                    model_cdi_label_gesture_int,
+                    model_cdi_overlap, 
+                    weight = "waic")%>%
+  as_tibble()%>%
+  round(2)
+
+# Putting things together in a dataframe
+data_frame(
+  model = c("label","gesture","label+gesture", "label*gesture","overlap"),
+  WAIC = c(waic_cdi$waic[1],waic_cdi$waic[2],waic_cdi$waic[3],waic_cdi$waic[4],waic_cdi$waic[5]),
+  SE = c(waic_cdi$se_waic[1],waic_cdi$se_waic[2],waic_cdi$se_waic[3],waic_cdi$se_waic[4],waic_cdi$se_waic[5]),
+  weight = c(weights_cdi$value[1],weights_cdi$value[2],weights_cdi$value[3],weights_cdi$value[4],weights_cdi$value[5]))
+```
+
+```{r}
+# inspect trace plots for models
+# looks fine, check again when new data was added
+
+# plot(model_rt_label)
+# 
+# plot(model_rt_gesture)
+# 
+# plot(model_rt_label_gesture)
+# 
+# plot(model_rt_label_gesture_int)
+# 
+# plot(model_rt_overlap)
+```
+
+#### Visualizing results
+
+```{r}
+# overview over model predictors
+# removing intercept because it's on a different scale
+# select models depending on results of model comparison
+
+bind_rows(
+tidy(model_cdi_label)%>%mutate(model = "label"),
+tidy(model_cdi_gesture)%>%mutate(model = "gesture"),
+tidy(model_cdi_overlap)%>%mutate(model = "overlap"),
+tidy(model_cdi_label_gesture)%>%mutate(model = "label+gesture"),
+tidy(model_cdi_label_gesture_int)%>%mutate(model = "label*gesture")
+) %>%
+  filter(term != "b_Intercept",
+         term != "sigma",
+         term != "temp_Intercept",
+         term != "lp__")%>% 
+  mutate(term = str_remove(term,"b_"))%>%
+  ggplot(aes(term, estimate, ymin = lower, ymax = upper, color = model)) + 
+  geom_hline(yintercept=0)+
+  geom_pointrange(position = position_dodge(width = .8))+
+  coord_flip()+
+  theme_few()+
+  scale_color_ptol(name = "Model")
+  
+```
 
 
 
