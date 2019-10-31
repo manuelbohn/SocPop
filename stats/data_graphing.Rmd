@@ -27,12 +27,14 @@ data_label <- read_csv("./data/data_label.csv") %>%
   select(-X1 )
 comment_label <- read_csv("./data/comment_label.csv")
 
-data_demo <- read_csv("./data/data_children.csv") %>% 
+data_demo <- read_csv("./data/data_children_n42.csv") %>% 
   mutate(id = as.character(id)) %>% 
-  select(-c(child_born_US, dad_birth_country, dad_ed_L1_pre,
-            DRT_L1_postKnown, DRT_L1_postKnownN, DRT_L1_postKnownSD, notGoodRT_L1_post_reason, 
-            CDI_age_18m, CDI_understands_words_18m, CDI_produces_words_18m, CDI_age_25m)) %>% 
-  rename("rt_25m" = "GoodDRT_L1_postKnown", "cdi_25m" = "CDI_vocab_25m")
+  select(c(child_born_US, L1PRE_dad_birth_country, L1PRE_mom_ed,
+           L1PRE_hi, L1POST_hi,
+           L1PRE_gooddrt, L1PRE_drtn, L1POST_gooddrt, L1POST_drtn,
+           L1PRE_cdi_age, L1PRE_cdi_vocab, L1POST_cdi_age, L1POST_cdi_vocab)) %>% 
+  rename("rt_18m" = "L1PRE_gooddrt", "cdi_18m" = "L1PRE_cdi_vocab",
+         "rt_25m" = "L1POST_gooddrt", "cdi_25m" = "L1POST_cdi_vocab")
 
 
 # merge into 1 dataframe
