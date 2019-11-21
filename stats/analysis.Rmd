@@ -82,6 +82,7 @@ data_model <- socpop %>%
          labels_w_gestures = labels_w_gestures - mean(labels_w_gestures),
          rt_18m = rt_18m - mean(rt_18m),
          ses = ses - mean(ses))
+
 ```
 
 #### Plotting DV
@@ -111,7 +112,7 @@ model_rt_label <- brm(rt_25m ~ labels + ses + rt_18m,
           sample_prior = F,
           chains = 4,
           cores = 4,
-          iter = 20000)%>%
+          iter = 50000)%>%
   saveRDS("saves/model_rt_label.rds")
 
 model_rt_label <- readRDS("saves/model_rt_label.rds")
@@ -120,7 +121,10 @@ model_rt_gesture <- brm(rt_25m ~ gestures + ses + rt_18m,
                     data = data_model, family = gaussian(),
           control = list(adapt_delta = 0.95),
           save_all_pars = TRUE,
-          iter = 20000)%>%
+          sample_prior = F,
+          chains = 4,
+          cores = 4,
+          iter = 50000)%>%
   saveRDS("saves/model_rt_gesture.rds")
 
 model_rt_gesture <- readRDS("saves/model_rt_gesture.rds")
@@ -129,7 +133,10 @@ model_rt_label_gesture <- brm(rt_25m ~ labels + gestures + ses + rt_18m,
                     data = data_model, family = gaussian(),
           control = list(adapt_delta = 0.95),
           save_all_pars = TRUE,
-          iter = 20000)%>%
+          sample_prior = F,
+          chains = 4,
+          cores = 4,
+          iter = 50000)%>%
   saveRDS("saves/model_rt_label_gesture.rds")
 
 model_rt_label_gesture <- readRDS("saves/model_rt_label_gesture.rds")
@@ -138,7 +145,10 @@ model_rt_label_gesture_int <- brm(rt_25m ~ labels * gestures + ses + rt_18m,
                     data = data_model, family = gaussian(),
           control = list(adapt_delta = 0.95),
           save_all_pars = TRUE,
-          iter = 20000)%>%
+          sample_prior = F,
+          chains = 4,
+          cores = 4,
+          iter = 50000)%>%
   saveRDS("saves/model_rt_label_gesture_int.rds")
 
 model_rt_label_gesture_int <- readRDS("saves/model_rt_label_gesture_int.rds")
@@ -147,7 +157,10 @@ model_rt_overlap <- brm(rt_25m ~ labels_w_gestures + ses + rt_18m,
                     data = data_model, family = gaussian(),
           control = list(adapt_delta = 0.95),
           save_all_pars = TRUE,
-          iter = 20000)%>%
+          sample_prior = F,
+          chains = 4,
+          cores = 4,
+          iter = 50000)%>%
   saveRDS("saves/model_rt_overlap.rds")
 
 model_rt_overlap <- readRDS("saves/model_rt_overlap.rds")
