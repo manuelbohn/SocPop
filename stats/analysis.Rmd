@@ -191,27 +191,21 @@ weights <-model_weights(model_rt_label,
   as_tibble()%>%
   round(6)
 
-# Putting things together in a dataframe
-data_frame(
-  model = c("label","gesture","label+gesture", "label*gesture","overlap"),
-  WAIC = c(waic$waic[1],waic$waic[2],waic$waic[3],waic$waic[4],waic$waic[5]),
-  SE = c(waic$se_waic[1],waic$se_waic[2],waic$se_waic[3],waic$se_waic[4],waic$se_waic[5]),
-  weight = c(weights$value[1],weights$value[2],weights$value[3],weights$value[4],weights$value[5]))
 ```
 
 ```{r}
 # inspect trace plots for models
 # looks fine, check again when new data was added
 
-plot(model_rt_label)
-
-plot(model_rt_gesture)
-
-plot(model_rt_label_gesture)
-
-plot(model_rt_label_gesture_int)
-
-plot(model_rt_overlap)
+# plot(model_rt_label)
+# 
+# plot(model_rt_gesture)
+# 
+# plot(model_rt_label_gesture)
+# 
+# plot(model_rt_label_gesture_int)
+# 
+# plot(model_rt_overlap)
 ```
 
 #### Visualizing results
@@ -222,11 +216,11 @@ plot(model_rt_overlap)
 # select models depending on results of model comparison
 
 bind_rows(
-tidy(model_rt_label)%>%mutate(model = "label")#,
-# tidy(model_rt_gesture)%>%mutate(model = "gesture"),
-# tidy(model_rt_overlap)%>%mutate(model = "overlap"),
-# tidy(model_rt_label_gesture)%>%mutate(model = "label+gesture"),
-# tidy(model_rt_label_gesture_int)%>%mutate(model = "label*gesture")
+tidy(model_rt_label)%>%mutate(model = "label"),
+tidy(model_rt_gesture)%>%mutate(model = "gesture"),
+tidy(model_rt_overlap)%>%mutate(model = "overlap"),
+tidy(model_rt_label_gesture)%>%mutate(model = "label+gesture"),
+tidy(model_rt_label_gesture_int)%>%mutate(model = "label*gesture")
 ) %>%
   filter(term != "Intercept",
          term != "b_Intercept",
@@ -247,8 +241,30 @@ tidy(model_rt_label)%>%mutate(model = "label")#,
 ```{r}
 
 bf_rt_1 <- bayes_factor(model_rt_label, model_rt_gesture, log = F)
+bf_rt_2 <- bayes_factor(model_rt_label, model_rt_overlap, log = F)
+bf_rt_3 <- bayes_factor(model_rt_label, model_rt_label_gesture, log = F)
+bf_rt_4 <- bayes_factor(model_rt_label, model_rt_label_gesture_int, log = F)
+
 
 ```
+
+#### Overview table
+
+```{r}
+# Putting things together in a dataframe
+# BF = Bayes factor in favor of the winning model in this case label
+data_frame(
+  model = c("label","gesture","label+gesture", "label*gesture","overlap"),
+  WAIC = c(waic$waic[1],waic$waic[2],waic$waic[3],waic$waic[4],waic$waic[5]),
+  SE = c(waic$se_waic[1],waic$se_waic[2],waic$se_waic[3],waic$se_waic[4],waic$se_waic[5]),
+  weight = c(weights$value[1],weights$value[2],weights$value[3],weights$value[4],weights$value[5]),
+  bf = c("-",round(bf_rt_1$bf,2),round(bf_rt_3$bf,2),round(bf_rt_4$bf,2),round(bf_rt_2$bf,2)))%>%
+  saveRDS("saves/rt_overview.rds")
+
+readRDS("saves/rt_overview.rds")
+
+```
+
 
 
 ### CDI as dependent variable
@@ -374,13 +390,6 @@ weights_cdi <-model_weights(model_cdi_label,
                     weight = "waic")%>%
   as_tibble()%>%
   round(2)
-
-# Putting things together in a dataframe
-data_frame(
-  model = c("label","gesture","label+gesture", "label*gesture","overlap"),
-  WAIC = c(waic_cdi$waic[1],waic_cdi$waic[2],waic_cdi$waic[3],waic_cdi$waic[4],waic_cdi$waic[5]),
-  SE = c(waic_cdi$se_waic[1],waic_cdi$se_waic[2],waic_cdi$se_waic[3],waic_cdi$se_waic[4],waic_cdi$se_waic[5]),
-  weight = c(weights_cdi$value[1],weights_cdi$value[2],weights_cdi$value[3],weights_cdi$value[4],weights_cdi$value[5]))
 ```
 
 ```{r}
@@ -408,9 +417,9 @@ data_frame(
 bind_rows(
 tidy(model_cdi_label)%>%mutate(model = "label"),
 tidy(model_cdi_gesture)%>%mutate(model = "gesture"),
-tidy(model_cdi_overlap)%>%mutate(model = "overlap")
-#tidy(model_cdi_label_gesture)%>%mutate(model = "label+gesture"),
-#tidy(model_cdi_label_gesture_int)%>%mutate(model = "label*gesture")
+tidy(model_cdi_overlap)%>%mutate(model = "overlap"),
+tidy(model_cdi_label_gesture)%>%mutate(model = "label+gesture"),
+tidy(model_cdi_label_gesture_int)%>%mutate(model = "label*gesture")
 ) %>%
   filter(term != "Intercept",
          term != "b_Intercept",
@@ -427,6 +436,32 @@ tidy(model_cdi_overlap)%>%mutate(model = "overlap")
   
 ```
 
+#### Bayes Factors
+```{r}
+
+bf_cdi_1 <- bayes_factor(model_cdi_overlap, model_cdi_label, log = F)
+bf_cdi_2 <- bayes_factor(model_cdi_overlap, model_cdi_gesture, log = F)
+bf_cdi_3 <- bayes_factor(model_cdi_overlap, model_cdi_label_gesture, log = F)
+bf_cdi_4 <- bayes_factor(model_cdi_overlap, model_cdi_label_gesture_int, log = F)
+
+
+```
+
+#### Overview table
+
+```{r}
+# Putting things together in a dataframe
+# BF = Bayes Factor in favor of the winning model, in this case overlap
+data_frame(
+  model = c("label","gesture","label+gesture", "label*gesture","overlap"),
+  WAIC = c(waic_cdi$waic[1],waic_cdi$waic[2],waic_cdi$waic[3],waic_cdi$waic[4],waic_cdi$waic[5]),
+  SE = c(waic_cdi$se_waic[1],waic_cdi$se_waic[2],waic_cdi$se_waic[3],waic_cdi$se_waic[4],waic_cdi$se_waic[5]),
+  weight = c(weights_cdi$value[1],weights_cdi$value[2],weights_cdi$value[3],weights_cdi$value[4],weights_cdi$value[5]),
+  bf = c(round(bf_cdi_1$bf,2),round(bf_cdi_2$bf,2),round(bf_cdi_3$bf,2),round(bf_cdi_4$bf,2), "-"))%>%
+  saveRDS("saves/cdi_overview.rds")
+
+readRDS("saves/cdi_overview.rds")
+```
 
 
 
