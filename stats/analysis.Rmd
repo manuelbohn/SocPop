@@ -17,6 +17,7 @@ library(bayesplot)
 library(broom)
 library(readxl)
 library(ggpubr)
+library(lsr)
 
 opts_chunk$set(echo=TRUE,
               warning=FALSE, message=FALSE,
@@ -47,6 +48,19 @@ socpop <- data_label %>%
 ```
 
 ## Visualizing raw correlations
+
+### Within predictors
+
+```{r}
+cor <- socpop%>%
+  select(gestures, labels,labels_w_gestures)%>%
+  as.matrix()
+
+correlate(cor)
+```
+
+
+### Predictors vs DVs
 
 ```{r}
 socpop%>%
