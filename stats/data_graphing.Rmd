@@ -9,6 +9,7 @@ Import necessary packages
 ---
 ```{r setup, include=FALSE}
 library(tidyverse)
+library(readxl)
 library(gridExtra)
 library(Hmisc)
 library(psych)
@@ -25,11 +26,11 @@ opts_chunk$set(echo=TRUE,
 ```{r}
 data_label <- read_csv("./data/data_label.csv") %>% 
   select(-X1 )
-comment_label <- read_csv("./data/comment_label.csv")
+# comment_label <- read_csv("./data/comment_label.csv")
 
-data_demo <- read_csv("./data/data_children_n42.csv") %>% 
+data_demo <- read_excel("./data/data_children_n43.xlsx") %>% 
   mutate(id = as.character(id)) %>% 
-  select(c(child_born_US, L1PRE_dad_birth_country, L1PRE_mom_ed,
+  select(c(id, child_born_US, L1PRE_dad_birth_country, L1PRE_mom_ed,
            L1PRE_hi, L1POST_hi,
            L1PRE_gooddrt, L1PRE_drtn, L1POST_gooddrt, L1POST_drtn,
            L1PRE_cdi_age, L1PRE_cdi_vocab, L1POST_cdi_age, L1POST_cdi_vocab)) %>% 
@@ -38,10 +39,11 @@ data_demo <- read_csv("./data/data_children_n42.csv") %>%
 
 
 # merge into 1 dataframe
-# note: 168 and 310 will be handcoded for their rt values
 socpop <- data_label %>% 
-  full_join(data_demo, by = "id")
-
+  full_join(data_demo, by = "id") %>% 
+  filter(id != 435) %>% # waiting for data to be coded
+  filter(id != 436 & id != 444) %>%  # data is coded but waiting to be entered
+  filter(id != 417 & id != 431 & id != 433 & id != 445) # labels have not been coded yet
 ```
 
 
