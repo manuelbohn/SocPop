@@ -113,6 +113,7 @@ model_rt_label <- brm(rt_25m ~ labels + ses + rt_18m,
           chains = 4,
           cores = 4,
           iter = 50000)%>%
+  add_criterion("waic")%>%
   saveRDS("saves/model_rt_label.rds")
 
 model_rt_label <- readRDS("saves/model_rt_label.rds")
@@ -125,6 +126,7 @@ model_rt_gesture <- brm(rt_25m ~ gestures + ses + rt_18m,
           chains = 4,
           cores = 4,
           iter = 50000)%>%
+  add_criterion("waic")%>%
   saveRDS("saves/model_rt_gesture.rds")
 
 model_rt_gesture <- readRDS("saves/model_rt_gesture.rds")
@@ -137,6 +139,7 @@ model_rt_label_gesture <- brm(rt_25m ~ labels + gestures + ses + rt_18m,
           chains = 4,
           cores = 4,
           iter = 50000)%>%
+  add_criterion("waic")%>%
   saveRDS("saves/model_rt_label_gesture.rds")
 
 model_rt_label_gesture <- readRDS("saves/model_rt_label_gesture.rds")
@@ -149,6 +152,7 @@ model_rt_label_gesture_int <- brm(rt_25m ~ labels * gestures + ses + rt_18m,
           chains = 4,
           cores = 4,
           iter = 50000)%>%
+  add_criterion("waic")%>%
   saveRDS("saves/model_rt_label_gesture_int.rds")
 
 model_rt_label_gesture_int <- readRDS("saves/model_rt_label_gesture_int.rds")
@@ -161,6 +165,7 @@ model_rt_overlap <- brm(rt_25m ~ labels_w_gestures + ses + rt_18m,
           chains = 4,
           cores = 4,
           iter = 50000)%>%
+  add_criterion("waic")%>%
   saveRDS("saves/model_rt_overlap.rds")
 
 model_rt_overlap <- readRDS("saves/model_rt_overlap.rds")
@@ -171,12 +176,12 @@ model_rt_overlap <- readRDS("saves/model_rt_overlap.rds")
 
 ```{r}
 # WAIC scores for each model
-waic <- brms::waic(model_rt_label, 
+waic <- loo_compare(model_rt_label, 
                     model_rt_gesture,
                     model_rt_label_gesture,
                     model_rt_label_gesture_int,
                     model_rt_overlap, 
-                    compare = F)%>%
+                    criterion = "waic")%>%
   as_tibble()%>%
   select(waic, se_waic)%>%
   round(2)
