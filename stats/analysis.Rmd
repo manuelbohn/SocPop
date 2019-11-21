@@ -185,15 +185,12 @@ model_rt_overlap <- readRDS("saves/model_rt_overlap.rds")
 
 ```{r}
 # WAIC scores for each model
-waic <- loo_compare(model_rt_label, 
+waic <- brms::waic(model_rt_label, 
                     model_rt_gesture,
                     model_rt_label_gesture,
                     model_rt_label_gesture_int,
                     model_rt_overlap, 
-                    criterion = "waic")%>%
-  as_tibble()%>%
-  select(waic, se_waic)%>%
-  round(2)
+                    compare = F)
 
 # WAIC weights
 weights <-model_weights(model_rt_label, 
@@ -269,8 +266,18 @@ bf_rt_4 <- bayes_factor(model_rt_label, model_rt_label_gesture_int, log = F)
 # BF = Bayes factor in favor of the winning model in this case label
 data_frame(
   model = c("label","gesture","label+gesture", "label*gesture","overlap"),
-  WAIC = c(waic$waic[1],waic$waic[2],waic$waic[3],waic$waic[4],waic$waic[5]),
-  SE = c(waic$se_waic[1],waic$se_waic[2],waic$se_waic[3],waic$se_waic[4],waic$se_waic[5]),
+ WAIC = c(
+   waic$loos$model_rt_label$waic%>%round(.,2),
+   waic$loos$model_rt_gesture$waic%>%round(.,2),
+   waic$loos$model_rt_label_gesture$waic%>%round(.,2),
+   waic$loos$model_rt_label_gesture_int$waic%>%round(.,2),
+   waic$loos$model_rt_overlap$waic%>%round(.,2)),
+  SE = c(
+    waic$loos$model_rt_label$se_waic%>%round(.,2),
+    waic$loos$model_rt_gesture$se_waic%>%round(.,2),
+    waic$loos$model_rt_label_gesture$se_waic%>%round(.,2),
+    waic$loos$model_rt_label_gesture_int$se_waic%>%round(.,2), 
+    waic$loos$model_rt_overlap$se_waic%>%round(.,2)),
   weight = c(weights$value[1],weights$value[2],weights$value[3],weights$value[4],weights$value[5]),
   bf = c("-",round(bf_rt_1$bf,2),round(bf_rt_3$bf,2),round(bf_rt_4$bf,2),round(bf_rt_2$bf,2)))%>%
   saveRDS("saves/rt_overview.rds")
@@ -385,15 +392,12 @@ model_cdi_overlap <- readRDS("saves/model_cdi_overlap.rds")
 
 ```{r}
 # WAIC scores for each model
-waic_cdi <- loo_compare(model_cdi_label, 
+waic_cdi <- brms::waic(model_cdi_label, 
                     model_cdi_gesture,
                     model_cdi_label_gesture,
                     model_cdi_label_gesture_int,
                     model_cdi_overlap, 
-                    criterion = "waic")%>%
-  as_tibble()%>%
-  select(waic, se_waic)%>%
-  round(2)
+                    cpmpare = F)
 
 # WAIC weights
 weights_cdi <-model_weights(model_cdi_label, 
@@ -468,11 +472,22 @@ bf_cdi_4 <- bayes_factor(model_cdi_overlap, model_cdi_label_gesture_int, log = F
 # BF = Bayes Factor in favor of the winning model, in this case overlap
 data_frame(
   model = c("label","gesture","label+gesture", "label*gesture","overlap"),
-  WAIC = c(waic_cdi$waic[1],waic_cdi$waic[2],waic_cdi$waic[3],waic_cdi$waic[4],waic_cdi$waic[5]),
-  SE = c(waic_cdi$se_waic[1],waic_cdi$se_waic[2],waic_cdi$se_waic[3],waic_cdi$se_waic[4],waic_cdi$se_waic[5]),
+ WAIC = c(
+   waic_cdi$loos$model_cdi_label$waic%>%round(.,2),
+   waic_cdi$loos$model_cdi_gesture$waic%>%round(.,2),
+   waic_cdi$loos$model_cdi_label_gesture$waic%>%round(.,2),
+   waic_cdi$loos$model_cdi_label_gesture_int$waic%>%round(.,2),
+   waic_cdi$loos$model_cdi_overlap$waic%>%round(.,2)),
+  SE = c(
+    waic_cdi$loos$model_cdi_label$se_waic%>%round(.,2),
+    waic_cdi$loos$model_cdi_gesture$se_waic%>%round(.,2),
+    waic_cdi$loos$model_cdi_label_gesture$se_waic%>%round(.,2),
+    waic_cdi$loos$model_cdi_label_gesture_int$se_waic%>%round(.,2), 
+    waic_cdi$loos$model_cdi_overlap$se_waic%>%round(.,2)),
   weight = c(weights_cdi$value[1],weights_cdi$value[2],weights_cdi$value[3],weights_cdi$value[4],weights_cdi$value[5]),
   bf = c(round(bf_cdi_1$bf,2),round(bf_cdi_2$bf,2),round(bf_cdi_3$bf,2),round(bf_cdi_4$bf,2), "-"))%>%
   saveRDS("saves/cdi_overview.rds")
+
 
 readRDS("saves/cdi_overview.rds")
 ```
