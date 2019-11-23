@@ -96,9 +96,10 @@ p2 <- ggplot(socpop, aes(x = labels, y = labels_w_gestures))+
   geom_smooth(method = "lm") +
   labs(x = "number of labels", y = "number of overlaps") +
   theme(text = element_text(size=20))
-ggsave("./figures/plot_labels_overlap.png", height = 8, width = 11, units = "in")
 
-grid.arrange(p1,p2, ncol = 2)
+grid1 <- grid.arrange(p1,p2, ncol = 2)
+ggsave("./figures/plot_labels_overlap.png", plot = grid1, height = 8, width = 11, units = "in")
+
 ```
 
 
@@ -133,8 +134,8 @@ p5 <- ggplot(rt, aes(x = labels_w_gestures, y = rt_25m)) +
   labs( x = "number of overlaps", y = "RT at 25m") +
   theme(text = element_text(size=15))
 
-grid <-grid.arrange(p3, p4, p5, ncol = 3)
-ggsave("./figures/plot_input_RT.png", plot = grid, height = 8, width = 11, units = "in")
+grid2 <-grid.arrange(p3, p4, p5, ncol = 3)
+ggsave("./figures/plot_input_RT.png", plot = grid2, height = 8, width = 11, units = "in")
 ```
 
 
@@ -156,8 +157,8 @@ p5 <- ggplot(cdi, aes(x = labels_w_gestures, y = cdi_25m)) +
   labs( x = "number of overlaps", y = "CDI Score at 25m") +
   theme(text = element_text(size=15))
 
-grid <- grid.arrange(p3, p4, p5, ncol = 3)
-ggsave("./figures/plot_input_cdi.png", plot = grid, height = 8, width = 11, units = "in")
+grid3 <- grid.arrange(p3, p4, p5, ncol = 3)
+ggsave("./figures/plot_input_cdi.png", plot = grid3, height = 8, width = 11, units = "in")
 ```
 
 
@@ -211,7 +212,7 @@ ggplot(socpop, aes(x = prop_overlaps_labels)) +
   geom_vline(xintercept = median(socpop$prop_overlaps_labels, na.rm = TRUE), color="red") +
   labs(x = "proportion of labels with gestures") +
   theme(text = element_text(size=20))
-  ggsave("./figures/hist_prop_overlaps_labels.png",height = 8, width = 11, units = "in")
+ggsave("./figures/hist_prop_overlaps_labels.png",height = 8, width = 11, units = "in")
 ```
 
 
