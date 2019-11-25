@@ -18,7 +18,7 @@ library(broom)
 library(readxl)
 library(ggpubr)
 library(lsr)
-library(sjPlot)
+#library(sjPlot)
 
 opts_chunk$set(echo=TRUE,
               warning=FALSE, message=FALSE,
@@ -251,9 +251,7 @@ weights <-model_weights(model_rt_label,
                     model_rt_label_gesture_int,
                     model_rt_overlap, 
                     weight = "waic")%>%
-  as_tibble()%>%
-  round(6)
-
+  round(.,2)
 ```
 
 ```{r}
@@ -269,6 +267,7 @@ weights <-model_weights(model_rt_label,
 # plot(model_rt_label_gesture_int)
 # 
 # plot(model_rt_overlap)
+
 ```
 
 #### Visualizing results
@@ -330,7 +329,7 @@ data_frame(
     waic$loos$model_rt_label_gesture$se_waic%>%round(.,2),
     waic$loos$model_rt_label_gesture_int$se_waic%>%round(.,2), 
     waic$loos$model_rt_overlap$se_waic%>%round(.,2)),
-  weight = c(weights$value[1],weights$value[2],weights$value[3],weights$value[4],weights$value[5]),
+  weight = c(weights["model_rt_label"],weights["model_rt_gesture"],weights["model_rt_label_gesture"],weights["model_rt_label_gesture_int"],weights["model_rt_overlap"]),
   bf = c("-",round(bf_rt_1$bf,2),round(bf_rt_3$bf,2),round(bf_rt_4$bf,2),round(bf_rt_2$bf,2)))%>%
   saveRDS("saves/rt_overview.rds")
 
@@ -378,7 +377,7 @@ ggplot(data_cdi_model, aes(x=cdi_25m))+
 # when you run the model, the output is automatically saved
 # even if you run the model, you need to load the saved file afterwards
 
-
+# 
 # prior_cdi_label <- c(set_prior("normal(250,300)", class = "b", coef = "intercept"),
 #             set_prior("normal(0,10)", class = "b", coef = "labels"),
 #             set_prior("normal(0,10)", class = "b", coef = "ses"),
@@ -485,7 +484,7 @@ waic_cdi <- brms::waic(model_cdi_label,
                     model_cdi_label_gesture,
                     model_cdi_label_gesture_int,
                     model_cdi_overlap, 
-                    cpmpare = F)
+                    compare = F)
 
 # WAIC weights
 weights_cdi <-model_weights(model_cdi_label, 
@@ -494,8 +493,7 @@ weights_cdi <-model_weights(model_cdi_label,
                     model_cdi_label_gesture_int,
                     model_cdi_overlap, 
                     weight = "waic")%>%
-  as_tibble()%>%
-  round(2)
+  round(.,2)
 ```
 
 ```{r}
@@ -545,10 +543,10 @@ tidy(model_cdi_label_gesture_int)%>%mutate(model = "label*gesture")
 #### Bayes Factors
 ```{r}
 
-bf_cdi_1 <- bayes_factor(model_cdi_overlap, model_cdi_label, log = F)
-bf_cdi_2 <- bayes_factor(model_cdi_overlap, model_cdi_gesture, log = F)
-bf_cdi_3 <- bayes_factor(model_cdi_overlap, model_cdi_label_gesture, log = F)
-bf_cdi_4 <- bayes_factor(model_cdi_overlap, model_cdi_label_gesture_int, log = F)
+bf_cdi_1 <- bayes_factor(model_cdi_label, model_cdi_overlap, log = F)
+bf_cdi_2 <- bayes_factor(model_cdi_label, model_cdi_gesture, log = F)
+bf_cdi_3 <- bayes_factor(model_cdi_label, model_cdi_label_gesture, log = F)
+bf_cdi_4 <- bayes_factor(model_cdi_label, model_cdi_label_gesture_int, log = F)
 
 
 ```
@@ -572,8 +570,8 @@ data_frame(
     waic_cdi$loos$model_cdi_label_gesture$se_waic%>%round(.,2),
     waic_cdi$loos$model_cdi_label_gesture_int$se_waic%>%round(.,2), 
     waic_cdi$loos$model_cdi_overlap$se_waic%>%round(.,2)),
-  weight = c(weights_cdi$value[1],weights_cdi$value[2],weights_cdi$value[3],weights_cdi$value[4],weights_cdi$value[5]),
-  bf = c(round(bf_cdi_1$bf,2),round(bf_cdi_2$bf,2),round(bf_cdi_3$bf,2),round(bf_cdi_4$bf,2), "-"))%>%
+  weight = c(weights_cdi["model_cdi_label"],weights_cdi["model_cdi_gesture"],weights_cdi["model_cdi_label_gesture"],weights_cdi["model_cdi_label_gesture_int"],weights_cdi["model_cdi_overlap"]),
+  bf = c("-", round(bf_cdi_2$bf,2),round(bf_cdi_3$bf,2),round(bf_cdi_4$bf,2),round(bf_cdi_1$bf,2)))%>%
   saveRDS("saves/cdi_overview.rds")
 
 
