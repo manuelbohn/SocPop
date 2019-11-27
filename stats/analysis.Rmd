@@ -258,11 +258,11 @@ model_rt_overlap <- readRDS("saves/model_rt_overlap.rds")
 # select models depending on results of model comparison
 
 bind_rows(
-tidy(model_rt_label)%>%mutate(model = "label"),
-tidy(model_rt_gesture)%>%mutate(model = "gesture"),
-tidy(model_rt_overlap)%>%mutate(model = "overlap"),
-tidy(model_rt_label_gesture)%>%mutate(model = "label+gesture"),
-tidy(model_rt_label_gesture_int)%>%mutate(model = "label*gesture")
+tidy(model_rt_label, prob = 0.95)%>%mutate(model = "label"),
+tidy(model_rt_gesture, prob = 0.95)%>%mutate(model = "gesture"),
+tidy(model_rt_overlap, prob = 0.95)%>%mutate(model = "overlap"),
+tidy(model_rt_label_gesture, prob = 0.95)%>%mutate(model = "label+gesture"),
+tidy(model_rt_label_gesture_int, prob = 0.95)%>%mutate(model = "label*gesture")
 ) %>%
   filter(term != "Intercept",
          term != "b_intercept",
@@ -480,11 +480,11 @@ model_cdi_overlap <- readRDS("saves/model_cdi_overlap.rds")
 # select models depending on results of model comparison
 
 bind_rows(
-tidy(model_cdi_label)%>%mutate(model = "label"),
-tidy(model_cdi_gesture)%>%mutate(model = "gesture"),
-tidy(model_cdi_overlap)%>%mutate(model = "overlap"),
-tidy(model_cdi_label_gesture)%>%mutate(model = "label+gesture"),
-tidy(model_cdi_label_gesture_int)%>%mutate(model = "label*gesture")
+tidy(model_cdi_label, prob = 0.95)%>%mutate(model = "label"),
+tidy(model_cdi_gesture, prob = 0.95)%>%mutate(model = "gesture"),
+tidy(model_cdi_overlap, prob = 0.95)%>%mutate(model = "overlap"),
+tidy(model_cdi_label_gesture, prob = 0.95)%>%mutate(model = "label+gesture"),
+tidy(model_cdi_label_gesture_int, prob = 0.95)%>%mutate(model = "label*gesture")
 ) %>%
   filter(term != "Intercept",
          term != "b_intercept",
