@@ -169,7 +169,7 @@ model_rt_label <- readRDS("saves/model_rt_label.rds")
 #           cores = 4,
 #           iter = 50000)%>%
 #   add_criterion("waic")%>%
-  saveRDS("saves/model_rt_gesture.rds")
+#  saveRDS("saves/model_rt_gesture.rds")
 
 model_rt_gesture <- readRDS("saves/model_rt_gesture.rds")
 
@@ -230,6 +230,20 @@ model_rt_label_gesture_int <- readRDS("saves/model_rt_label_gesture_int.rds")
 
 model_rt_overlap <- readRDS("saves/model_rt_overlap.rds")
 
+
+# model_rt_null <- brm(rt_25m ~ ses + rt_18m,
+#                     data = data_model, family = gaussian(),
+#           control = list(adapt_delta = 0.95),
+#           save_all_pars = TRUE,
+#           #prior = prior_rt_overlap,
+#           chains = 4,
+#           cores = 4,
+#           iter = 50000)%>%
+#   add_criterion("waic")%>%
+#   saveRDS("saves/model_rt_null.rds")
+
+model_rt_null <- readRDS("saves/model_rt_null.rds")
+
 ```
 
 #### Model comparison
@@ -261,7 +275,8 @@ tidy(model_rt_label, prob = 0.95)%>%mutate(model = "label"),
 tidy(model_rt_gesture, prob = 0.95)%>%mutate(model = "gesture"),
 tidy(model_rt_overlap, prob = 0.95)%>%mutate(model = "overlap"),
 tidy(model_rt_label_gesture, prob = 0.95)%>%mutate(model = "label+gesture"),
-tidy(model_rt_label_gesture_int, prob = 0.95)%>%mutate(model = "label*gesture")
+tidy(model_rt_label_gesture_int, prob = 0.95)%>%mutate(model = "label*gesture"),
+tidy(model_rt_null, prob = 0.95)%>%mutate(model = "null")
 ) %>%
   filter(term != "b_Intercept",
          term != "Intercept",
@@ -299,7 +314,8 @@ loo_compare(model_rt_label,
                     model_rt_gesture,
                     model_rt_label_gesture,
                     model_rt_label_gesture_int,
-                    model_rt_overlap, 
+                    model_rt_overlap,
+            model_rt_null,
             criterion = "waic")%>%
   as.data.frame()%>%
   tibble::rownames_to_column("Model")%>%
@@ -452,6 +468,20 @@ model_cdi_label_gesture_int <- readRDS("saves/model_cdi_label_gesture_int.rds")
 
 model_cdi_overlap <- readRDS("saves/model_cdi_overlap.rds")
 
+
+# model_cdi_null <- brm(cdi_25m ~  ses+cdi_18m,
+#                     data = data_cdi_model, family = gaussian(),
+#           control = list(adapt_delta = 0.95),
+#           save_all_pars = TRUE,
+#           #prior = prior_cdi_overlap,
+#           chains = 4,
+#           cores = 4,
+#           iter = 50000)%>%
+#   add_criterion("waic")%>%
+#   saveRDS("saves/model_cdi_null.rds")
+
+model_cdi_null <- readRDS("saves/model_cdi_null.rds")
+
 ```
 
 
@@ -484,7 +514,8 @@ tidy(model_cdi_label, prob = 0.95)%>%mutate(model = "label"),
 tidy(model_cdi_gesture, prob = 0.95)%>%mutate(model = "gesture"),
 tidy(model_cdi_overlap, prob = 0.95)%>%mutate(model = "overlap"),
 tidy(model_cdi_label_gesture, prob = 0.95)%>%mutate(model = "label+gesture"),
-tidy(model_cdi_label_gesture_int, prob = 0.95)%>%mutate(model = "label*gesture")
+tidy(model_cdi_label_gesture_int, prob = 0.95)%>%mutate(model = "label*gesture"),
+tidy(model_cdi_null, prob = 0.95)%>%mutate(model = "null")
 ) %>%
   filter(term != "Intercept",
          term != "b_Intercept",
@@ -522,7 +553,8 @@ loo_compare(model_cdi_label,
                     model_cdi_gesture,
                     model_cdi_label_gesture,
                     model_cdi_label_gesture_int,
-                    model_cdi_overlap, 
+                    model_cdi_overlap,
+            model_cdi_null,
             criterion = "waic")%>%
   as.data.frame()%>%
   tibble::rownames_to_column("Model")%>%
