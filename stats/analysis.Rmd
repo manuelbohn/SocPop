@@ -45,10 +45,27 @@ data <- read_excel("./data/data_children_n43.xlsx") %>%
          cdi_age_18m = L1PRE_cdi_age, cdi_age_25m = L1POST_cdi_age)
 
 
+data_overlap <- read_csv("data/elan_Comments_Update.csv")%>%
+  mutate(id = subject, 
+         id = ifelse(id == "84", "084",id))%>%
+  group_by(id)%>%
+  summarise(labels_rel = n(),
+            labels_w_rel_gestures = sum(as.numeric(relavence)))
+
 # merge into 1 dataframe
 socpop <- data_label %>% 
   full_join(data, by = "id") %>% 
-  filter(id != 436 & id != 444 & id != 435) %>%  # 25m peek is still waiting to be coded
+  filter(id != 436 & id != 444 & id != 435) #%>%  # 25m peek is still waiting to be coded
+
+# check for discrepancies between label outputs
+socpop %>% left_join(data_overlap)%>%
+  select(id, labels, labels_rel)%>%
+  mutate(label_diff = labels - labels_rel)
+
+socpop_rel <- data_overlap %>% 
+  full_join(data, by = "id") %>% 
+  filter(id != 436 & id != 444 & id != 435) #%>%  # 25m peek is still waiting to be coded
+
 ```
 
 ## Visualizing raw correlations
