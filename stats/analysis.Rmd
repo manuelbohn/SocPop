@@ -64,7 +64,9 @@ socpop %>% left_join(data_overlap)%>%
 
 socpop_rel <- data_overlap %>% 
   full_join(data, by = "id") %>% 
-  filter(id != 436 & id != 444 & id != 435) #%>%  # 25m peek is still waiting to be coded
+  filter(id != 436 & id != 444 & id != 435) %>% # 25m peek is still waiting to be coded %>% 
+  mutate(labels_rel = replace_na(labels_rel, 0)) %>% 
+  mutate(labels_w_rel_gestures = replace_na(labels_w_rel_gestures, 0))
 
 ```
 
