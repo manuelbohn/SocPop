@@ -27,9 +27,7 @@ opts_chunk$set(echo=TRUE,
 
 ## Read in data and create one dataframe with demographic and outcome information, assuming you already ran data_wrangling!
 ```{r}
-data_label <- read_csv("./data/data_label.csv") %>% 
-  select(-X1 )
-comment_label <- read_csv("./data/comment_label.csv")
+input <- read_csv("./data/input.csv")
 
 data <- read_excel("./data/data_children_n42.xlsx") %>% 
   mutate(id = as.character(id)) %>% 
@@ -44,29 +42,10 @@ data <- read_excel("./data/data_children_n42.xlsx") %>%
          mom_ed_18m = L1PRE_mom_ed, 
          cdi_age_18m = L1PRE_cdi_age, cdi_age_25m = L1POST_cdi_age)
 
-
-data_overlap <- read_csv("data/elan_Comments_Update.csv")%>%
-  filter(tier == "Caregiver linguistic")%>%
-  mutate(id = subject, 
-         id = ifelse(id == "84", "084",id))%>%
-  group_by(id)%>%
-  summarise(labels_rel = n(),
-            labels_w_rel_gestures = sum(as.numeric(relavence)))
-
 # merge into 1 dataframe
-socpop <- data_label %>% 
+socpop <- input %>% 
   full_join(data, by = "id")%>%
-  full_join(data_overlap, by = "id")
-
-# check for discrepancies between label outputs
-socpop %>% left_join(data_overlap)%>%
-  select(id, labels, labels_rel)%>%
-  mutate(label_diff = labels - labels_rel)
-
-socpop_rel <- data_overlap %>% 
-  full_join(data, by = "id") %>% 
-  mutate(labels_rel = replace_na(labels_rel, 0)) %>% 
-  mutate(labels_w_rel_gestures = replace_na(labels_w_rel_gestures, 0))
+  select(-X1)
 
 ```
 
@@ -78,7 +57,7 @@ socpop_rel <- data_overlap %>%
 # I added the LENA AWC count to see if total labels is related to just parents talking more overall in the play sessions, which it is (like we would expect)
 
 cor <- socpop%>%
-  select(gestures, labels, labels_w_gestures,labels_rel,labels_w_rel_gestures, awc_phr_18m) %>%
+  select(gestures, labels, labels_w_gestures, labels_w_rel_gestures, awc_phr_18m) %>%
   as.matrix()
 
 correlate(cor)
@@ -88,13 +67,14 @@ correlate(cor)
 
 ### Predictors vs DVs
 
+#### longitudinal
 ```{r}
 socpop %>%
-  select(id, gestures, labels,labels_w_gestures, labels_rel,labels_w_rel_gestures, rt_25m, cdi_25m)%>%
-  gather(DV, y, -id, -gestures,-labels_w_gestures, -labels, -labels_rel, -labels_w_rel_gestures)%>%
+  select(id, gestures, labels,labels_w_gestures,labels_w_rel_gestures,awc_phr_18m, rt_25m, cdi_25m)%>%
+  gather(DV, y, -id, -gestures,-labels_w_gestures,-labels_w_rel_gestures,-awc_phr_18m, -labels)%>%
   gather(input, freq, -id, -DV, -y)%>%
   mutate(DV = factor(DV, levels = c("rt_25m", "cdi_25m")), 
-         input = factor(input, levels = c("labels", "gestures", "labels_w_gestures", "labels_rel","labels_w_rel_gestures"))) %>%
+         input = factor(input, levels = c("labels", "gestures", "labels_w_gestures", "labels_rel","labels_w_rel_gestures","awc_phr_18m"))) %>%
   ggplot(aes(x = freq, y = y))+
   geom_point()+
   facet_grid(DV~input, scales = "free")+
@@ -103,7 +83,45 @@ socpop %>%
   labs(y = "Vocabulary Size at 25m          Speed of Processing (ms) at 25m", x = "Frequency") + 
   theme_few(base_size = 18)
 
-ggsave("./figures/scatterplot_zero_order_correlations_n36.png", height = 8, width = 12, units = "in")
+ggsave("./figures/scatterplot_zero_order_correlations_long.png", height = 8, width = 12, units = "in")
+
+```
+
+#### concurrent
+
+```{r}
+socpop %>%
+  select(id, gestures, labels,labels_w_gestures,labels_w_rel_gestures,awc_phr_18m, rt_18m, cdi_18m)%>%
+  gather(DV, y, -id, -gestures,-labels_w_gestures,-labels_w_rel_gestures,-awc_phr_18m, -labels)%>%
+  gather(input, freq, -id, -DV, -y)%>%
+  mutate(DV = factor(DV, levels = c("rt_18m", "cdi_18m")), 
+         input = factor(input, levels = c("labels", "gestures", "labels_w_gestures", "labels_rel","labels_w_rel_gestures","awc_phr_18m"))) %>%
+  ggplot(aes(x = freq, y = y))+
+  geom_point()+
+  facet_grid(DV~input, scales = "free")+
+  geom_smooth(method = "lm")+
+  stat_cor(method = "pearson", hjust = -1.2, vjust = .5)+
+  labs(y = "Vocabulary Size at 18m          Speed of Processing (ms) at 18m", x = "Frequency") + 
+  theme_few()
+
+ggsave("./figures/scatterplot_zero_order_correlations_concur.png", height = 8, width = 18, units = "in")
+
+```
+
+#### between RT and Vocab
+
+```{r}
+socpop %>%
+  select(id, rt_18m, cdi_25m)%>%
+  ggplot(aes(x = rt_18m, y = cdi_25m))+
+  geom_point()+
+  geom_smooth(method = "lm")+
+  stat_cor(method = "pearson", hjust = -1.2, vjust = .5)+
+  labs(y = "Vocabulary Size at 25m", x = "Speed of Processing (ms) at 18m") + 
+  theme_few()+
+  coord_fixed()
+
+ggsave("./figures/scatterplot_zero_order_correlations_rt_cdi.png", height = 8, width = 12, units = "in")
 
 ```
 

@@ -34,14 +34,15 @@ label <- read_csv("./data/data_200304.csv", col_names = F) %>%
   select(-file)
 
 comment <- read_csv("./data/elan_Comments_Update.csv") %>% 
-  dplyr::select(-X9) %>%
   rename("stop" = 3, "id" = "subject") %>% 
   mutate(start = as.numeric(start), 
          stop = as.numeric(stop), 
          duration = as.numeric(duration)) %>% 
   mutate(start = round(start, 3), 
          stop = round(stop, 3), 
-         duration = round(duration, 3)) %>% 
+         duration = round(duration, 3),
+         id = as.character(id),
+         id = ifelse(id == "84", "084",id)) %>% 
   filter(tier == "Caregiver linguistic")
 
 ```
@@ -74,9 +75,8 @@ label_sum <- label %>%
   group_by(id)%>%
   summarise(labels = n())
 
-data_ges <- plyr::join_all(list(gesture_sum,label_sum,overlap_ges), by='id', type='left') %>% 
+data_ges <- plyr::join_all(list(gesture_sum,label_sum,overlap_ges,relevant_sum), by='id', type='left') %>% 
   mutate_all(~replace(., is.na(.), 0)) # this replaces NA with 0, when there no gestures or labels
-
 
 write.csv(data_ges, "./data/data_ges.csv")
 ```
@@ -105,17 +105,37 @@ gesture_sum <- gesture %>%
   group_by(id)%>%
   summarise(gestures = n())
 
+gesture_type_sum <- gesture %>%
+  group_by(id, ant)%>%
+  summarise(gestures = n())%>%
+  spread(ant, gestures)%>%
+  replace(is.na(.), 0)%>%
+  rename(iconic = `descriptive or iconic gesture`, 
+         point = `extended index finger`,
+         hold_out = `hold out/give`, 
+         touch = `touching w/ open hand`)
+
+relevant_sum <- comment%>%
+  group_by(id)%>%
+  summarise(labels_rel = n(), 
+            labels_w_rel_gestures = sum(relavence))
+
 label_sum <- label %>%
   group_by(id)%>%
   summarise(labels = n())
 
-data_label <- plyr::join_all(list(gesture_sum,label_sum,overlap_label), by='id', type='left') %>% 
+data_label <- plyr::join_all(list(gesture_sum,label_sum,overlap_label,gesture_type_sum,relevant_sum), by='id', type='left') %>% 
   mutate_all(~replace(., is.na(.), 0)) # this replaces NA with 0, when there no gestures or labels
 
-write.csv(data_label, "./data/data_label.csv")
+data_label %>%
+  select(id, labels, labels_rel)%>%
+  mutate(label_diff = labels - labels_rel)
+
+data_label <- data_label %>%
+  select(-labels_rel)
+
+write.csv(data_label, "./data/input.csv")
 ```
-
-
 
 # Merge all gestures, labels, and comments into one dataframe
 
