@@ -29,7 +29,7 @@ opts_chunk$set(echo=TRUE,
 ```{r}
 data_label <- read_csv("./data/data_label.csv") %>% 
   select(-X1 )
-# comment_label <- read_csv("./data/comment_label.csv")
+comment_label <- read_csv("./data/comment_label.csv")
 
 data <- read_excel("./data/data_children_n42.xlsx") %>% 
   mutate(id = as.character(id)) %>% 
@@ -46,6 +46,7 @@ data <- read_excel("./data/data_children_n42.xlsx") %>%
 
 
 data_overlap <- read_csv("data/elan_Comments_Update.csv")%>%
+  filter(tier == "Caregiver linguistic")%>%
   mutate(id = subject, 
          id = ifelse(id == "84", "084",id))%>%
   group_by(id)%>%
@@ -54,7 +55,8 @@ data_overlap <- read_csv("data/elan_Comments_Update.csv")%>%
 
 # merge into 1 dataframe
 socpop <- data_label %>% 
-  full_join(data, by = "id")
+  full_join(data, by = "id")%>%
+  full_join(data_overlap, by = "id")
 
 # check for discrepancies between label outputs
 socpop %>% left_join(data_overlap)%>%
@@ -76,7 +78,7 @@ socpop_rel <- data_overlap %>%
 # I added the LENA AWC count to see if total labels is related to just parents talking more overall in the play sessions, which it is (like we would expect)
 
 cor <- socpop%>%
-  select(gestures, labels,labels_w_gestures, awc_phr_18m) %>%
+  select(gestures, labels, labels_w_gestures,labels_rel,labels_w_rel_gestures, awc_phr_18m) %>%
   as.matrix()
 
 correlate(cor)
@@ -88,11 +90,11 @@ correlate(cor)
 
 ```{r}
 socpop %>%
-  select(id, gestures, labels,labels_w_gestures, rt_25m, cdi_25m)%>%
-  gather(DV, y, -id, -gestures,-labels_w_gestures, -labels)%>%
+  select(id, gestures, labels,labels_w_gestures, labels_rel,labels_w_rel_gestures, rt_25m, cdi_25m)%>%
+  gather(DV, y, -id, -gestures,-labels_w_gestures, -labels, -labels_rel, -labels_w_rel_gestures)%>%
   gather(input, freq, -id, -DV, -y)%>%
   mutate(DV = factor(DV, levels = c("rt_25m", "cdi_25m")), 
-         input = factor(input, levels = c("labels", "gestures", "labels_w_gestures"))) %>%
+         input = factor(input, levels = c("labels", "gestures", "labels_w_gestures", "labels_rel","labels_w_rel_gestures"))) %>%
   ggplot(aes(x = freq, y = y))+
   geom_point()+
   facet_grid(DV~input, scales = "free")+
@@ -154,22 +156,7 @@ ggplot(data_model, aes(x=rt_18m))+
 # when you run the model, the output is automatically saved
 # even if you run the model, you need to load the saved file afterwards
 
-# prior_rt_label <- c(set_prior("normal(750,400)", class = "b", coef = "intercept"),
-#             set_prior("normal(0,10)", class = "b", coef = "labels"),
-#             set_prior("normal(0,10)", class = "b", coef = "ses_18m"),
-#             set_prior("normal(0,10)", class = "b", coef = "rt_18m"))
-# 
-# 
-# model_rt_label <- brm(rt_25m ~ labels + ses_18m + rt_18m,
-#                     data = data_model, family = gaussian(),
-#           control = list(adapt_delta = 0.99),
-#           save_all_pars = TRUE,
-#           #prior = prior_rt_label,
-#           chains = 4,
-#           cores = 4,
-#           iter = 50000)%>%
-#   add_criterion("waic")%>%
-#   saveRDS("saves/model_rt_label.rds")
+ 
 
 model_rt_label <- readRDS("saves/model_rt_label.rds")
 
