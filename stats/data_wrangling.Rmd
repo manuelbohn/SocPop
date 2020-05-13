@@ -10,7 +10,7 @@ library(tidyverse)
 ```
 
 ```{r}
-gesture <- read_csv("./data/data_200304.csv", col_names = F) %>%
+gesture <- read_csv("./data/data_200513_JB.csv", col_names = F) %>%
   rename(start = X3,
          stop = X4,
          tier = X1,
@@ -21,7 +21,7 @@ gesture <- read_csv("./data/data_200304.csv", col_names = F) %>%
   mutate(id = str_sub(file, 1, 3)) %>% 
   select(-file)
 
-label <- read_csv("./data/data_200304.csv", col_names = F) %>%
+label <- read_csv("./data/data_200513_JB.csv", col_names = F) %>%
   rename(start = X3,
          stop = X4,
          tier = X1,
@@ -33,7 +33,7 @@ label <- read_csv("./data/data_200304.csv", col_names = F) %>%
   mutate(id = str_sub(file, 1, 3)) %>% 
   select(-file)
 
-comment <- read_csv("./data/elan_Comments_Update.csv") %>% 
+comment <- read_csv("./data/elan_comments_cleanedV2_JB.csv") %>% 
   rename("stop" = 3, "id" = "subject") %>% 
   mutate(start = as.numeric(start), 
          stop = as.numeric(stop), 
@@ -44,6 +44,9 @@ comment <- read_csv("./data/elan_Comments_Update.csv") %>%
          id = as.character(id),
          id = ifelse(id == "84", "084",id)) %>% 
   filter(tier == "Caregiver linguistic")
+
+
+# clean comment spelling - TBD but unecessary for current analyses
 
 ```
 
@@ -140,8 +143,20 @@ write.csv(data_label, "./data/input.csv")
 # Merge all gestures, labels, and comments into one dataframe
 
 ```{r}
+label_sp_en <- read_csv("./data/data_200513_JB.csv", col_names = F) %>%
+  rename(start = X3,
+         stop = X4,
+         tier = X1,
+         ant = X6,
+         file = X7)%>%
+  select(file,tier, start, stop, ant)%>%
+  filter(tier == "Caregiver linguistic") %>% 
+  mutate(id = str_sub(file, 1, 3)) %>% 
+  select(-file)
+
 comment_label <- comment %>% 
-  left_join(label, by = c("id", "start", "tier"))
+  left_join(label_sp_en, by = c("id", "start", "stop", "tier")) %>% 
+  filter(ant != "english")
 
 write.csv(comment_label, "./data/comment_label.csv")
 ```
