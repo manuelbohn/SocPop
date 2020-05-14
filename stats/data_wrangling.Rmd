@@ -135,7 +135,8 @@ data_label %>%
   mutate(label_diff = labels - labels_rel)
 
 data_label <- data_label %>%
-  select(-labels_rel)
+  select(-labels)%>%
+  rename(labels = labels_rel)
 
 write.csv(data_label, "./data/input.csv")
 ```

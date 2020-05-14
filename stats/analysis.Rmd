@@ -15,6 +15,7 @@ library(knitr)
 library(ggthemes)
 library(bayesplot)
 library(broom)
+library(corrr)
 library(readxl)
 library(ggpubr)
 library(lsr)
@@ -45,7 +46,9 @@ data <- read_excel("./data/data_children_n42.xlsx") %>%
 # merge into 1 dataframe
 socpop <- input %>% 
   full_join(data, by = "id")%>%
-  select(-X1)
+  select(-X1)%>%
+  mutate(cdi_25m = as.numeric(cdi_25m),
+         cdi_18m = as.numeric(cdi_18m))
 
 ```
 
@@ -62,19 +65,47 @@ cor <- socpop%>%
 
 correlate(cor)
 
-```
 
+cor <- socpop%>%
+  select(gestures, labels, labels_w_gestures, labels_w_rel_gestures, awc_phr_18m)%>%
+  corrr::correlate()%>%
+  gather(task, cor, -rowname)%>%
+  mutate_if(is.numeric, round, digits = 2)%>%
+  na.omit()
+  
+
+ggplot(cor, aes(x = rowname, y = task, fill = cor))+
+  geom_tile(color = "white")+
+  labs(x = "", y = "")+
+  scale_fill_gradient2(low = "#CC6677", high = "#117733", mid = "white", 
+   midpoint = 0, limit = c(-1,1), space = "Lab", 
+   name="Correlation") +
+   coord_fixed()+
+  theme_few(base_size = 12)+
+  geom_text(aes(label = cor), color = "black", size = 3) +
+  theme(#legend.justification = c(1, 0),
+        #legend.position = c(0.55, 0.7),
+        legend.position = "right",
+        legend.direction = "horizontal",
+        axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1))+
+  guides(fill = guide_colorbar(barwidth = 7, barheight = 1,
+                title.position = "top", title.hjust = 0.5))
+
+
+
+```
 
 ### Predictors vs DVs
 
 #### longitudinal
 ```{r}
 socpop %>%
-  select(id, gestures, labels,labels_w_gestures,labels_w_rel_gestures,awc_phr_18m, rt_25m, cdi_25m)%>%
+  select(id, gestures, labels, labels_w_gestures,labels_w_rel_gestures,awc_phr_18m, rt_25m, cdi_25m)%>%
   gather(DV, y, -id, -gestures,-labels_w_gestures,-labels_w_rel_gestures,-awc_phr_18m, -labels)%>%
   gather(input, freq, -id, -DV, -y)%>%
   mutate(DV = factor(DV, levels = c("rt_25m", "cdi_25m")), 
-         input = factor(input, levels = c("labels", "gestures", "labels_w_gestures", "labels_rel","labels_w_rel_gestures","awc_phr_18m"))) %>%
+         input = factor(input, levels = c("labels", "gestures", "labels_w_gestures", "labels_rel","labels_w_rel_gestures","awc_phr_18m")),
+         y = as.numeric(y)) %>%
   ggplot(aes(x = freq, y = y))+
   geom_point()+
   facet_grid(DV~input, scales = "free")+
@@ -83,9 +114,37 @@ socpop %>%
   labs(y = "Vocabulary Size at 25m          Speed of Processing (ms) at 25m", x = "Frequency") + 
   theme_few(base_size = 18)
 
-ggsave("./figures/scatterplot_zero_order_correlations_long.png", height = 8, width = 12, units = "in")
+ggsave("./figures/scatterplot_zero_order_correlations_long.png", height = 8, width = 18, units = "in")
 
 ```
+
+```{r}
+
+socpop%>%
+  select(gestures, labels, labels_w_gestures,labels_w_rel_gestures,awc_phr_18m, rt_25m, cdi_25m)%>%
+  corrr::correlate()%>%
+  gather(task, cor, -rowname)%>%
+  filter(rowname == "rt_25m" | rowname == "cdi_25m")%>%
+  mutate_if(is.numeric, round, digits = 2)%>%
+  na.omit()%>%
+  ggplot(., aes(y = rowname, x = task, fill = cor))+
+  geom_tile(color = "white")+
+  labs(x = "", y = "")+
+  scale_fill_gradient2(low = "#CC6677", high = "#117733", mid = "white", 
+   midpoint = 0, limit = c(-1,1), space = "Lab", 
+   name="Correlation") +
+   coord_fixed()+
+  theme_few(base_size = 12)+
+  geom_text(aes(label = cor), color = "black", size = 3) +
+  theme(#legend.justification = c(1, 0),
+        #legend.position = c(0.55, 0.7),
+        legend.position = "top",
+        legend.direction = "horizontal",
+        axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1))+
+  guides(fill = guide_colorbar(barwidth = 7, barheight = 1,
+                title.position = "top", title.hjust = 0.5))
+```
+
 
 #### concurrent
 
@@ -95,7 +154,8 @@ socpop %>%
   gather(DV, y, -id, -gestures,-labels_w_gestures,-labels_w_rel_gestures,-awc_phr_18m, -labels)%>%
   gather(input, freq, -id, -DV, -y)%>%
   mutate(DV = factor(DV, levels = c("rt_18m", "cdi_18m")), 
-         input = factor(input, levels = c("labels", "gestures", "labels_w_gestures", "labels_rel","labels_w_rel_gestures","awc_phr_18m"))) %>%
+         input = factor(input, levels = c("labels", "gestures", "labels_w_gestures", "labels_rel","labels_w_rel_gestures","awc_phr_18m")),
+         y = as.numeric(y)) %>%
   ggplot(aes(x = freq, y = y))+
   geom_point()+
   facet_grid(DV~input, scales = "free")+
@@ -139,11 +199,11 @@ data_model <- socpop %>%
   filter(rt_25m != "NA",
          gestures != "NA",
          labels != "NA")%>%
-  mutate(gestures = scale(gestures, center = TRUE, scale = TRUE),
-         labels = scale(labels, center = TRUE, scale = TRUE),
-         labels_w_gestures = scale(labels_w_gestures, center = TRUE, scale = TRUE),
-         rt_18m = scale(rt_18m, center = TRUE, scale = TRUE),
-         ses_18m = scale(ses_18m, center = TRUE, scale = TRUE))
+  mutate(gestures = scale(gestures, center = TRUE, scale = F),
+         labels = scale(labels, center = TRUE, scale = F),
+         labels_w_gestures = scale(labels_w_gestures, center = TRUE, scale = F),
+         rt_18m = scale(rt_18m, center = TRUE, scale = F),
+         ses_18m = scale(ses_18m, center = TRUE, scale = F))
 
 ```
 
@@ -154,14 +214,6 @@ data_model <- socpop %>%
 ggplot(data_model, aes(x=rt_25m))+
   geom_density()+
   xlim(0,2000)+
-  theme_few()
-```
-
-#### Plotting IV
-
-```{r}
-ggplot(data_model, aes(x=rt_18m))+
-  geom_density()+
   theme_few()
 ```
 
