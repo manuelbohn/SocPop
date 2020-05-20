@@ -6,6 +6,6 @@
 
 stats/.DS_Store
 
-
+stats/rsconnect/*
 
 .Rproj.user
