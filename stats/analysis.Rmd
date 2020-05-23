@@ -30,11 +30,18 @@ data <- read_excel("./data/data_children_n42.xlsx") %>%
   mutate(id = as.character(id)) %>% 
   select(c(id, L1PRE_mom_ed,
            L1PRE_hi, L1POST_hi,
-           L1PRE_gooddrt, L1POST_gooddrt,
-           L1PRE_cdi_age, L1PRE_cdi_vocab, L1POST_cdi_age, L1POST_cdi_vocab, 
+           L1PRE_gooddrt, L1POST_gooddrt, L1PRE_goodacc_3001800, L1POST_goodacc_3001800,
+           L1PRE_cdi_version, L1PRE_cdi_age, L1PRE_cdi_vocab, L1POST_cdi_age, L1POST_cdi_vocab, 
            L1PRE_PS_AWChr)) %>% 
-  rename(rt_18m = L1PRE_gooddrt, cdi_18m = L1PRE_cdi_vocab,
+  mutate(L1PRE_cdi_vocab = as.numeric(L1PRE_cdi_vocab), 
+         cdi_18m = ifelse(L1PRE_cdi_version == "wg", (L1PRE_cdi_vocab * 396 / 680), 
+                   ifelse(L1PRE_cdi_version == "ws", L1PRE_cdi_vocab, "CHECK")), 
+         cdi_18m = round(as.numeric(cdi_18m), digits = 0)) %>% 
+  select(-c(L1PRE_cdi_version, L1PRE_cdi_vocab)) %>% 
+  rename(rt_18m = L1PRE_gooddrt,
          rt_25m = L1POST_gooddrt, cdi_25m = L1POST_cdi_vocab,
+         acc_18m = L1PRE_goodacc_3001800, 
+         acc25m = L1POST_goodacc_3001800,
          ses_18m = L1PRE_hi, ses_25m = L1POST_hi, awc_phr_18m = L1PRE_PS_AWChr, 
          mom_ed_18m = L1PRE_mom_ed, 
          cdi_age_18m = L1PRE_cdi_age, cdi_age_25m = L1POST_cdi_age)

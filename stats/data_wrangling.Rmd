@@ -43,10 +43,8 @@ comment <- read_csv("./data/elan_comments_cleanedV2_JB.csv") %>%
          duration = round(duration, 3),
          id = as.character(id),
          id = ifelse(id == "84", "084",id)) %>% 
-  filter(tier == "Caregiver linguistic")
-
-
-# clean comment spelling - TBD but unecessary for current analyses
+  filter(tier == "Caregiver linguistic") %>% 
+  dplyr::select(-c(comment))
 
 ```
 
