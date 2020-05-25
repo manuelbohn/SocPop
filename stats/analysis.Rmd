@@ -18,7 +18,7 @@ library(corrr)
 library(readxl)
 library(ggpubr)
 library(lsr)
-library(langcog)
+#library(langcog)
 #library(sjPlot)
 
 opts_chunk$set(echo=F,
@@ -259,7 +259,7 @@ model_rt_label_me <- brm(rt_25m ~ labels_me + ses_18m + rt_18m,
           cores = 4,
           iter = 50000)%>%
   add_criterion("waic")%>%
-  saveRDS("saves/model_rt_label_me")
+  saveRDS("saves/model_rt_label_me.rds")
 
 model_rt_label_me <- readRDS("saves/model_rt_label_me.rds")
 
@@ -689,7 +689,7 @@ ggplot(data_model_acc, aes(x=acc25m))+
   theme_few()
 ```
 
-### Models RT
+### Models
 
 ```{r,echo= F, echo = F}
 # run models only when new data is added
@@ -719,7 +719,7 @@ model_acc_label_me <- brm(acc25m ~ labels_me + ses_18m + acc_18m,
                          cores = 4,
                          iter = 50000)%>%
   add_criterion("waic")%>%
-  saveRDS("saves/model_acc_label_me")
+  saveRDS("saves/model_acc_label_me.rds")
 
 model_acc_label_me <- readRDS("saves/model_acc_label_me.rds")
 
