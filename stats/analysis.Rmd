@@ -18,6 +18,7 @@ library(corrr)
 library(readxl)
 library(ggpubr)
 library(lsr)
+library(langcog)
 #library(sjPlot)
 
 opts_chunk$set(echo=F,
@@ -59,6 +60,58 @@ socpop <- input %>%
          prop_lab_ges = labels_w_gestures/labels)
 
 ```
+
+# Visualizing RT and Accuracy
+
+```{r}
+p_acc1 <- socpop%>%
+  select(id, acc_18m, acc25m)%>%
+  gather(time, acc, -id)
+
+p_acc2 <- p_acc1%>%
+  group_by(time)%>%
+  multi_boot_standard(col = "acc", na.rm = T)
+
+ggarrange(
+
+ggplot()+
+  geom_hline(yintercept = 0.5, lty = 2)+
+  geom_jitter(data = p_acc1, aes(x = time, y = acc), alpha = .5)+
+  geom_pointrange(data = p_acc2, aes(x= time, y = mean, ymin = ci_lower, ymax = ci_upper), position = position_dodge(width = .5))+
+  ylim(0,1)+
+  ggtitle("Accuracy compared to chance")+
+  theme_few()+
+  labs(y = "Proportion correct")+
+  scale_color_ptol(),
+
+
+ggplot(socpop, aes(x = acc_18m, y = acc25m))+
+  geom_point()+
+  geom_smooth(method = "lm")+
+  ggtitle("Accuracy accross time points")+
+  stat_cor(method = "pearson", vjust = .5)+
+  theme_few(),
+
+ggplot(socpop, aes(x = rt_25m, y = acc25m))+
+  geom_point()+
+  geom_smooth(method = "lm")+
+  ggtitle("Accuracy and RT 25m")+
+  stat_cor(method = "pearson", vjust = .5)+
+  theme_few(),
+
+ggplot(socpop, aes(x = rt_18m, y = acc_18m))+
+  geom_point()+
+  geom_smooth(method = "lm")+
+  ggtitle("Accuracy and RT 18m")+
+  stat_cor(method = "pearson", vjust = .5)+
+  theme_few(),
+
+nrow = 1
+
+) 
+
+```
+
 
 # Visualizing raw correlations
 
@@ -156,12 +209,13 @@ data_model <- socpop %>%
   filter(rt_25m != "NA",
          gestures != "NA",
          labels != "NA")%>%
-  mutate(gestures = scale(gestures, center = TRUE, scale = F),
-         labels = scale(labels, center = TRUE, scale = F),
-         labels_w_gestures = scale(labels_w_gestures, center = TRUE, scale = F),
-         labels_w_rel_gestures = scale(labels_w_rel_gestures, center = TRUE, scale = F),
-         rt_18m = scale(rt_18m, center = TRUE, scale = F),
-         ses_18m = scale(ses_18m, center = TRUE, scale = F))
+  mutate(gestures = scale(gestures, center = TRUE, scale = T),
+         labels = scale(labels, center = TRUE, scale = T),
+         labels_w_gestures = scale(labels_w_gestures, center = TRUE, scale = T),
+         labels_w_rel_gestures = scale(labels_w_rel_gestures, center = TRUE, scale = T),
+         labels_me = scale(labels_me, center = TRUE, scale = T),
+         rt_18m = scale(rt_18m, center = TRUE, scale = T),
+         ses_18m = scale(ses_18m, center = TRUE, scale = T))
 
 ```
 
@@ -185,91 +239,103 @@ ggplot(data_model, aes(x=rt_25m))+
 # even if you run the model, you need to load the saved file afterwards
 
 
-# model_rt_label <- brm(rt_25m ~ labels + ses_18m + rt_18m,
-#                     data = data_model, family = gaussian(),
-#           control = list(adapt_delta = 0.95),
-#           save_all_pars = TRUE,
-#           chains = 4,
-#           cores = 4,
-#           iter = 50000)%>%
-#   add_criterion("waic")%>%
-#   saveRDS("saves/model_rt_label.rds")
+model_rt_label <- brm(rt_25m ~ labels + ses_18m + rt_18m,
+                    data = data_model, family = gaussian(),
+          control = list(adapt_delta = 0.95),
+          save_all_pars = TRUE,
+          chains = 4,
+          cores = 4,
+          iter = 50000)%>%
+  add_criterion("waic")%>%
+  saveRDS("saves/model_rt_label.rds")
 
 model_rt_label <- readRDS("saves/model_rt_label.rds")
 
+model_rt_label_me <- brm(rt_25m ~ labels_me + ses_18m + rt_18m,
+                    data = data_model, family = gaussian(),
+          control = list(adapt_delta = 0.95),
+          save_all_pars = TRUE,
+          chains = 4,
+          cores = 4,
+          iter = 50000)%>%
+  add_criterion("waic")%>%
+  saveRDS("saves/model_rt_label_me")
+
+model_rt_label_me <- readRDS("saves/model_rt_label_me.rds")
+
  
-# model_rt_gesture <- brm(rt_25m ~gestures + ses_18m + rt_18m,
-#                     data = data_model, family = gaussian(),
-#           control = list(adapt_delta = 0.95),
-#           save_all_pars = TRUE,
-#           chains = 4,
-#           cores = 4,
-#           iter = 50000)%>%
-#   add_criterion("waic")%>%
-#  saveRDS("saves/model_rt_gesture.rds")
+model_rt_gesture <- brm(rt_25m ~gestures + ses_18m + rt_18m,
+                    data = data_model, family = gaussian(),
+          control = list(adapt_delta = 0.95),
+          save_all_pars = TRUE,
+          chains = 4,
+          cores = 4,
+          iter = 50000)%>%
+  add_criterion("waic")%>%
+ saveRDS("saves/model_rt_gesture.rds")
 
 model_rt_gesture <- readRDS("saves/model_rt_gesture.rds")
 
-# model_rt_label_gesture <- brm(rt_25m ~ labels + gestures + ses_18m + rt_18m,
-#                     data = data_model, family = gaussian(),
-#           control = list(adapt_delta = 0.95),
-#           save_all_pars = TRUE,
-#           chains = 4,
-#           cores = 4,
-#           iter = 50000)%>%
-#   add_criterion("waic")%>%
-#   saveRDS("saves/model_rt_label_gesture.rds")
+model_rt_label_gesture <- brm(rt_25m ~ labels + gestures + ses_18m + rt_18m,
+                    data = data_model, family = gaussian(),
+          control = list(adapt_delta = 0.95),
+          save_all_pars = TRUE,
+          chains = 4,
+          cores = 4,
+          iter = 50000)%>%
+  add_criterion("waic")%>%
+  saveRDS("saves/model_rt_label_gesture.rds")
 
 model_rt_label_gesture <- readRDS("saves/model_rt_label_gesture.rds")
 
  
-# model_rt_label_gesture_int <- brm(rt_25m ~labels * gestures + ses_18m + rt_18m,
-#                     data = data_model, family = gaussian(),
-#           control = list(adapt_delta = 0.95),
-#           save_all_pars = TRUE,
-#           chains = 4,
-#           cores = 4,
-#           iter = 50000)%>%
-#   add_criterion("waic")%>%
-#   saveRDS("saves/model_rt_label_gesture_int.rds")
+model_rt_label_gesture_int <- brm(rt_25m ~labels * gestures + ses_18m + rt_18m,
+                    data = data_model, family = gaussian(),
+          control = list(adapt_delta = 0.95),
+          save_all_pars = TRUE,
+          chains = 4,
+          cores = 4,
+          iter = 50000)%>%
+  add_criterion("waic")%>%
+  saveRDS("saves/model_rt_label_gesture_int.rds")
 
 model_rt_label_gesture_int <- readRDS("saves/model_rt_label_gesture_int.rds")
 
-# model_rt_overlap <- brm(rt_25m ~ labels_w_gestures + ses_18m + rt_18m,
-#                     data = data_model, family = gaussian(),
-#           control = list(adapt_delta = 0.95),
-#           save_all_pars = TRUE,
-#           chains = 4,
-#           cores = 4,
-#           iter = 50000)%>%
-#   add_criterion("waic")%>%
-#   saveRDS("saves/model_rt_overlap.rds")
+model_rt_overlap <- brm(rt_25m ~ labels_w_gestures + ses_18m + rt_18m,
+                    data = data_model, family = gaussian(),
+          control = list(adapt_delta = 0.95),
+          save_all_pars = TRUE,
+          chains = 4,
+          cores = 4,
+          iter = 50000)%>%
+  add_criterion("waic")%>%
+  saveRDS("saves/model_rt_overlap.rds")
 
 model_rt_overlap <- readRDS("saves/model_rt_overlap.rds")
 
 
-# model_rt_rel_overlap <- brm(rt_25m ~ labels_w_rel_gestures + ses_18m + rt_18m,
-#                     data = data_model, family = gaussian(),
-#           control = list(adapt_delta = 0.95),
-#           save_all_pars = TRUE,
-#           chains = 4,
-#           cores = 4,
-#           iter = 50000)%>%
-#   add_criterion("waic")%>%
-#   saveRDS("saves/model_rt_rel_overlap.rds")
+model_rt_rel_overlap <- brm(rt_25m ~ labels_w_rel_gestures + ses_18m + rt_18m,
+                    data = data_model, family = gaussian(),
+          control = list(adapt_delta = 0.95),
+          save_all_pars = TRUE,
+          chains = 4,
+          cores = 4,
+          iter = 50000)%>%
+  add_criterion("waic")%>%
+  saveRDS("saves/model_rt_rel_overlap.rds")
 
 model_rt_rel_overlap <- readRDS("saves/model_rt_rel_overlap.rds")
 
 
-# model_rt_null <- brm(rt_25m ~ ses_18m + rt_18m,
-#                     data = data_model, family = gaussian(),
-#           control = list(adapt_delta = 0.95),
-#           save_all_pars = TRUE,
-#           chains = 4,
-#           cores = 4,
-#           iter = 50000)%>%
-#   add_criterion("waic")%>%
-#   saveRDS("saves/model_rt_null.rds")
+model_rt_null <- brm(rt_25m ~ ses_18m + rt_18m,
+                    data = data_model, family = gaussian(),
+          control = list(adapt_delta = 0.95),
+          save_all_pars = TRUE,
+          chains = 4,
+          cores = 4,
+          iter = 50000)%>%
+  add_criterion("waic")%>%
+  saveRDS("saves/model_rt_null.rds")
 
 model_rt_null <- readRDS("saves/model_rt_null.rds")
 
@@ -335,6 +401,7 @@ readRDS("saves/rt_overview.rds")%>%
 
 bind_rows(
 tidy(model_rt_label, prob = 0.95)%>%mutate(model = "label"),
+tidy(model_rt_label_me, prob = 0.95)%>%mutate(model = "label - overlap"),
 tidy(model_rt_gesture, prob = 0.95)%>%mutate(model = "gesture"),
 tidy(model_rt_overlap, prob = 0.95)%>%mutate(model = "overlap"),
 tidy(model_rt_rel_overlap, prob = 0.95)%>%mutate(model = "relevant_overlap"),
@@ -371,12 +438,13 @@ data_cdi_model <- socpop %>%
          cdi_25m != "NA",
          gestures != "NA",
          labels != "NA")%>%
-  mutate(gestures = scale(gestures, center = TRUE, scale = F),
-         labels = scale(labels, center = TRUE, scale = F),
-         labels_w_gestures = scale(labels_w_gestures, center = TRUE, scale = F),
-         labels_w_rel_gestures = scale(labels_w_rel_gestures, center = TRUE, scale = F),
-         cdi_18m = scale(cdi_18m, center = TRUE, scale = F),
-         ses_18m = scale(ses_18m, center = TRUE, scale = F))
+  mutate(gestures = scale(gestures, center = TRUE, scale = T),
+         labels = scale(labels, center = TRUE, scale = T),
+         labels_w_gestures = scale(labels_w_gestures, center = TRUE, scale = T),
+         labels_w_rel_gestures = scale(labels_w_rel_gestures, center = TRUE, scale = T),
+         labels_me = scale(labels_me, center = TRUE, scale = T),
+         cdi_18m = scale(cdi_18m, center = TRUE, scale = T),
+         ses_18m = scale(ses_18m, center = TRUE, scale = T))
 ```
 
 ### Plotting DV
@@ -399,97 +467,107 @@ ggplot(data_cdi_model, aes(x=cdi_25m))+
 # even if you run the model, you need to load the saved file afterwards
 
  
-# model_cdi_label <- brm(cdi_25m ~ labels + ses_18m +cdi_18m,
-#                     data = data_cdi_model, family = gaussian(),
-#           control = list(adapt_delta = 0.95),
-#           save_all_pars = TRUE,
-#           chains = 4,
-#           cores = 4,
-#           iter = 50000)%>%
-#   add_criterion("waic")%>%
-#   saveRDS("saves/model_cdi_label.rds")
-# 
- model_cdi_label <- readRDS("saves/model_cdi_label.rds")
-# 
-# model_cdi_gesture <- brm(cdi_25m ~ gestures + ses_18m +cdi_18m,
-#                     data = data_cdi_model, family = gaussian(),
-#           control = list(adapt_delta = 0.95),
-#           save_all_pars = TRUE,
-#           chains = 4,
-#           cores = 4,
-#           iter = 50000)%>%
-#   add_criterion("waic")%>%
-#   saveRDS("saves/model_cdi_gesture.rds")
-# 
- model_cdi_gesture <- readRDS("saves/model_cdi_gesture.rds")
-# 
-#  
-# model_cdi_label_gesture <- brm(cdi_25m ~ labels + gestures + ses_18m +cdi_18m,
-#                     data = data_cdi_model, family = gaussian(),
-#           control = list(adapt_delta = 0.95),
-#           save_all_pars = TRUE,
-#           chains = 4,
-#           cores = 4,
-#           iter = 50000)%>%
-#   add_criterion("waic")%>%
-#   saveRDS("saves/model_cdi_label_gesture.rds")
-# 
- model_cdi_label_gesture <- readRDS("saves/model_cdi_label_gesture.rds")
-# 
-#  
-# model_cdi_label_gesture_int <- brm(cdi_25m ~ labels * gestures + ses_18m +cdi_18m,
-#                     data = data_cdi_model, family = gaussian(),
-#           control = list(adapt_delta = 0.95),
-#           save_all_pars = TRUE,
-#           chains = 4,
-#           cores = 4,
-#           iter = 50000)%>%
-#   add_criterion("waic")%>%
-#   saveRDS("saves/model_cdi_label_gesture_int.rds")
-# 
- model_cdi_label_gesture_int <- readRDS("saves/model_cdi_label_gesture_int.rds")
-# 
-# 
-# model_cdi_overlap <- brm(cdi_25m ~ labels_w_gestures + ses_18m + cdi_18m,
-#                     data = data_cdi_model, family = gaussian(),
-#           control = list(adapt_delta = 0.95),
-#           save_all_pars = TRUE,
-#           chains = 4,
-#           cores = 4,
-#           iter = 50000)%>%
-#   add_criterion("waic")%>%
-#   saveRDS("saves/model_cdi_overlap.rds")
-# 
- model_cdi_overlap <- readRDS("saves/model_cdi_overlap.rds")
-# 
-# 
-# model_cdi_rel_overlap <- brm(cdi_25m ~ labels_w_rel_gestures + ses_18m + cdi_18m,
-#                     data = data_cdi_model, family = gaussian(),
-#           control = list(adapt_delta = 0.95),
-#           save_all_pars = TRUE,
-#           #prior = prior_cdi_overlap,
-#           chains = 4,
-#           cores = 4,
-#           iter = 50000)%>%
-#   add_criterion("waic")%>%
-#   saveRDS("saves/model_cdi_rel_overlap.rds")
-# 
- model_cdi_rel_overlap <- readRDS("saves/model_cdi_rel_overlap.rds")
-# 
-# 
-# 
-# model_cdi_null <- brm(cdi_25m ~  ses_18m + cdi_18m,
-#                     data = data_cdi_model, family = gaussian(),
-#           control = list(adapt_delta = 0.95),
-#           save_all_pars = TRUE,
-#           #prior = prior_cdi_overlap,
-#           chains = 4,
-#           cores = 4,
-#           iter = 50000)%>%
-#   add_criterion("waic")%>%
-#   saveRDS("saves/model_cdi_null.rds")
-# 
- model_cdi_null <- readRDS("saves/model_cdi_null.rds")
+model_cdi_label <- brm(cdi_25m ~ labels + ses_18m +cdi_18m,
+                    data = data_cdi_model, family = gaussian(),
+          control = list(adapt_delta = 0.95),
+          save_all_pars = TRUE,
+          chains = 4,
+          cores = 4,
+          iter = 50000)%>%
+  add_criterion("waic")%>%
+  saveRDS("saves/model_cdi_label.rds")
+
+model_cdi_label <- readRDS("saves/model_cdi_label.rds")
+
+model_cdi_label_me <- brm(cdi_25m ~ labels_me + ses_18m +cdi_18m,
+                    data = data_cdi_model, family = gaussian(),
+          control = list(adapt_delta = 0.95),
+          save_all_pars = TRUE,
+          chains = 4,
+          cores = 4,
+          iter = 50000)%>%
+  add_criterion("waic")%>%
+  saveRDS("saves/model_cdi_label_me.rds")
+
+model_cdi_label_me <- readRDS("saves/model_cdi_label_me.rds")
+
+model_cdi_gesture <- brm(cdi_25m ~ gestures + ses_18m +cdi_18m,
+                    data = data_cdi_model, family = gaussian(),
+          control = list(adapt_delta = 0.95),
+          save_all_pars = TRUE,
+          chains = 4,
+          cores = 4,
+          iter = 50000)%>%
+  add_criterion("waic")%>%
+  saveRDS("saves/model_cdi_gesture.rds")
+
+model_cdi_gesture <- readRDS("saves/model_cdi_gesture.rds")
+
+
+model_cdi_label_gesture <- brm(cdi_25m ~ labels + gestures + ses_18m +cdi_18m,
+                    data = data_cdi_model, family = gaussian(),
+          control = list(adapt_delta = 0.95),
+          save_all_pars = TRUE,
+          chains = 4,
+          cores = 4,
+          iter = 50000)%>%
+  add_criterion("waic")%>%
+  saveRDS("saves/model_cdi_label_gesture.rds")
+
+model_cdi_label_gesture <- readRDS("saves/model_cdi_label_gesture.rds")
+
+
+model_cdi_label_gesture_int <- brm(cdi_25m ~ labels * gestures + ses_18m +cdi_18m,
+                    data = data_cdi_model, family = gaussian(),
+          control = list(adapt_delta = 0.95),
+          save_all_pars = TRUE,
+          chains = 4,
+          cores = 4,
+          iter = 50000)%>%
+  add_criterion("waic")%>%
+  saveRDS("saves/model_cdi_label_gesture_int.rds")
+
+model_cdi_label_gesture_int <- readRDS("saves/model_cdi_label_gesture_int.rds")
+
+
+model_cdi_overlap <- brm(cdi_25m ~ labels_w_gestures + ses_18m + cdi_18m,
+                    data = data_cdi_model, family = gaussian(),
+          control = list(adapt_delta = 0.95),
+          save_all_pars = TRUE,
+          chains = 4,
+          cores = 4,
+          iter = 50000)%>%
+  add_criterion("waic")%>%
+  saveRDS("saves/model_cdi_overlap.rds")
+
+model_cdi_overlap <- readRDS("saves/model_cdi_overlap.rds")
+
+
+model_cdi_rel_overlap <- brm(cdi_25m ~ labels_w_rel_gestures + ses_18m + cdi_18m,
+                    data = data_cdi_model, family = gaussian(),
+          control = list(adapt_delta = 0.95),
+          save_all_pars = TRUE,
+          chains = 4,
+          cores = 4,
+          iter = 50000)%>%
+  add_criterion("waic")%>%
+  saveRDS("saves/model_cdi_rel_overlap.rds")
+
+model_cdi_rel_overlap <- readRDS("saves/model_cdi_rel_overlap.rds")
+
+
+model_cdi_null <- brm(cdi_25m ~  ses_18m + cdi_18m,
+                    data = data_cdi_model, family = gaussian(),
+          control = list(adapt_delta = 0.95),
+          save_all_pars = TRUE,
+          #prior = prior_cdi_overlap,
+          chains = 4,
+          cores = 4,
+          iter = 50000)%>%
+  add_criterion("waic")%>%
+  saveRDS("saves/model_cdi_null.rds")
+
+model_cdi_null <- readRDS("saves/model_cdi_null.rds")
 
 ```
 
@@ -501,6 +579,8 @@ ggplot(data_cdi_model, aes(x=cdi_25m))+
 # looks fine, check again when new data was added
 
 # plot(model_rt_label)
+#
+# plot(model_rt_label_me)
 # 
 # plot(model_rt_gesture)
 # 
@@ -517,7 +597,8 @@ ggplot(data_cdi_model, aes(x=cdi_25m))+
 # Putting things together in a dataframe
 # BF = Bayes Factor in favor of the winning model, in this case overlap
 
-loo_compare(model_cdi_label, 
+loo_compare(model_cdi_label,
+            model_cdi_label_me,
                     model_cdi_gesture,
                     model_cdi_label_gesture,
                     model_cdi_label_gesture_int,
@@ -551,6 +632,7 @@ readRDS("saves/cdi_overview.rds")%>%
 
 bind_rows(
 tidy(model_cdi_label, prob = 0.95)%>%mutate(model = "label"),
+tidy(model_cdi_label_me, prob = 0.95)%>%mutate(model = "label - overlap"),
 tidy(model_cdi_gesture, prob = 0.95)%>%mutate(model = "gesture"),
 tidy(model_cdi_overlap, prob = 0.95)%>%mutate(model = "overlap"),
 tidy(model_cdi_rel_overlap, prob = 0.95)%>%mutate(model = "relevant_overlap"),
@@ -576,6 +658,234 @@ tidy(model_cdi_null, prob = 0.95)%>%mutate(model = "null")
 ```
 
 # Additional analysis
+
+## Accuracy as dependent variable
+
+```{r}
+# Prepare data file
+# center predictors at 0 by subtracting mean to facilitate model fitting
+# remove lines with NAs to allow centering
+
+data_model_acc <- socpop %>%
+  filter(acc25m != "NA",
+         gestures != "NA",
+         labels != "NA")%>%
+  mutate(gestures = scale(gestures, center = TRUE, scale = T),
+         labels = scale(labels, center = TRUE, scale = T),
+         labels_w_gestures = scale(labels_w_gestures, center = TRUE, scale = T),
+         labels_w_rel_gestures = scale(labels_w_rel_gestures, center = TRUE, scale = T),
+         labels_me = scale(labels_me, center = TRUE, scale = T),
+         rt_18m = scale(rt_18m, center = TRUE, scale = T),
+         ses_18m = scale(ses_18m, center = TRUE, scale = T))
+
+```
+
+### Plotting DV
+
+```{r}
+# inspect DV - looks fine in this case
+ggplot(data_model_acc, aes(x=acc25m))+
+  geom_density()+
+  theme_few()
+```
+
+### Models RT
+
+```{r,echo= F, echo = F}
+# run models only when new data is added
+# otherwise, you can just load the saved model output
+# saves time, each model takes approx. 2 min to run
+# when you run the model, the output is automatically saved
+# even if you run the model, you need to load the saved file afterwards
+
+
+model_acc_label <- brm(acc25m ~ labels + ses_18m + acc_18m,
+                      data = data_model_acc, family = gaussian(),
+                      control = list(adapt_delta = 0.95),
+                      save_all_pars = TRUE,
+                      chains = 4,
+                      cores = 4,
+                      iter = 50000)%>%
+  add_criterion("waic")%>%
+  saveRDS("saves/model_acc_label.rds")
+
+model_acc_label <- readRDS("saves/model_acc_label.rds")
+
+model_acc_label_me <- brm(acc25m ~ labels_me + ses_18m + acc_18m,
+                         data = data_model_acc, family = gaussian(),
+                         control = list(adapt_delta = 0.95),
+                         save_all_pars = TRUE,
+                         chains = 4,
+                         cores = 4,
+                         iter = 50000)%>%
+  add_criterion("waic")%>%
+  saveRDS("saves/model_acc_label_me")
+
+model_acc_label_me <- readRDS("saves/model_acc_label_me.rds")
+
+
+model_acc_gesture <- brm(acc25m ~gestures + ses_18m + acc_18m,
+                        data = data_model_acc, family = gaussian(),
+                        control = list(adapt_delta = 0.95),
+                        save_all_pars = TRUE,
+                        chains = 4,
+                        cores = 4,
+                        iter = 50000)%>%
+  add_criterion("waic")%>%
+  saveRDS("saves/model_acc_gesture.rds")
+
+model_acc_gesture <- readRDS("saves/model_acc_gesture.rds")
+
+model_acc_label_gesture <- brm(acc25m ~ labels + gestures + ses_18m + acc_18m,
+                              data = data_model_acc, family = gaussian(),
+                              control = list(adapt_delta = 0.95),
+                              save_all_pars = TRUE,
+                              chains = 4,
+                              cores = 4,
+                              iter = 50000)%>%
+  add_criterion("waic")%>%
+  saveRDS("saves/model_acc_label_gesture.rds")
+
+model_acc_label_gesture <- readRDS("saves/model_acc_label_gesture.rds")
+
+
+model_acc_label_gesture_int <- brm(acc25m ~labels * gestures + ses_18m + acc_18m,
+                                  data = data_model_acc, family = gaussian(),
+                                  control = list(adapt_delta = 0.95),
+                                  save_all_pars = TRUE,
+                                  chains = 4,
+                                  cores = 4,
+                                  iter = 50000)%>%
+  add_criterion("waic")%>%
+  saveRDS("saves/model_acc_label_gesture_int.rds")
+
+model_acc_label_gesture_int <- readRDS("saves/model_acc_label_gesture_int.rds")
+
+model_acc_overlap <- brm(acc25m ~ labels_w_gestures + ses_18m + acc_18m,
+                        data = data_model_acc, family = gaussian(),
+                        control = list(adapt_delta = 0.95),
+                        save_all_pars = TRUE,
+                        chains = 4,
+                        cores = 4,
+                        iter = 50000)%>%
+  add_criterion("waic")%>%
+  saveRDS("saves/model_acc_overlap.rds")
+
+model_acc_overlap <- readRDS("saves/model_acc_overlap.rds")
+
+
+model_acc_rel_overlap <- brm(acc25m ~ labels_w_rel_gestures + ses_18m + acc_18m,
+                            data = data_model_acc, family = gaussian(),
+                            control = list(adapt_delta = 0.95),
+                            save_all_pars = TRUE,
+                            chains = 4,
+                            cores = 4,
+                            iter = 50000)%>%
+  add_criterion("waic")%>%
+  saveRDS("saves/model_acc_rel_overlap.rds")
+
+model_acc_rel_overlap <- readRDS("saves/model_acc_rel_overlap.rds")
+
+
+model_acc_null <- brm(acc25m ~ ses_18m + acc_18m,
+                     data = data_model_acc, family = gaussian(),
+                     control = list(adapt_delta = 0.95),
+                     save_all_pars = TRUE,
+                     chains = 4,
+                     cores = 4,
+                     iter = 50000)%>%
+  add_criterion("waic")%>%
+  saveRDS("saves/model_acc_null.rds")
+
+model_acc_null <- readRDS("saves/model_acc_null.rds")
+
+```
+
+#### Model comparison
+
+```{r}
+# inspect trace plots for models
+# looks fine, check again when new data was added
+
+# plot(model_acc_label)
+# 
+# plot(model_acc_label_me)
+# 
+# plot(model_acc_gesture)
+# 
+# plot(model_acc_label_gesture)
+# 
+# plot(model_acc_label_gesture_int)
+# 
+# plot(model_acc_overlap)
+#
+# plot(model_acc_rel_overlap)
+# 
+# plot(model_acc_null)
+```
+
+
+```{r}
+# Putting things together in a dataframe
+# BF = Bayes factor in favor of the winning model in this case label
+
+loo_compare(model_acc_label, 
+            model_acc_label_me, 
+            model_acc_gesture,
+            model_acc_label_gesture,
+            model_acc_label_gesture_int,
+            model_acc_overlap,
+            model_acc_rel_overlap,
+            model_acc_null,
+            criterion = "waic")%>%
+  as.data.frame()%>%
+  tibble::rownames_to_column("Model")%>%
+  mutate(Model = str_replace(Model, "model_acc_", ""),
+         waic = round(waic, 2),
+         se_waic = round(se_waic, 2),
+         weight = exp(elpd_waic)/sum(exp(elpd_waic)),
+         weight = round(weight, 3))%>%
+  select(Model, waic, se_waic, weight)%>%
+  saveRDS("saves/rt_overview.rds")
+
+readRDS("saves/rt_overview.rds")%>%
+  kable(digits = 2, caption = "Model comparison predicting Accuracy at 25mo")
+
+```
+
+#### Visualizing model predictors
+
+```{r}
+# overview over model predictors
+# removing intercept because it's on a different scale
+# select models depending on results of model comparison
+
+bind_rows(
+  tidy(model_acc_label, prob = 0.95)%>%mutate(model = "label"),
+  tidy(model_acc_label_me, prob = 0.95)%>%mutate(model = "label"),
+  tidy(model_acc_gesture, prob = 0.95)%>%mutate(model = "gesture"),
+  tidy(model_acc_overlap, prob = 0.95)%>%mutate(model = "overlap"),
+  tidy(model_acc_rel_overlap, prob = 0.95)%>%mutate(model = "relevant_overlap"),
+  tidy(model_acc_label_gesture, prob = 0.95)%>%mutate(model = "label+gesture"),
+  tidy(model_acc_label_gesture_int, prob = 0.95)%>%mutate(model = "label*gesture"),
+  tidy(model_acc_null, prob = 0.95)%>%mutate(model = "null")
+) %>%
+  filter(term != "b_Intercept",
+         term != "Intercept",
+         term != "b_intercept",
+         term != "sigma",
+         term != "temp_Intercept",
+         term != "lp__")%>% 
+  mutate(term = str_remove(term,"b_"))%>%
+  ggplot(aes(term, estimate, ymin = lower, ymax = upper, color = model)) + 
+  geom_hline(yintercept=0, lty = 2, col = "grey")+
+  geom_pointrange(position = position_dodge(width = .8), pch = 5)+
+  coord_flip()+
+  theme_few()+
+  labs(y = "Estimate", x = "Predictor")+
+  scale_color_ptol(name = "Model")
+  
+```
 
 ## Correlation between RT 18 and Vocab 25
 
@@ -677,11 +987,12 @@ data_model_con <- socpop %>%
   filter(rt_18m != "NA",
          gestures != "NA",
          labels != "NA")%>%
-  mutate(gestures = scale(gestures, center = TRUE, scale = F),
-         labels = scale(labels, center = TRUE, scale = F),
-         labels_w_gestures = scale(labels_w_gestures, center = TRUE, scale = F),
-         labels_w_rel_gestures = scale(labels_w_rel_gestures, center = TRUE, scale = F),
-         ses_18m = scale(ses_18m, center = TRUE, scale = F))
+  mutate(gestures = scale(gestures, center = TRUE, scale = T),
+         labels = scale(labels, center = TRUE, scale = T),
+         labels_me = scale(labels_me, center = TRUE, scale = T),
+         labels_w_gestures = scale(labels_w_gestures, center = TRUE, scale = T),
+         labels_w_rel_gestures = scale(labels_w_rel_gestures, center = TRUE, scale = T),
+         ses_18m = scale(ses_18m, center = TRUE, scale = T))
 
 ```
 
@@ -704,99 +1015,109 @@ ggplot(data_model_con, aes(x=rt_18m))+
 # when you run the model, the output is automatically saved
 # even if you run the model, you need to load the saved file afterwards
 
-# model_rt_label_con <- brm(rt_18m ~ labels + ses_18m,
-#                     data = data_model_con, family = gaussian(),
-#           control = list(adapt_delta = 0.95),
-#           save_all_pars = TRUE,
-#           chains = 4,
-#           cores = 4,
-#           iter = 50000)%>%
-#   add_criterion("waic")%>%
-#   saveRDS("saves/model_rt_label_con.rds")
-# 
- model_rt_label_con <- readRDS("saves/model_rt_label_con.rds")
-# 
-# 
-# 
-# model_rt_gesture_con <- brm(rt_18m ~gestures + ses_18m,
-#                     data = data_model_con, family = gaussian(),
-#           control = list(adapt_delta = 0.95),
-#           save_all_pars = TRUE,
-#           chains = 4,
-#           cores = 4,
-#           iter = 50000)%>%
-#   add_criterion("waic")%>%
-#  saveRDS("saves/model_rt_gesture_con.rds")
-# 
- model_rt_gesture_con <- readRDS("saves/model_rt_gesture_con.rds")
-# 
-# 
-# model_rt_label_gesture_con <- brm(rt_18m ~ labels + gestures + ses_18m,
-#                     data = data_model_con, family = gaussian(),
-#           control = list(adapt_delta = 0.95),
-#           save_all_pars = TRUE,
-#           chains = 4,
-#           cores = 4,
-#           iter = 50000)%>%
-#   add_criterion("waic")%>%
-#   saveRDS("saves/model_rt_label_gesture_con.rds")
-# 
- model_rt_label_gesture_con <- readRDS("saves/model_rt_label_gesture_con.rds")
-# 
-# 
-# 
-# 
-# model_rt_label_gesture_int_con <- brm(rt_18m ~labels * gestures + ses_18m,
-#                     data = data_model_con, family = gaussian(),
-#           control = list(adapt_delta = 0.95),
-#           save_all_pars = TRUE,
-#           chains = 4,
-#           cores = 4,
-#           iter = 50000)%>%
-#   add_criterion("waic")%>%
-#   saveRDS("saves/model_rt_label_gesture_int_con.rds")
-# 
- model_rt_label_gesture_int_con <- readRDS("saves/model_rt_label_gesture_int_con.rds")
-# 
-# 
-# 
-# model_rt_overlap_con <- brm(rt_18m ~ labels_w_gestures + ses_18m,
-#                     data = data_model_con, family = gaussian(),
-#           control = list(adapt_delta = 0.95),
-#           save_all_pars = TRUE,
-#           chains = 4,
-#           cores = 4,
-#           iter = 50000)%>%
-#   add_criterion("waic")%>%
-#   saveRDS("saves/model_rt_overlap_con.rds")
-# 
- model_rt_overlap_con <- readRDS("saves/model_rt_overlap_con.rds")
-# 
-# 
-# model_rt_rel_overlap_con <- brm(rt_18m ~ labels_w_rel_gestures + ses_18m,
-#                     data = data_model_con, family = gaussian(),
-#           control = list(adapt_delta = 0.95),
-#           save_all_pars = TRUE,
-#           chains = 4,
-#           cores = 4,
-#           iter = 50000)%>%
-#   add_criterion("waic")%>%
-#   saveRDS("saves/model_rt_rel_overlap_con.rds")
-# 
- model_rt_rel_overlap_con <- readRDS("saves/model_rt_rel_overlap_con.rds")
-# 
-# 
-# model_rt_null_con <- brm(rt_18m ~ ses_18m,
-#                     data = data_model_con, family = gaussian(),
-#           control = list(adapt_delta = 0.95),
-#           save_all_pars = TRUE,
-#           chains = 4,
-#           cores = 4,
-#           iter = 50000)%>%
-#   add_criterion("waic")%>%
-#   saveRDS("saves/model_rt_null_con.rds")
-# 
- model_rt_null_con <- readRDS("saves/model_rt_null_con.rds")
+model_rt_label_con <- brm(rt_18m ~ labels + ses_18m,
+                    data = data_model_con, family = gaussian(),
+          control = list(adapt_delta = 0.95),
+          save_all_pars = TRUE,
+          chains = 4,
+          cores = 4,
+          iter = 50000)%>%
+  add_criterion("waic")%>%
+  saveRDS("saves/model_rt_label_con.rds")
+
+model_rt_label_con <- readRDS("saves/model_rt_label_con.rds")
+
+model_rt_label_me_con <- brm(rt_18m ~ labels + ses_18m,
+                    data = data_model_con, family = gaussian(),
+          control = list(adapt_delta = 0.95),
+          save_all_pars = TRUE,
+          chains = 4,
+          cores = 4,
+          iter = 50000)%>%
+  add_criterion("waic")%>%
+  saveRDS("saves/model_rt_label_me_con.rds")
+
+model_rt_label_me_con <- readRDS("saves/model_rt_label_me_con.rds")
+
+model_rt_gesture_con <- brm(rt_18m ~gestures + ses_18m,
+                    data = data_model_con, family = gaussian(),
+          control = list(adapt_delta = 0.95),
+          save_all_pars = TRUE,
+          chains = 4,
+          cores = 4,
+          iter = 50000)%>%
+  add_criterion("waic")%>%
+ saveRDS("saves/model_rt_gesture_con.rds")
+
+model_rt_gesture_con <- readRDS("saves/model_rt_gesture_con.rds")
+
+
+model_rt_label_gesture_con <- brm(rt_18m ~ labels + gestures + ses_18m,
+                    data = data_model_con, family = gaussian(),
+          control = list(adapt_delta = 0.95),
+          save_all_pars = TRUE,
+          chains = 4,
+          cores = 4,
+          iter = 50000)%>%
+  add_criterion("waic")%>%
+  saveRDS("saves/model_rt_label_gesture_con.rds")
+
+model_rt_label_gesture_con <- readRDS("saves/model_rt_label_gesture_con.rds")
+
+
+
+
+model_rt_label_gesture_int_con <- brm(rt_18m ~labels * gestures + ses_18m,
+                    data = data_model_con, family = gaussian(),
+          control = list(adapt_delta = 0.95),
+          save_all_pars = TRUE,
+          chains = 4,
+          cores = 4,
+          iter = 50000)%>%
+  add_criterion("waic")%>%
+  saveRDS("saves/model_rt_label_gesture_int_con.rds")
+
+model_rt_label_gesture_int_con <- readRDS("saves/model_rt_label_gesture_int_con.rds")
+
+
+
+model_rt_overlap_con <- brm(rt_18m ~ labels_w_gestures + ses_18m,
+                    data = data_model_con, family = gaussian(),
+          control = list(adapt_delta = 0.95),
+          save_all_pars = TRUE,
+          chains = 4,
+          cores = 4,
+          iter = 50000)%>%
+  add_criterion("waic")%>%
+  saveRDS("saves/model_rt_overlap_con.rds")
+
+model_rt_overlap_con <- readRDS("saves/model_rt_overlap_con.rds")
+
+
+model_rt_rel_overlap_con <- brm(rt_18m ~ labels_w_rel_gestures + ses_18m,
+                    data = data_model_con, family = gaussian(),
+          control = list(adapt_delta = 0.95),
+          save_all_pars = TRUE,
+          chains = 4,
+          cores = 4,
+          iter = 50000)%>%
+  add_criterion("waic")%>%
+  saveRDS("saves/model_rt_rel_overlap_con.rds")
+
+model_rt_rel_overlap_con <- readRDS("saves/model_rt_rel_overlap_con.rds")
+
+
+model_rt_null_con <- brm(rt_18m ~ ses_18m,
+                    data = data_model_con, family = gaussian(),
+          control = list(adapt_delta = 0.95),
+          save_all_pars = TRUE,
+          chains = 4,
+          cores = 4,
+          iter = 50000)%>%
+  add_criterion("waic")%>%
+  saveRDS("saves/model_rt_null_con.rds")
+
+model_rt_null_con <- readRDS("saves/model_rt_null_con.rds")
 
 ```
 
@@ -807,6 +1128,8 @@ ggplot(data_model_con, aes(x=rt_18m))+
 # looks fine, check again when new data was added
 
 # plot(model_rt_label_con)
+# 
+# plot(model_rt_label_me_con)
 # 
 # plot(model_rt_gesture_con)
 # 
@@ -826,6 +1149,7 @@ ggplot(data_model_con, aes(x=rt_18m))+
 # BF = Bayes factor in favor of the winning model in this case label
 
 loo_compare(model_rt_label_con, 
+            model_rt_label_me_con, 
                     model_rt_gesture_con,
                     model_rt_label_gesture_con,
                     model_rt_label_gesture_int_con,
@@ -859,6 +1183,7 @@ readRDS("saves/rt_overview_con.rds")%>%
 
 bind_rows(
 tidy(model_rt_label_con, prob = 0.95)%>%mutate(model = "label"),
+tidy(model_rt_label_me_con, prob = 0.95)%>%mutate(model = "label - overlap"),
 tidy(model_rt_gesture_con, prob = 0.95)%>%mutate(model = "gesture"),
 tidy(model_rt_overlap_con, prob = 0.95)%>%mutate(model = "overlap"),
 tidy(model_rt_rel_overlap_con, prob = 0.95)%>%mutate(model = "relevant_overlap"),
