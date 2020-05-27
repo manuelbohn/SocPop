@@ -217,6 +217,7 @@ data_model <- socpop %>%
          labels_w_gestures = scale(labels_w_gestures, center = TRUE, scale = T),
          labels_w_rel_gestures = scale(labels_w_rel_gestures, center = TRUE, scale = T),
          labels_me = scale(labels_me, center = TRUE, scale = T),
+         awc_phr_18m = scale(awc_phr_18m, center = TRUE, scale = T),
          rt_18m = scale(rt_18m, center = TRUE, scale = T),
          ses_18m = scale(ses_18m, center = TRUE, scale = T))
 
@@ -265,6 +266,18 @@ ggplot(data_model, aes(x=rt_25m))+
 #   saveRDS("saves/model_rt_label_me.rds")
 # 
  model_rt_label_me <- readRDS("saves/model_rt_label_me.rds")
+#
+model_rt_awc <- brm(rt_25m ~ awc_phr_18m + ses_18m + rt_18m,
+                    data = data_model, family = gaussian(),
+          control = list(adapt_delta = 0.95),
+          save_all_pars = TRUE,
+          chains = 4,
+          cores = 4,
+          iter = 50000)%>%
+  add_criterion("waic")%>%
+  saveRDS("saves/model_rt_awc.rds")
+
+ model_rt_awc <- readRDS("saves/model_rt_awc.rds")
 # 
 #  
 # model_rt_gesture <- brm(rt_25m ~gestures + ses_18m + rt_18m,
@@ -448,7 +461,8 @@ data_cdi_model <- socpop %>%
          labels_w_rel_gestures = scale(labels_w_rel_gestures, center = TRUE, scale = T),
          labels_me = scale(labels_me, center = TRUE, scale = T),
          cdi_18m = scale(cdi_18m, center = TRUE, scale = T),
-         ses_18m = scale(ses_18m, center = TRUE, scale = T))
+         ses_18m = scale(ses_18m, center = TRUE, scale = T),
+                  awc_phr_18m = scale(awc_phr_18m, center = TRUE, scale = T))
 ```
 
 ### Plotting DV
@@ -494,6 +508,18 @@ ggplot(data_cdi_model, aes(x=cdi_25m))+
 #   saveRDS("saves/model_cdi_label_me.rds")
 # 
  model_cdi_label_me <- readRDS("saves/model_cdi_label_me.rds")
+# 
+model_cdi_awc <- brm(cdi_25m ~ awc_phr_18m + ses_18m +cdi_18m,
+                    data = data_cdi_model, family = gaussian(),
+          control = list(adapt_delta = 0.95),
+          save_all_pars = TRUE,
+          chains = 4,
+          cores = 4,
+          iter = 50000)%>%
+  add_criterion("waic")%>%
+  saveRDS("saves/model_cdi_awc.rds")
+
+ model_cdi_awc <- readRDS("saves/model_cdi_awc.rds")
 # 
 # model_cdi_gesture <- brm(cdi_25m ~ gestures + ses_18m +cdi_18m,
 #                     data = data_cdi_model, family = gaussian(),
