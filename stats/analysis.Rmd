@@ -267,15 +267,15 @@ ggplot(data_model, aes(x=rt_25m))+
 # 
  model_rt_label_me <- readRDS("saves/model_rt_label_me.rds")
 #
-model_rt_awc <- brm(rt_25m ~ awc_phr_18m + ses_18m + rt_18m,
-                    data = data_model, family = gaussian(),
-          control = list(adapt_delta = 0.95),
-          save_all_pars = TRUE,
-          chains = 4,
-          cores = 4,
-          iter = 50000)%>%
-  add_criterion("waic")%>%
-  saveRDS("saves/model_rt_awc.rds")
+# model_rt_awc <- brm(rt_25m ~ awc_phr_18m + ses_18m + rt_18m,
+#                     data = data_model, family = gaussian(),
+#           control = list(adapt_delta = 0.95),
+#           save_all_pars = TRUE,
+#           chains = 4,
+#           cores = 4,
+#           iter = 50000)%>%
+#   add_criterion("waic")%>%
+#   saveRDS("saves/model_rt_awc.rds")
 
  model_rt_awc <- readRDS("saves/model_rt_awc.rds")
 # 
@@ -363,6 +363,8 @@ model_rt_awc <- brm(rt_25m ~ awc_phr_18m + ses_18m + rt_18m,
 # inspect trace plots for models
 # looks fine, check again when new data was added
 
+# plot(model_rt_awc)
+#
 # plot(model_rt_label)
 # 
 # plot(model_rt_gesture)
@@ -384,7 +386,8 @@ model_rt_awc <- brm(rt_25m ~ awc_phr_18m + ses_18m + rt_18m,
 # BF = Bayes factor in favor of the winning model in this case label
 
 loo_compare(model_rt_label, 
-            model_rt_label_me, 
+            model_rt_label_me,
+            model_rt_awc,
                     model_rt_gesture,
                     model_rt_label_gesture,
                     model_rt_label_gesture_int,
@@ -418,6 +421,7 @@ readRDS("saves/rt_overview.rds")%>%
 
 bind_rows(
 tidy(model_rt_label, prob = 0.95)%>%mutate(model = "label"),
+tidy(model_rt_awc, prob = 0.95)%>%mutate(model = "awc"),
 tidy(model_rt_label_me, prob = 0.95)%>%mutate(model = "label - overlap"),
 tidy(model_rt_gesture, prob = 0.95)%>%mutate(model = "gesture"),
 tidy(model_rt_overlap, prob = 0.95)%>%mutate(model = "overlap"),
@@ -509,15 +513,15 @@ ggplot(data_cdi_model, aes(x=cdi_25m))+
 # 
  model_cdi_label_me <- readRDS("saves/model_cdi_label_me.rds")
 # 
-model_cdi_awc <- brm(cdi_25m ~ awc_phr_18m + ses_18m +cdi_18m,
-                    data = data_cdi_model, family = gaussian(),
-          control = list(adapt_delta = 0.95),
-          save_all_pars = TRUE,
-          chains = 4,
-          cores = 4,
-          iter = 50000)%>%
-  add_criterion("waic")%>%
-  saveRDS("saves/model_cdi_awc.rds")
+# model_cdi_awc <- brm(cdi_25m ~ awc_phr_18m + ses_18m +cdi_18m,
+#                     data = data_cdi_model, family = gaussian(),
+#           control = list(adapt_delta = 0.95),
+#           save_all_pars = TRUE,
+#           chains = 4,
+#           cores = 4,
+#           iter = 50000)%>%
+#   add_criterion("waic")%>%
+#   saveRDS("saves/model_cdi_awc.rds")
 
  model_cdi_awc <- readRDS("saves/model_cdi_awc.rds")
 # 
@@ -629,6 +633,7 @@ model_cdi_awc <- brm(cdi_25m ~ awc_phr_18m + ses_18m +cdi_18m,
 
 loo_compare(model_cdi_label,
             model_cdi_label_me,
+            model_cdi_awc,
                     model_cdi_gesture,
                     model_cdi_label_gesture,
                     model_cdi_label_gesture_int,
@@ -662,6 +667,7 @@ readRDS("saves/cdi_overview.rds")%>%
 
 bind_rows(
 tidy(model_cdi_label, prob = 0.95)%>%mutate(model = "label"),
+tidy(model_cdi_awc, prob = 0.95)%>%mutate(model = "awc"),
 tidy(model_cdi_label_me, prob = 0.95)%>%mutate(model = "label - overlap"),
 tidy(model_cdi_gesture, prob = 0.95)%>%mutate(model = "gesture"),
 tidy(model_cdi_overlap, prob = 0.95)%>%mutate(model = "overlap"),
