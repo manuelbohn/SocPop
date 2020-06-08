@@ -56,7 +56,7 @@ For each gesture, does it overlap with a label?
 overlap_ges <-  gesture %>%
   mutate(start = start -1 ,
          stop = stop + 1) %>%
-  group_by(id, tier, start, stop)%>%
+  group_by(id, tier, start, stop) %>%
   expand(gesture_start = nesting(label$start,label$stop,label$id)) %>%
   filter(id == `label$id`)%>%
   mutate(overlap_start = ifelse(start <= `label$start` & stop >= `label$start`, T,F),
@@ -119,7 +119,7 @@ gesture_type_sum <- gesture %>%
 relevant_sum <- comment%>%
   group_by(id)%>%
   summarise(labels_rel = n(), 
-            labels_w_rel_gestures = sum(relavence))
+            labels_w_rel_gestures = sum(relevance))
 
 label_sum <- label %>%
   group_by(id)%>%
@@ -153,6 +153,9 @@ label_sp_en <- read_csv("./data/data_200513_JB.csv", col_names = F) %>%
   mutate(id = str_sub(file, 1, 3)) %>% 
   select(-file)
 
+# note there are some labels (n = 15 children) with missing comments and relevance tags, so we will merge on all labels with comments
+# most children are only missing 1 to 2 comments, with one missing 3 comments (433)
+# for now we will join on those with comments, but to see which children are missing comments do full_join
 comment_label <- comment %>% 
   left_join(label_sp_en, by = c("id", "start", "stop", "tier")) %>% 
   filter(ant != "english")

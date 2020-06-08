@@ -118,8 +118,6 @@ nrow = 1
 ### Within predictors
 
 ```{r}
-# I added the LENA AWC count to see if total labels is related to just parents talking more overall in the play sessions, which it is (like we would expect)
-
 socpop%>%
   select(gestures, labels, labels_me,labels_w_gestures, labels_w_rel_gestures, awc_phr_18m)%>%
   corrr::correlate()%>%

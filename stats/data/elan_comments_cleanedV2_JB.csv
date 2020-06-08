@@ -1,48 +1,48 @@
-tier,start,end,duration,comment,comment_clean,referent,relavence,classification,subject
-Caregiver linguistic,102.26,102.633,0.373,agua,agua,agua,0,normal,121
-Caregiver linguistic,110.719,111.185,0.466,agua,agua,agua,0,normal,121
-Caregiver linguistic,118.553,118.983,0.43,agua,agua,agua,0,normal,121
-Caregiver linguistic,120.801,121.265,0.464,agua,agua,agua,0,normal,121
-Caregiver linguistic,121.779,122.235,0.456,agua,agua,agua,0,normal,121
-Caregiver linguistic,266.566,267.025,0.459,agua,agua,agua,0,normal,121
-Caregiver linguistic,268.816,269.354,0.538,agua,agua,agua,0,normal,121
-Caregiver linguistic,271.025,271.409,0.384,agua,agua,agua,0,normal,121
-Caregiver linguistic,344.939,345.854,0.915,agua,agua,agua,0,normal,146
-Caregiver linguistic,226.344,226.615,0.271,agua,agua,agua,0,normal,141
-Caregiver linguistic,328.47,328.91,0.44,agua,agua,agua,0,normal,372
-Caregiver linguistic,128.806,129.1,0.294,agua,agua,agua,0,normal,182
-Caregiver linguistic,239.473,239.881,0.408,agua,agua,agua,0,normal,401
-Caregiver linguistic,142.754,143.211,0.457,agua,agua,agua,0,normal,133
-Caregiver linguistic,145.165,145.574,0.409,agua,agua,agua,0,normal,133
-Caregiver linguistic,150.727,151.325,0.598,agua,agua,agua,0,normal,196
-Caregiver linguistic,151.619,152.069,0.45,agua,agua,agua,0,normal,196
-Caregiver linguistic,154.052,154.462,0.41,agua,agua,agua,0,normal,196
-Caregiver linguistic,44.102,44.549,0.447,agua,agua,agua,0,normal,260
-Caregiver linguistic,44.882,45.255,0.373,agua,agua,agua,0,normal,260
-Caregiver linguistic,209.969,210.919,0.95,agua,agua,agua,0,normal,260
-Caregiver linguistic,20.026,20.446,0.42,agua ,agua,agua,0,normal,121
-Caregiver linguistic,22.715,23.21,0.495,agua ,agua,agua,1,relevant,121
-Caregiver linguistic,86.06,86.554,0.494,agua ,agua,agua,0,normal,121
-Caregiver linguistic,88.754,89.347,0.593,agua ,agua,agua,0,normal,121
-Caregiver linguistic,96.421,97.321,0.9,agua ,agua,agua,0,normal,121
-Caregiver linguistic,98.163,98.631,0.468,agua ,agua,agua,0,normal,121
-Caregiver linguistic,232.661,233.021,0.36,agua ,agua,agua,0,normal,150
-Caregiver linguistic,339.496,340.009,0.513,agua ,agua,agua,0,normal,146
-Caregiver linguistic,161.138,161.637,0.499,agua ,agua,agua,0,normal,141
-Caregiver linguistic,213.03,213.419,0.389,agua ,agua,agua,0,normal,141
-Caregiver linguistic,214.594,214.956,0.362,agua ,agua,agua,0,normal,141
-Caregiver linguistic,217.986,218.253,0.267,agua ,agua,agua,0,normal,141
-Caregiver linguistic,219.747,220.042,0.295,agua ,agua,agua,0,normal,141
-Caregiver linguistic,223.254,223.554,0.3,agua ,agua,agua,0,normal,141
-Caregiver linguistic,224.394,224.67,0.276,agua ,agua,agua,0,normal,141
-Caregiver linguistic,356.364,356.915,0.551,agua ,agua,agua,0,normal,141
-Caregiver linguistic,121.778,122.212,0.434,agua ,agua,agua,0,normal,182
-Caregiver linguistic,122.807,122.994,0.187,agua ,agua,agua,0,normal,182
-Caregiver linguistic,243.697,244.031,0.334,agua ,agua,agua,0,normal,401
-Caregiver linguistic,132.2,132.588,0.388,agua ,agua,agua,0,normal,133
-Caregiver linguistic,134.583,135.019,0.436,agua ,agua,agua,0,normal,133
-Caregiver linguistic,136.307,136.777,0.47,agua ,agua,agua,0,normal,133
-Caregiver linguistic,148.16,148.609,0.449,agua ,agua,agua,0,normal,133
+tier,start,end,duration,comment,comment_clean,referent,relevance,classification,subject
+Caregiver linguistic,102.26,102.633,0.373,agua,agua,taza,0,normal,121
+Caregiver linguistic,110.719,111.185,0.466,agua,agua,taza,0,normal,121
+Caregiver linguistic,118.553,118.983,0.43,agua,agua,taza,0,normal,121
+Caregiver linguistic,120.801,121.265,0.464,agua,agua,taza,0,normal,121
+Caregiver linguistic,121.779,122.235,0.456,agua,agua,taza,0,normal,121
+Caregiver linguistic,266.566,267.025,0.459,agua,agua,taza,0,normal,121
+Caregiver linguistic,268.816,269.354,0.538,agua,agua,taza,0,normal,121
+Caregiver linguistic,271.025,271.409,0.384,agua,agua,taza,0,normal,121
+Caregiver linguistic,344.939,345.854,0.915,agua,agua,taza,0,normal,146
+Caregiver linguistic,226.344,226.615,0.271,agua,agua,taza,0,normal,141
+Caregiver linguistic,328.47,328.91,0.44,agua,agua,taza,0,normal,372
+Caregiver linguistic,128.806,129.1,0.294,agua,agua,taza,0,normal,182
+Caregiver linguistic,239.473,239.881,0.408,agua,agua,taza,0,normal,401
+Caregiver linguistic,142.754,143.211,0.457,agua,agua,taza,0,normal,133
+Caregiver linguistic,145.165,145.574,0.409,agua,agua,taza,0,normal,133
+Caregiver linguistic,150.727,151.325,0.598,agua,agua,taza,0,normal,196
+Caregiver linguistic,151.619,152.069,0.45,agua,agua,taza,0,normal,196
+Caregiver linguistic,154.052,154.462,0.41,agua,agua,taza,0,normal,196
+Caregiver linguistic,44.102,44.549,0.447,agua,agua,taza,0,normal,260
+Caregiver linguistic,44.882,45.255,0.373,agua,agua,taza,0,normal,260
+Caregiver linguistic,209.969,210.919,0.95,agua,agua,taza,0,normal,260
+Caregiver linguistic,20.026,20.446,0.42,agua ,agua,taza,0,normal,121
+Caregiver linguistic,22.715,23.21,0.495,agua ,agua,taza,1,relevant,121
+Caregiver linguistic,86.06,86.554,0.494,agua ,agua,taza,0,normal,121
+Caregiver linguistic,88.754,89.347,0.593,agua ,agua,taza,0,normal,121
+Caregiver linguistic,96.421,97.321,0.9,agua ,agua,taza,0,normal,121
+Caregiver linguistic,98.163,98.631,0.468,agua ,agua,taza,0,normal,121
+Caregiver linguistic,232.661,233.021,0.36,agua ,agua,taza,0,normal,150
+Caregiver linguistic,339.496,340.009,0.513,agua ,agua,taza,0,normal,146
+Caregiver linguistic,161.138,161.637,0.499,agua ,agua,taza,0,normal,141
+Caregiver linguistic,213.03,213.419,0.389,agua ,agua,taza,0,normal,141
+Caregiver linguistic,214.594,214.956,0.362,agua ,agua,taza,0,normal,141
+Caregiver linguistic,217.986,218.253,0.267,agua ,agua,taza,0,normal,141
+Caregiver linguistic,219.747,220.042,0.295,agua ,agua,taza,0,normal,141
+Caregiver linguistic,223.254,223.554,0.3,agua ,agua,taza,0,normal,141
+Caregiver linguistic,224.394,224.67,0.276,agua ,agua,taza,0,normal,141
+Caregiver linguistic,356.364,356.915,0.551,agua ,agua,taza,0,normal,141
+Caregiver linguistic,121.778,122.212,0.434,agua ,agua,taza,0,normal,182
+Caregiver linguistic,122.807,122.994,0.187,agua ,agua,taza,0,normal,182
+Caregiver linguistic,243.697,244.031,0.334,agua ,agua,taza,0,normal,401
+Caregiver linguistic,132.2,132.588,0.388,agua ,agua,taza,0,normal,133
+Caregiver linguistic,134.583,135.019,0.436,agua ,agua,taza,0,normal,133
+Caregiver linguistic,136.307,136.777,0.47,agua ,agua,taza,0,normal,133
+Caregiver linguistic,148.16,148.609,0.449,agua ,agua,taza,0,normal,133
 Caregiver linguistic,292.918,293.336,0.418,agaucate,aguacate,aguacate,0,normal,145
 Caregiver linguistic,224.32,225.1,0.78,aguacate,aguacate,aguacate,0,normal,190
 Caregiver linguistic,255.874,257.322,1.448,aguacate,aguacate,aguacate,0,normal,190
@@ -96,7 +96,7 @@ Caregiver linguistic,75.645,76.965,1.32,aguacate ,aguacate,aguacate,1,relevant,4
 Caregiver linguistic,84.805,85.639,0.834,aguacate ,aguacate,aguacate,1,relevant,411
 Caregiver linguistic,148.719,149.291,0.572,aguacate ,aguacate,aguacate,1,relevant,411
 Caregiver linguistic,157.905,158.792,0.887,aguacate ,aguacate,aguacate,1,relevant,411
-Caregiver linguistic,118.992,120.335,1.343,aguacate ,aguacate,aguacate,1,relevant,105
+Caregiver linguistic,40.353,41.038,0.685,plato,plato,plato,0,normal,105
 Caregiver linguistic,176.338,177.085,0.747,aguacate ,aguacate,aguacate,1,relevant,109
 Caregiver linguistic,180.634,181.655,1.021,aguacate ,aguacate,aguacate,1,relevant,109
 Caregiver linguistic,183.518,184.932,1.414,aguacate ,aguacate,aguacate,1,relevant,109
@@ -118,10 +118,10 @@ Caregiver linguistic,269.267,269.886,0.619,aguacate ,aguacate,aguacate,1,relevan
 Caregiver linguistic,66.15,66.896,0.746,aguacate  ,aguacate,aguacate,1,relevant,157
 Caregiver linguistic,197.715,198.835,1.12,aguacte ,aguacate,aguacate,1,relevant,414
 Caregiver linguistic,199.275,200.455,1.18,aguacte ,aguacate,aguacate,1,relevant,414
-Caregiver linguistic,230.296,230.865,0.569,aguita,aguita,agua,0,normal,150
-Caregiver linguistic,333.96,334.563,0.603,aguita,aguita,agua,0,normal,372
-Caregiver linguistic,98.577,99.06,0.483,aguita,aguita,agua,0,normal,193
-Caregiver linguistic,234.881,235.421,0.54,aguita ,aguita,agua,0,normal,150
+Caregiver linguistic,230.296,230.865,0.569,aguita,aguita,taza,0,normal,150
+Caregiver linguistic,333.96,334.563,0.603,aguita,aguita,taza,0,normal,372
+Caregiver linguistic,98.577,99.06,0.483,aguita,aguita,taza,0,normal,193
+Caregiver linguistic,234.881,235.421,0.54,aguita ,aguita,taza,0,normal,150
 Caregiver linguistic,241.999,243.093,1.094,aplastador de jitomate ,aplastador de jitomate ,aplastador de jitomate ,1,relevant,150
 Caregiver linguistic,11.92,12.82,0.9,apple,apple,apple,0,normal,190
 Caregiver linguistic,13.579,14.18,0.601,apple,apple,apple,0,normal,190
@@ -264,12 +264,12 @@ Caregiver linguistic,62.263,62.995,0.732,brocoli,brocoli,brocoli,0,normal,401
 Caregiver linguistic,63.37,63.892,0.522,brocoli,brocoli,brocoli,0,normal,401
 Caregiver linguistic,175.264,175.819,0.555,brocoli,brocoli,brocoli,0,normal,401
 Caregiver linguistic,176.142,176.522,0.38,brocoli,brocoli,brocoli,0,normal,401
-Caregiver linguistic,123.738,124.617,0.879,brocoli,brocoli,brocoli,0,normal,105
-Caregiver linguistic,134.564,135.067,0.503,brocoli,brocoli,brocoli,0,normal,105
-Caregiver linguistic,139.806,140.494,0.688,brocoli,brocoli,brocoli,0,normal,105
-Caregiver linguistic,338.717,339.563,0.846,brocoli,brocoli,brocoli,0,normal,105
-Caregiver linguistic,350.063,350.751,0.688,brocoli,brocoli,brocoli,0,normal,105
-Caregiver linguistic,351.025,351.55,0.525,brocoli,brocoli,brocoli,0,normal,105
+Caregiver linguistic,46.379,47.373,0.994,brocoli ,brocoli,brocoli,1,relevant,105
+Caregiver linguistic,48.9,49.553,0.653,brocoli ,brocoli,brocoli,1,relevant,105
+Caregiver linguistic,53.353,54.023,0.67,fresa ,fresa,fresa,1,relevant,105
+Caregiver linguistic,54.729,55.165,0.436,fresa ,fresa,fresa,1,relevant,105
+Caregiver linguistic,56.564,57.483,0.919,fresa ,fresa,fresa,1,relevant,105
+Caregiver linguistic,59.415,60.294,0.879,fresa ,fresa,fresa,1,relevant,105
 Caregiver linguistic,73.353,73.893,0.54,brocoli,brocoli,brocoli,0,normal,133
 Caregiver linguistic,86.65,87.645,0.995,brocoli,brocoli,brocoli,0,normal,133
 Caregiver linguistic,318.423,319.058,0.635,brocoli,brocoli,brocoli,0,normal,445
@@ -321,14 +321,14 @@ Caregiver linguistic,103.575,105.09,1.515,brocoli ,brocoli,brocoli,1,relevant,23
 Caregiver linguistic,106.107,107.232,1.125,brocoli ,brocoli,brocoli,1,relevant,232
 Caregiver linguistic,111.969,112.63,0.661,brocoli ,brocoli,brocoli,1,relevant,232
 Caregiver linguistic,122.1,122.66,0.56,brocoli ,brocoli,brocoli,1,relevant,232
-Caregiver linguistic,46.379,47.373,0.994,brocoli ,brocoli,brocoli,1,relevant,105
-Caregiver linguistic,48.9,49.553,0.653,brocoli ,brocoli,brocoli,1,relevant,105
-Caregiver linguistic,128.871,129.784,0.913,brocoli ,brocoli,brocoli,1,relevant,105
-Caregiver linguistic,132.489,133.077,0.588,brocoli ,brocoli,brocoli,1,relevant,105
-Caregiver linguistic,133.338,133.828,0.49,brocoli ,brocoli,brocoli,1,relevant,105
-Caregiver linguistic,353.973,354.584,0.611,brocoli ,brocoli,brocoli,1,relevant,105
-Caregiver linguistic,355.574,356.043,0.469,brocoli ,brocoli,brocoli,1,relevant,105
-Caregiver linguistic,358.688,359.166,0.478,brocoli ,brocoli,brocoli,1,relevant,105
+Caregiver linguistic,73.65,74.314,0.664,fresa ,fresa,fresa,1,relevant,105
+Caregiver linguistic,75.717,76.57,0.853,pan ,pan ,pan,1,relevant,105
+Caregiver linguistic,76.895,77.486,0.591,pan ,pan ,pan,1,relevant,105
+Caregiver linguistic,79.083,80.076,0.993,pan ,pan ,pan,1,relevant,105
+Caregiver linguistic,81.217,81.747,0.53,cafe,cafe,taza,0,normal,105
+Caregiver linguistic,82.302,82.912,0.61,cafe,cafe,taza,0,normal,105
+Caregiver linguistic,94.15,95.291,1.141,tomate,tomate,tomate,0,normal,105
+Caregiver linguistic,95.915,97.17,1.255,tomate,tomate,tomate,0,normal,105
 Caregiver linguistic,85.658,86.567,0.909,brocoli ,brocoli,brocoli,1,relevant,109
 Caregiver linguistic,91.966,92.701,0.735,brocoli ,brocoli,brocoli,1,relevant,109
 Caregiver linguistic,153.982,154.665,0.683,brocoli ,brocoli,brocoli,1,relevant,193
@@ -342,34 +342,34 @@ Caregiver linguistic,165.885,166.805,0.92,brocoli ,brocoli,brocoli,1,relevant,36
 Caregiver linguistic,38.74,40.33,1.59,brocoli ,brocoli,brocoli,1,relevant,145
 Caregiver linguistic,70.656,72.076,1.42,brocolli ,brocoli,brocoli,0,normal,411
 Caregiver linguistic,188.821,189.38,0.559,cachuela,cachuela,caserola,0,normal,232
-Caregiver linguistic,111.707,112.221,0.514,cafe,cafe,cafe,0,normal,157
-Caregiver linguistic,27.3,28.56,1.26,cafe,cafe,cafe,0,normal,354
-Caregiver linguistic,33.19,34.23,1.04,cafe,cafe,cafe,0,normal,354
-Caregiver linguistic,81.217,81.747,0.53,cafe,cafe,cafe,0,normal,105
-Caregiver linguistic,82.302,82.912,0.61,cafe,cafe,cafe,0,normal,105
-Caregiver linguistic,175.369,176.773,1.404,cafe,cafe,cafe,0,normal,105
-Caregiver linguistic,177.671,178.922,1.251,cafe,cafe,cafe,0,normal,105
-Caregiver linguistic,179.129,179.505,0.376,cafe,cafe,cafe,0,normal,105
-Caregiver linguistic,299.334,299.822,0.488,cafe,cafe,cafe,0,normal,105
-Caregiver linguistic,300.833,301.223,0.39,cafe,cafe,cafe,0,normal,105
-Caregiver linguistic,303.143,303.532,0.389,cafe,cafe,cafe,0,normal,105
-Caregiver linguistic,304.478,305.776,1.298,cafe,cafe,cafe,0,normal,105
-Caregiver linguistic,181.489,181.96,0.471,cafe,cafe,cafe,0,normal,145
-Caregiver linguistic,185.308,185.604,0.296,cafe,cafe,cafe,0,normal,145
-Caregiver linguistic,189.23,189.736,0.506,cafe,cafe,cafe,0,normal,145
-Caregiver linguistic,134.865,135.905,1.04,cafe ,cafe,cafe,0,normal,444
-Caregiver linguistic,21.133,21.68,0.547,cafe ,cafe,cafe,0,normal,157
-Caregiver linguistic,225.385,226.28,0.895,cafe ,cafe,cafe,0,normal,372
-Caregiver linguistic,169.637,170.375,0.738,cafecito,cafecito,cafe,0,normal,105
-Caregiver linguistic,172.076,172.688,0.612,cafecito,cafecito,cafe,0,normal,105
-Caregiver linguistic,288.619,291.912,3.293,caldito de cebolla,caldito de cebolla,caldito de cebolla,0,normal,109
+Caregiver linguistic,111.707,112.221,0.514,cafe,cafe,taza,0,normal,157
+Caregiver linguistic,27.3,28.56,1.26,cafe,cafe,taza,0,normal,354
+Caregiver linguistic,33.19,34.23,1.04,cafe,cafe,taza,0,normal,354
+Caregiver linguistic,100.227,101.375,1.148,cebolla,cebolla,cebolla,0,normal,105
+Caregiver linguistic,105.462,106.516,1.054,cebolla,cebolla,cebolla,0,normal,105
+Caregiver linguistic,107.2,108.536,1.336,cebolla ,cebolla,cebolla,1,relevant,105
+Caregiver linguistic,109.957,110.795,0.838,cebolla ,cebolla,cebolla,1,relevant,105
+Caregiver linguistic,114.448,115.542,1.094,elote ,elote,elote,1,relevant,105
+Caregiver linguistic,118.992,120.335,1.343,aguacate ,aguacate,aguacate,1,relevant,105
+Caregiver linguistic,123.738,124.617,0.879,brocoli,brocoli,brocoli,0,normal,105
+Caregiver linguistic,128.871,129.784,0.913,brocoli ,brocoli,brocoli,1,relevant,105
+Caregiver linguistic,132.489,133.077,0.588,brocoli ,brocoli,brocoli,1,relevant,105
+Caregiver linguistic,181.489,181.96,0.471,cafe,cafe,taza,0,normal,145
+Caregiver linguistic,185.308,185.604,0.296,cafe,cafe,taza,0,normal,145
+Caregiver linguistic,189.23,189.736,0.506,cafe,cafe,taza,0,normal,145
+Caregiver linguistic,134.865,135.905,1.04,cafe ,cafe,taza,0,normal,444
+Caregiver linguistic,21.133,21.68,0.547,cafe ,cafe,taza,0,normal,157
+Caregiver linguistic,225.385,226.28,0.895,cafe ,cafe,taza,0,normal,372
+Caregiver linguistic,133.338,133.828,0.49,brocoli ,brocoli,brocoli,1,relevant,105
+Caregiver linguistic,134.564,135.067,0.503,brocoli,brocoli,brocoli,0,normal,105
+Caregiver linguistic,288.619,291.912,3.293,caldito de cebolla,caldito de cebolla,sopa,0,normal,109
 Caregiver linguistic,126.073,126.543,0.47,cascara,cascara,cascara,0,normal,109
 Caregiver linguistic,61.256,61.856,0.6,cascara,cascara,cascara,0,normal,369
 Caregiver linguistic,128.15,129.083,0.933,cascara de banana,cascara de banana,cascara,0,normal,109
-Caregiver linguistic,189.661,190.369,0.708,caserola,caserola,caserola,0,normal,105
-Caregiver linguistic,253.363,254.073,0.71,cazerola,caserola,caserola,0,normal,105
-Caregiver linguistic,327.008,327.813,0.805,cazerola,caserola,caserola,0,normal,105
-Caregiver linguistic,330.654,331.6,0.946,cazerola,caserola,caserola,0,normal,105
+Caregiver linguistic,139.806,140.494,0.688,brocoli,brocoli,brocoli,0,normal,105
+Caregiver linguistic,142.918,143.683,0.765,naranja,naranja,naranja,0,normal,105
+Caregiver linguistic,144.005,144.676,0.671,tomate,tomate,tomate,0,normal,105
+Caregiver linguistic,146.649,147.34,0.691,tomate,tomate,tomate,0,normal,105
 Caregiver linguistic,164.893,165.546,0.653,cazuela,cazuela,caserola,0,normal,190
 Caregiver linguistic,197.565,197.939,0.374,cazuela,cazuela,caserola,0,normal,190
 Caregiver linguistic,32.692,33.466,0.774,cazuela,cazuela,caserola,0,normal,433
@@ -415,14 +415,14 @@ Caregiver linguistic,323.752,324.239,0.487,cebolla,cebolla,cebolla,0,normal,192
 Caregiver linguistic,72.853,73.586,0.733,cebolla,cebolla,cebolla,0,normal,308
 Caregiver linguistic,173.433,174.386,0.953,cebolla,cebolla,cebolla,0,normal,308
 Caregiver linguistic,315.691,316.19,0.499,cebolla,cebolla,cebolla,0,normal,401
-Caregiver linguistic,100.227,101.375,1.148,cebolla,cebolla,cebolla,0,normal,105
-Caregiver linguistic,105.462,106.516,1.054,cebolla,cebolla,cebolla,0,normal,105
-Caregiver linguistic,376.164,376.755,0.591,cebolla,cebolla,cebolla,0,normal,105
+Caregiver linguistic,148.203,148.8,0.597,tomate,tomate,tomate,0,normal,105
+Caregiver linguistic,150.917,151.381,0.464,cuchara,cuchara,cuchara,0,normal,105
+Caregiver linguistic,154.505,154.962,0.457,taza,taza,taza,0,normal,105
 Caregiver linguistic,187.81,188.656,0.846,cebolla,cebolla,cebolla,0,normal,109
 Caregiver linguistic,267.745,268.545,0.8,cebolla,cebolla,cebolla,0,normal,109
 Caregiver linguistic,269.455,269.928,0.473,cebolla,cebolla,cebolla,0,normal,109
 Caregiver linguistic,38.473,39.42,0.947,cebolla,cebolla,cebolla,0,normal,133
-Caregiver nonlinguistic,331.949,332.909,0.96,cebolla,cebolla,cebolla,0,normal,133
+Caregiver linguistic,331.949,332.909,0.96,cebolla,cebolla,cebolla,0,normal,133
 Caregiver linguistic,197.317,197.857,0.54,cebolla,cebolla,cebolla,0,normal,260
 Caregiver linguistic,291.42,292.78,1.36,cebolla ,cebolla,cebolla,1,relevant,444
 Caregiver linguistic,294.64,296.28,1.64,cebolla ,cebolla,cebolla,1,relevant,444
@@ -440,8 +440,8 @@ Caregiver linguistic,140.313,141.233,0.92,cebolla ,cebolla,cebolla,1,relevant,41
 Caregiver linguistic,165.896,166.538,0.642,cebolla ,cebolla,cebolla,1,relevant,401
 Caregiver linguistic,167.385,167.777,0.392,cebolla ,cebolla,cebolla,1,relevant,401
 Caregiver linguistic,157.725,158.445,0.72,cebolla ,cebolla,cebolla,1,relevant,232
-Caregiver linguistic,107.2,108.536,1.336,cebolla ,cebolla,cebolla,1,relevant,105
-Caregiver linguistic,109.957,110.795,0.838,cebolla ,cebolla,cebolla,1,relevant,105
+Caregiver linguistic,160.382,161.046,0.664,taza de cafe,taza de cafe,taza,0,normal,105
+Caregiver linguistic,162.265,163.083,0.818,taza de cafe,taza de cafe,taza,0,normal,105
 Caregiver linguistic,190.679,191.41,0.731,cebolla ,cebolla,cebolla,1,relevant,109
 Caregiver linguistic,192.547,193.668,1.121,cebolla ,cebolla,cebolla,1,relevant,109
 Caregiver linguistic,304.571,305.896,1.325,cebolla ,cebolla,cebolla,1,relevant,400
@@ -536,8 +536,8 @@ Caregiver linguistic,364.427,364.997,0.57,cuchara,cuchara,cuchara,0,normal,182
 Caregiver linguistic,187.042,187.649,0.607,cuchara,cuchara,cuchara,0,normal,411
 Caregiver linguistic,190.085,190.518,0.433,cuchara,cuchara,cuchara,0,normal,411
 Caregiver linguistic,281.874,282.478,0.604,cuchara,cuchara,cuchara,0,normal,401
-Caregiver linguistic,150.917,151.381,0.464,cuchara,cuchara,cuchara,0,normal,105
-Caregiver linguistic,360.175,360.752,0.577,cuchara,cuchara,cuchara,0,normal,105
+Caregiver linguistic,169.637,170.375,0.738,cafecito,cafecito,taza,0,normal,105
+Caregiver linguistic,172.076,172.688,0.612,cafecito,cafecito,taza,0,normal,105
 Caregiver linguistic,19.089,19.839,0.75,cuchara,cuchara,cuchara,0,normal,109
 Caregiver linguistic,178.067,178.754,0.687,cuchara,cuchara,cuchara,0,normal,193
 Caregiver linguistic,156.537,157.572,1.035,cuchara,cuchara,cuchara,0,normal,400
@@ -706,7 +706,7 @@ Caregiver linguistic,174.423,174.912,0.489,elote ,elote,elote,1,relevant,182
 Caregiver linguistic,178.125,178.627,0.502,elote ,elote,elote,1,relevant,182
 Caregiver linguistic,182.233,182.751,0.518,elote ,elote,elote,1,relevant,182
 Caregiver linguistic,195.753,196.244,0.491,elote ,elote,elote,1,relevant,232
-Caregiver linguistic,114.448,115.542,1.094,elote ,elote,elote,1,relevant,105
+Caregiver linguistic,175.369,176.773,1.404,cafe,cafe,taza,0,normal,105
 Caregiver linguistic,294.693,295.313,0.62,elote ,elote,elote,1,relevant,109
 Caregiver linguistic,24.522,26.102,1.58,elote ,elote,elote,1,relevant,309
 Caregiver linguistic,28.289,29.529,1.24,elote ,elote,elote,1,relevant,309
@@ -717,19 +717,19 @@ Caregiver linguistic,98.691,100.055,1.364,elote ,elote,elote,1,relevant,145
 Caregiver linguistic,102.843,103.52,0.677,elote ,elote,elote,1,relevant,145
 Caregiver linguistic,123.109,124.109,1,elotes,elotes,elote,0,normal,354
 Caregiver linguistic,160.312,161.058,0.746,elotes,elotes,elote,0,normal,354
-Caregiver linguistic,346.63,347.335,0.705,elotes,elotes,elote,0,normal,105
+Caregiver linguistic,177.671,178.922,1.251,cafe,cafe,taza,0,normal,105
 Caregiver linguistic,79.273,79.973,0.7,elotes ,elotes,elote,1,relevant,354
 Caregiver linguistic,269.311,270.051,0.74,elotes ,elotes,elote,1,relevant,260
 Caregiver linguistic,287.177,287.82,0.643,elotito,elotito,elote,0,normal,109
 Caregiver linguistic,315.555,316.279,0.724,elotito,elotito,elote,0,normal,109
-Caregiver linguistic,206.61,207.405,0.795,ensalada,ensalada,ensalada,0,normal,431
-Caregiver linguistic,299.985,300.622,0.637,ensalada,ensalada,ensalada,0,normal,431
-Caregiver linguistic,302.728,303.196,0.468,ensalada,ensalada,ensalada,0,normal,431
-Caregiver linguistic,308.399,308.845,0.446,ensalada,ensalada,ensalada,0,normal,431
-Caregiver linguistic,309.667,310.143,0.476,ensalada,ensalada,ensalada,0,normal,431
-Caregiver linguistic,260.461,261.348,0.887,ensalada,ensalada,ensalada,0,normal,308
-Caregiver linguistic,91.91,92.515,0.605,ensalada ,ensalada,ensalada,1,relevant,431
-Caregiver linguistic,94.396,94.93,0.534,ensalada ,ensalada,ensalada,1,relevant,431
+Caregiver linguistic,206.61,207.405,0.795,ensalada,ensalada,lechuga,0,normal,431
+Caregiver linguistic,299.985,300.622,0.637,ensalada,ensalada,lechuga,0,normal,431
+Caregiver linguistic,302.728,303.196,0.468,ensalada,ensalada,lechuga,0,normal,431
+Caregiver linguistic,308.399,308.845,0.446,ensalada,ensalada,lechuga,0,normal,431
+Caregiver linguistic,309.667,310.143,0.476,ensalada,ensalada,lechuga,0,normal,431
+Caregiver linguistic,260.461,261.348,0.887,ensalada,ensalada,lechuga,0,normal,308
+Caregiver linguistic,91.91,92.515,0.605,ensalada ,ensalada,lechuga,1,relevant,431
+Caregiver linguistic,94.396,94.93,0.534,ensalada ,ensalada,lechuga,1,relevant,431
 Caregiver linguistic,273.636,274.162,0.526,fork ,fork ,fork ,0,normal,140
 Caregiver linguistic,274.643,275.403,0.76,fork ,fork ,fork ,0,normal,140
 Caregiver linguistic,276.424,276.904,0.48,fork ,fork ,fork ,0,normal,140
@@ -813,12 +813,12 @@ Caregiver linguistic,79.022,79.582,0.56,fresa ,fresa,fresa,1,relevant,415
 Caregiver linguistic,171.933,172.366,0.433,fresa ,fresa,fresa,1,relevant,411
 Caregiver linguistic,238.512,239.377,0.865,fresa ,fresa,fresa,1,relevant,232
 Caregiver linguistic,252.67,253.335,0.665,fresa ,fresa,fresa,1,relevant,232
-Caregiver linguistic,53.353,54.023,0.67,fresa ,fresa,fresa,1,relevant,105
-Caregiver linguistic,54.729,55.165,0.436,fresa ,fresa,fresa,1,relevant,105
-Caregiver linguistic,56.564,57.483,0.919,fresa ,fresa,fresa,1,relevant,105
-Caregiver linguistic,59.415,60.294,0.879,fresa ,fresa,fresa,1,relevant,105
-Caregiver linguistic,73.65,74.314,0.664,fresa ,fresa,fresa,1,relevant,105
-Caregiver linguistic,240.452,241.109,0.657,fresa ,fresa,fresa,1,relevant,105
+Caregiver linguistic,179.129,179.505,0.376,cafe,cafe,taza,0,normal,105
+Caregiver linguistic,189.661,190.369,0.708,caserola,caserola,caserola,0,normal,105
+Caregiver linguistic,194.839,195.49,0.651,taza de cafe,taza de cafe,taza,0,normal,105
+Caregiver linguistic,195.912,196.621,0.709,tazita de cafe,tacita de cafe,taza,0,normal,105
+Caregiver linguistic,205.373,206.192,0.819,galleta ,galleta,cookie,1,relevant,105
+Caregiver linguistic,206.635,207.138,0.503,galleta ,galleta,cookie,1,relevant,105
 Caregiver linguistic,36.592,37.473,0.881,fresa ,fresa,fresa,1,relevant,109
 Caregiver linguistic,38.188,38.797,0.609,fresa ,fresa,fresa,1,relevant,109
 Caregiver linguistic,268.095,268.925,0.83,fresa ,fresa,fresa,1,relevant,400
@@ -842,7 +842,7 @@ Caregiver linguistic,257.998,258.412,0.414,freza,fresa,fresa,0,normal,351
 Caregiver linguistic,155.922,156.342,0.42,fresas,fresas,fresa,0,normal,431
 Caregiver linguistic,92.843,93.483,0.64,fresas,fresas,fresa,0,normal,168
 Caregiver linguistic,245.414,245.921,0.507,fresas,fresas,fresa,0,normal,232
-Caregiver linguistic,343.466,344.462,0.996,fresas,fresas,fresa,0,normal,105
+Caregiver linguistic,209.361,210.301,0.94,galleta ,galleta,cookie,1,relevant,105
 Caregiver linguistic,158.433,158.938,0.505,fresas ,fresas,fresa,1,relevant,431
 Caregiver linguistic,161.97,162.76,0.79,fresas ,fresas,fresa,1,relevant,431
 Caregiver linguistic,128.943,130.264,1.321,fresas ,fresas,fresa,1,relevant,132
@@ -908,11 +908,11 @@ Caregiver linguistic,65.272,65.946,0.674,galleta,galleta,cookie,0,normal,401
 Caregiver linguistic,207.702,208.212,0.51,galleta,galleta,cookie,0,normal,401
 Caregiver linguistic,209.717,210.154,0.437,galleta,galleta,cookie,0,normal,401
 Caregiver linguistic,109.595,110.374,0.779,galleta,galleta,cookie,0,normal,232
+Caregiver linguistic,212.778,213.301,0.523,galleta ,galleta,cookie,1,relevant,105
+Caregiver linguistic,220.878,221.28,0.402,galleta ,galleta,cookie,1,relevant,105
+Caregiver linguistic,225.952,226.707,0.755,galletas,galleta,cookie,0,normal,105
 Caregiver linguistic,227.86,228.668,0.808,galleta,galleta,cookie,0,normal,105
-Caregiver linguistic,242.962,243.728,0.766,galleta,galleta,cookie,0,normal,105
-Caregiver linguistic,263.102,263.501,0.399,galleta,galleta,cookie,0,normal,105
-Caregiver linguistic,265.202,265.866,0.664,galleta,galleta,cookie,0,normal,105
-Caregiver linguistic,275.439,275.943,0.504,galleta,galleta,cookie,0,normal,105
+Caregiver linguistic,240.452,241.109,0.657,fresa ,fresa,fresa,1,relevant,105
 Caregiver linguistic,341.083,342.173,1.09,galleta,galleta,cookie,0,normal,109
 Caregiver linguistic,81.177,81.869,0.692,galleta,galleta,cookie,0,normal,193
 Caregiver linguistic,167.724,168.564,0.84,galleta,galleta,cookie,0,normal,193
@@ -924,9 +924,9 @@ Caregiver linguistic,42.779,43.719,0.94,galleta,galleta,cookie,0,normal,196
 Caregiver linguistic,102.165,103.532,1.367,galleta,galleta,cookie,0,normal,196
 Caregiver linguistic,128.965,129.9,0.935,galleta,galleta,cookie,0,normal,351
 Caregiver linguistic,78.066,78.466,0.4,galleta,galleta,cookie,0,normal,369
-Caregiver nonlinguistic,168.795,169.63,0.835,galleta,galleta,cookie,0,normal,84
-Caregiver nonlinguistic,170.512,171.692,1.18,galleta,galleta,cookie,0,normal,84
-Caregiver nonlinguistic,174.405,175.182,0.777,galleta,galleta,cookie,0,normal,84
+Caregiver linguistic,168.795,169.63,0.835,galleta,galleta,cookie,0,normal,84
+Caregiver linguistic,170.512,171.692,1.18,galleta,galleta,cookie,0,normal,84
+Caregiver linguistic,174.405,175.182,0.777,galleta,galleta,cookie,0,normal,84
 Caregiver linguistic,219.19,219.891,0.701,galleta,galleta,cookie,0,normal,84
 Caregiver linguistic,228.18,228.86,0.68,galleta,galleta,cookie,0,normal,84
 Caregiver linguistic,230.4,231.46,1.06,galleta,galleta,cookie,0,normal,84
@@ -960,13 +960,13 @@ Caregiver linguistic,369.532,370.133,0.601,galleta ,galleta,cookie,1,relevant,14
 Caregiver linguistic,372.563,373.147,0.584,galleta ,galleta,cookie,1,relevant,141
 Caregiver linguistic,191.786,192.42,0.634,galleta ,galleta,cookie,1,relevant,192
 Caregiver linguistic,81.493,82.093,0.6,galleta ,galleta,cookie,1,relevant,308
-Caregiver linguistic,205.373,206.192,0.819,galleta ,galleta,cookie,1,relevant,105
-Caregiver linguistic,206.635,207.138,0.503,galleta ,galleta,cookie,1,relevant,105
-Caregiver linguistic,209.361,210.301,0.94,galleta ,galleta,cookie,1,relevant,105
-Caregiver linguistic,212.778,213.301,0.523,galleta ,galleta,cookie,1,relevant,105
-Caregiver linguistic,220.878,221.28,0.402,galleta ,galleta,cookie,1,relevant,105
-Caregiver linguistic,292.78,293.283,0.503,galleta ,galleta,cookie,1,relevant,105
-Caregiver linguistic,297.147,297.86,0.713,galleta ,galleta,cookie,1,relevant,105
+Caregiver linguistic,242.962,243.728,0.766,galleta,galleta,cookie,0,normal,105
+Caregiver linguistic,248.055,248.845,0.79,galletas,galleta,cookie,0,normal,105
+Caregiver linguistic,253.363,254.073,0.71,cazerola,caserola,caserola,0,normal,105
+Caregiver linguistic,263.102,263.501,0.399,galleta,galleta,cookie,0,normal,105
+Caregiver linguistic,263.785,264.214,0.429,plato,plato,plato,0,normal,105
+Caregiver linguistic,265.202,265.866,0.664,galleta,galleta,cookie,0,normal,105
+Caregiver linguistic,275.439,275.943,0.504,galleta,galleta,cookie,0,normal,105
 Caregiver linguistic,81.521,82.476,0.955,galleta ,galleta,cookie,1,relevant,109
 Caregiver linguistic,65.257,66.266,1.009,galleta ,galleta,cookie,1,relevant,193
 Caregiver linguistic,210.208,211.138,0.93,galleta ,galleta,cookie,1,relevant,400
@@ -1004,11 +1004,11 @@ Caregiver linguistic,345.599,346.141,0.542,galletas,galleta,cookie,0,normal,141
 Caregiver linguistic,198.155,198.993,0.838,galletas,galleta,cookie,0,normal,182
 Caregiver linguistic,273.28,274.23,0.95,galletas,galleta,cookie,0,normal,232
 Caregiver linguistic,303.93,304.782,0.852,galletas,galleta,cookie,0,normal,232
-Caregiver linguistic,225.952,226.707,0.755,galletas,galleta,cookie,0,normal,105
-Caregiver linguistic,248.055,248.845,0.79,galletas,galleta,cookie,0,normal,105
 Caregiver linguistic,281.06,281.939,0.879,galletas,galleta,cookie,0,normal,105
-Caregiver linguistic,309.257,309.943,0.686,galletas,galleta,cookie,0,normal,105
-Caregiver linguistic,329.932,330.436,0.504,galletas,galleta,cookie,0,normal,105
+Caregiver linguistic,286.189,286.929,0.74,galletas ,galleta,cookie,1,relevant,105
+Caregiver linguistic,292.78,293.283,0.503,galleta ,galleta,cookie,1,relevant,105
+Caregiver linguistic,297.147,297.86,0.713,galleta ,galleta,cookie,1,relevant,105
+Caregiver linguistic,299.334,299.822,0.488,cafe,cafe,taza,0,normal,105
 Caregiver linguistic,291.91,292.71,0.8,galletas,galleta,cookie,0,normal,84
 Caregiver linguistic,236.499,237.079,0.58,galletas,galleta,cookie,0,normal,309
 Caregiver linguistic,239.863,240.4,0.537,galletas,galleta,cookie,0,normal,309
@@ -1020,9 +1020,9 @@ Caregiver linguistic,359.936,360.572,0.636,galletas ,galleta,cookie,1,relevant,1
 Caregiver linguistic,193.251,193.871,0.62,galletas ,galleta,cookie,1,relevant,192
 Caregiver linguistic,315.063,315.522,0.459,galletas ,galleta,cookie,1,relevant,192
 Caregiver linguistic,201.747,202.434,0.687,galletas ,galleta,cookie,1,relevant,182
-Caregiver linguistic,286.189,286.929,0.74,galletas ,galleta,cookie,1,relevant,105
-Caregiver linguistic,315.625,316.222,0.597,galletas ,galleta,cookie,1,relevant,105
-Caregiver linguistic,321.958,322.435,0.477,galletas ,galleta,cookie,1,relevant,105
+Caregiver linguistic,300.833,301.223,0.39,cafe,cafe,taza,0,normal,105
+Caregiver linguistic,303.143,303.532,0.389,cafe,cafe,taza,0,normal,105
+Caregiver linguistic,304.478,305.776,1.298,cafe,cafe,taza,0,normal,105
 Caregiver linguistic,249.822,250.366,0.544,galletas ,galleta,cookie,1,relevant,309
 Caregiver linguistic,361.588,362.744,1.156,galletas de M&amp;M ,galletas de M&amp;M ,cookie,0,normal,141
 Caregiver linguistic,66.501,67.192,0.691,galletita,galletita,cookie,0,normal,193
@@ -1030,8 +1030,8 @@ Caregiver linguistic,105.783,106.532,0.749,galletita,galletita,cookie,0,normal,1
 Caregiver linguistic,91.533,92.883,1.35,galletita ,galletita,cookie,1,relevant,372
 Caregiver linguistic,262.511,263.725,1.214,galletitas ,galletitas ,cookie,1,relevant,431
 Caregiver linguistic,304.01,305.09,1.08,galletota,galletota,cookie,0,normal,84
-Caregiver nonlinguistic,156.725,159.02,2.295,green beans,green beans,green beans,0,normal,84
-Caregiver linguistic,82.053,83.293,1.24,green beans ,green beans ,green beans ,0,normal,140
+Caregiver linguistic,156.725,159.02,2.295,green beans,green beans,green beans,0,normal,84
+Caregiver linguistic,82.053,83.293,1.24,green beans ,green beans ,green beans,0,normal,140
 Caregiver linguistic,26.383,27.163,0.78,habichuelas,habichuelas,chicharo,0,normal,192
 Caregiver linguistic,27.763,28.343,0.58,habichuelas,habichuelas,chicharo,0,normal,192
 Caregiver linguistic,31.659,32.393,0.734,habichuelas,habichuelas,chicharo,0,normal,192
@@ -1088,22 +1088,22 @@ Caregiver linguistic,68.575,69.65,1.075,jitomate ,jitomate ,tomate,1,relevant,23
 Caregiver linguistic,277.548,279.091,1.543,jitomate ,jitomate ,tomate,1,relevant,196
 Caregiver linguistic,284.091,285.683,1.592,jitomate ,jitomate ,tomate,1,relevant,196
 Caregiver linguistic,339.057,339.889,0.832,jitomate ,jitomate ,tomate,1,relevant,196
-Caregiver linguistic,287.754,288.314,0.56,jugo,jugo,jugo,0,normal,157
-Caregiver linguistic,241.154,241.484,0.33,jugo,jugo,jugo,0,normal,401
-Caregiver linguistic,20.583,21.063,0.48,jugo ,jugo ,jugo,0,normal,121
-Caregiver linguistic,60.61,60.895,0.285,jugo ,jugo ,jugo,0,normal,140
-Caregiver linguistic,61.5,62.26,0.76,jugo ,jugo ,jugo,0,normal,140
-Caregiver linguistic,63.34,63.82,0.48,jugo ,jugo ,jugo,0,normal,140
-Caregiver linguistic,152.52,153.26,0.74,jugo ,jugo ,jugo,0,normal,140
-Caregiver linguistic,262.915,264.295,1.38,jugo ,jugo ,jugo,0,normal,140
-Caregiver linguistic,296.257,296.743,0.486,jugo ,jugo ,jugo,0,normal,140
-Caregiver linguistic,301.224,301.743,0.519,jugo ,jugo ,jugo,0,normal,140
-Caregiver linguistic,304.09,304.57,0.48,jugo ,jugo ,jugo,0,normal,140
-Caregiver linguistic,310.818,311.291,0.473,jugo ,jugo ,jugo,0,normal,140
-Caregiver linguistic,315.176,315.526,0.35,jugo ,jugo ,jugo,0,normal,140
-Caregiver linguistic,244.155,244.493,0.338,jugo ,jugo ,jugo,0,normal,401
-Caregiver linguistic,61.113,62.213,1.1,jugo de naranja,jugo de naranja,jugo de naranja,0,normal,411
-Caregiver linguistic,13.96,15.06,1.1,jugo de naranja ,jugo de naranja ,jugo de naranja,0,normal,145
+Caregiver linguistic,287.754,288.314,0.56,jugo,jugo,taza,0,normal,157
+Caregiver linguistic,241.154,241.484,0.33,jugo,jugo,taza,0,normal,401
+Caregiver linguistic,20.583,21.063,0.48,jugo ,jugo ,taza,0,normal,121
+Caregiver linguistic,60.61,60.895,0.285,jugo ,jugo ,taza,0,normal,140
+Caregiver linguistic,61.5,62.26,0.76,jugo ,jugo ,taza,0,normal,140
+Caregiver linguistic,63.34,63.82,0.48,jugo ,jugo ,taza,0,normal,140
+Caregiver linguistic,152.52,153.26,0.74,jugo ,jugo ,taza,0,normal,140
+Caregiver linguistic,262.915,264.295,1.38,jugo ,jugo ,taza,0,normal,140
+Caregiver linguistic,296.257,296.743,0.486,jugo ,jugo ,taza,0,normal,140
+Caregiver linguistic,301.224,301.743,0.519,jugo ,jugo ,taza,0,normal,140
+Caregiver linguistic,304.09,304.57,0.48,jugo ,jugo ,taza,0,normal,140
+Caregiver linguistic,310.818,311.291,0.473,jugo ,jugo ,taza,0,normal,140
+Caregiver linguistic,315.176,315.526,0.35,jugo ,jugo ,taza,0,normal,140
+Caregiver linguistic,244.155,244.493,0.338,jugo ,jugo ,taza,0,normal,401
+Caregiver linguistic,61.113,62.213,1.1,jugo de naranja,jugo de naranja,taza,0,normal,411
+Caregiver linguistic,13.96,15.06,1.1,jugo de naranja ,jugo de naranja ,taza,0,normal,145
 Caregiver linguistic,172.714,173.635,0.921,leche,leche,leche,0,normal,444
 Caregiver linguistic,110.157,110.727,0.57,leche,leche,leche,0,normal,417
 Child linguistic,114.704,115.904,1.2,leche,leche,leche,0,normal,417
@@ -1254,15 +1254,15 @@ Caregiver linguistic,97.233,97.652,0.419,lechuga ,lechuga ,lechuga,1,relevant,41
 Caregiver linguistic,301.785,302.791,1.006,lechuga ,lechuga ,lechuga,1,relevant,400
 Caregiver linguistic,151.272,152.359,1.087,lechuga ,lechuga ,lechuga,1,relevant,309
 Caregiver linguistic,313.549,314.201,0.652,lechuga ,lechuga ,lechuga,1,relevant,260
-Caregiver linguistic,298.904,299.619,0.715,maize ,maize ,maize ,1,relevant,400
+Caregiver linguistic,298.904,299.619,0.715,maize ,maize ,elote,1,relevant,400
 Caregiver linguistic,120.197,121.673,1.476,mantequilla de cacahuate,mantequilla de cacahuate,mantequilla de cacahuate,0,normal,431
 Caregiver linguistic,61.379,62.093,0.714,manzana,manzana,manzana,0,normal,182
-Child linguistic,147.469,148.611,1.142,mate,mate,mate,0,normal,417
+Child linguistic,147.469,148.611,1.142,mate,mate,tomate,0,normal,417
 Caregiver linguistic,271.558,272.298,0.74,mayonesa ,mayonesa ,mayonesa ,0,normal,433
 Caregiver linguistic,118.835,119.6,0.765,mermelada,mermelada,mermelada,0,normal,431
 Caregiver linguistic,197.199,197.659,0.46,milk ,milk ,milk ,1,relevant,354
 Caregiver linguistic,206.058,206.763,0.705,milpa ,milpa ,milpa ,1,relevant,232
-Caregiver linguistic,76.805,77.615,0.81,nana,nana,nana,0,normal,414
+Caregiver linguistic,76.805,77.615,0.81,nana,nana,banana,0,normal,414
 Caregiver linguistic,9.42,10.52,1.1,naranja,naranja,naranja,0,normal,190
 Caregiver linguistic,148.942,150.115,1.173,naranja,naranja,naranja,1,relevant,431
 Caregiver linguistic,160.935,161.35,0.415,naranja,naranja,naranja,1,relevant,431
@@ -1270,7 +1270,7 @@ Caregiver linguistic,395.669,397.142,1.473,naranja,naranja,naranja,1,relevant,31
 Caregiver linguistic,90.234,91.07,0.836,naranja,naranja,naranja,1,relevant,114
 Caregiver linguistic,327.972,328.466,0.494,naranja,naranja,naranja,0,normal,114
 Caregiver linguistic,331.265,331.89,0.625,naranja,naranja,naranja,0,normal,114
-Caregiver nonlinguistic,372.009,372.614,0.605,naranja,naranja,naranja,0,normal,114
+Caregiver linguistic,372.009,372.614,0.605,naranja,naranja,naranja,0,normal,114
 Caregiver linguistic,23.725,25.197,1.472,naranja,naranja,naranja,0,normal,132
 Caregiver linguistic,121.303,122.586,1.283,naranja,naranja,naranja,0,normal,132
 Caregiver linguistic,124.608,126.17,1.562,naranja,naranja,naranja,0,normal,132
@@ -1289,7 +1289,7 @@ Caregiver linguistic,213.71,214.87,1.16,naranja,naranja,naranja,0,normal,140
 Caregiver linguistic,68.28,68.9,0.62,naranja,naranja,naranja,0,normal,182
 Caregiver linguistic,69.876,70.33,0.454,naranja,naranja,naranja,0,normal,182
 Caregiver linguistic,231.189,231.961,0.772,naranja,naranja,naranja,0,normal,182
-Caregiver linguistic,142.918,143.683,0.765,naranja,naranja,naranja,0,normal,105
+Caregiver linguistic,309.257,309.943,0.686,galletas,galleta,cookie,0,normal,105
 Caregiver linguistic,23.488,24.441,0.953,naranja,naranja,naranja,0,normal,400
 Caregiver linguistic,25.857,26.818,0.961,naranja,naranja,naranja,0,normal,400
 Caregiver linguistic,73.56,75.1,1.54,naranja,naranja,naranja,0,normal,196
@@ -1320,14 +1320,14 @@ Caregiver linguistic,336.442,337.101,0.659,naranja ,naranja ,naranja,1,relevant,
 Caregiver linguistic,338.579,338.93,0.351,naranja ,naranja ,naranja,1,relevant,114
 Caregiver linguistic,340.262,340.665,0.403,naranja ,naranja ,naranja,1,relevant,114
 Caregiver linguistic,342.415,342.87,0.455,naranja ,naranja ,naranja,1,relevant,114
-Caregiver nonlinguistic,345.917,346.309,0.392,naranja ,naranja ,naranja,1,relevant,114
-Caregiver nonlinguistic,352.966,353.392,0.426,naranja ,naranja ,naranja,1,relevant,114
-Caregiver nonlinguistic,356.362,357.139,0.777,naranja ,naranja ,naranja,1,relevant,114
-Caregiver nonlinguistic,359.083,359.683,0.6,naranja ,naranja ,naranja,1,relevant,114
-Caregiver nonlinguistic,363.124,363.541,0.417,naranja ,naranja ,naranja,1,relevant,114
-Caregiver nonlinguistic,365.712,366.546,0.834,naranja ,naranja ,naranja,1,relevant,114
-Caregiver nonlinguistic,367.49,367.922,0.432,naranja ,naranja ,naranja,1,relevant,114
-Caregiver nonlinguistic,369.694,370.34,0.646,naranja ,naranja ,naranja,1,relevant,114
+Caregiver linguistic,345.917,346.309,0.392,naranja ,naranja ,naranja,1,relevant,114
+Caregiver linguistic,352.966,353.392,0.426,naranja ,naranja ,naranja,1,relevant,114
+Caregiver linguistic,356.362,357.139,0.777,naranja ,naranja ,naranja,1,relevant,114
+Caregiver linguistic,359.083,359.683,0.6,naranja ,naranja ,naranja,1,relevant,114
+Caregiver linguistic,363.124,363.541,0.417,naranja ,naranja ,naranja,1,relevant,114
+Caregiver linguistic,365.712,366.546,0.834,naranja ,naranja ,naranja,1,relevant,114
+Caregiver linguistic,367.49,367.922,0.432,naranja ,naranja ,naranja,1,relevant,114
+Caregiver linguistic,369.694,370.34,0.646,naranja ,naranja ,naranja,1,relevant,114
 Caregiver linguistic,21.83,22.717,0.887,naranja ,naranja ,naranja,1,relevant,132
 Caregiver linguistic,37.516,38.31,0.794,naranja ,naranja ,naranja,1,relevant,354
 Caregiver linguistic,232.558,233.77,1.212,naranja ,naranja ,naranja,1,relevant,141
@@ -1352,14 +1352,14 @@ Caregiver linguistic,58.782,59.882,1.1,naranja ,naranja ,naranja,1,relevant,260
 Caregiver linguistic,100.157,101.007,0.85,naranja  ,naranja  ,naranja,1,relevant,232
 Caregiver linguistic,95.043,96.471,1.428,naranja  ,naranja  ,naranja,1,relevant,309
 Caregiver linguistic,17.9,18.78,0.88,naranjas ,naranjas ,naranja,1,relevant,192
-Child linguistic,167.453,168.463,1.01,nito ,nito ,nito ,1,relevant,417
+Child linguistic,167.453,168.463,1.01,nito ,nito ,postre,1,relevant,417
 Caregiver linguistic,189.62,190.193,0.573,nueve,nueve,nueve,0,normal,168
 Caregiver linguistic,90.445,91.511,1.066,oja de lechuga ,oja de lechuga ,lechuga,1,relevant,431
-Caregiver linguistic,175.58,176.48,0.9,olla,olla,olla,0,normal,400
-Caregiver linguistic,182.511,183.006,0.495,olla,olla,olla,0,normal,400
-Caregiver linguistic,237.672,238.232,0.56,olla,olla,olla,0,normal,196
-Caregiver linguistic,254.981,255.285,0.304,olla ,olla ,olla ,1,relevant,182
-Caregiver linguistic,252.949,253.376,0.427,olla ,olla ,olla ,1,relevant,355
+Caregiver linguistic,175.58,176.48,0.9,olla,olla,caserola,0,normal,400
+Caregiver linguistic,182.511,183.006,0.495,olla,olla,caserola,0,normal,400
+Caregiver linguistic,237.672,238.232,0.56,olla,olla,caserola,0,normal,196
+Caregiver linguistic,254.981,255.285,0.304,olla ,olla ,caserola,1,relevant,182
+Caregiver linguistic,252.949,253.376,0.427,olla ,olla ,caserola,1,relevant,355
 Caregiver linguistic,108.1,109.44,1.34,onion,onion,onion,0,normal,168
 Caregiver linguistic,150.5,151.86,1.36,orange,orange,orange,0,normal,436
 Caregiver linguistic,25.794,26.735,0.941,orange,orange,orange,0,normal,133
@@ -1458,9 +1458,9 @@ Caregiver linguistic,247.36,247.8,0.44,pan ,pan ,pan,1,relevant,192
 Caregiver linguistic,185.109,185.569,0.46,pan ,pan ,pan,1,relevant,308
 Caregiver linguistic,121.58,121.77,0.19,pan ,pan ,pan,1,relevant,415
 Caregiver linguistic,123.404,123.704,0.3,pan ,pan ,pan,1,relevant,415
-Caregiver linguistic,75.717,76.57,0.853,pan ,pan ,pan,1,relevant,105
-Caregiver linguistic,76.895,77.486,0.591,pan ,pan ,pan,1,relevant,105
-Caregiver linguistic,79.083,80.076,0.993,pan ,pan ,pan,1,relevant,105
+Caregiver linguistic,315.625,316.222,0.597,galletas ,galleta,cookie,1,relevant,105
+Caregiver linguistic,321.958,322.435,0.477,galletas ,galleta,cookie,1,relevant,105
+Caregiver linguistic,327.008,327.813,0.805,cazerola,caserola,caserola,0,normal,105
 Caregiver linguistic,94.073,94.266,0.193,pan ,pan ,pan,1,relevant,369
 Caregiver linguistic,95.096,95.422,0.326,pan ,pan ,pan,1,relevant,369
 Caregiver linguistic,96.842,97.416,0.574,pan ,pan ,pan,1,relevant,369
@@ -1476,9 +1476,9 @@ Caregiver linguistic,268.288,269.113,0.825,pan tostado ,pan tostado ,pan,1,relev
 Caregiver linguistic,277.189,277.934,0.745,pan tostado ,pan tostado ,pan,1,relevant,411
 Caregiver linguistic,216.323,216.943,0.62,panes,panes,pan,0,normal,168
 Caregiver linguistic,44.628,45.203,0.575,panesito,panesito,pan,0,normal,401
-Caregiver linguistic,285.188,285.659,0.471,papas ,papas ,papas ,0,normal,141
-Caregiver linguistic,287.717,288.084,0.367,papas ,papas ,papas ,0,normal,141
-Caregiver linguistic,52.401,52.834,0.433,papitas,papitas,papas ,0,normal,192
+Caregiver linguistic,285.188,285.659,0.471,papas ,papas ,papas,0,normal,141
+Caregiver linguistic,287.717,288.084,0.367,papas ,papas ,papas,0,normal,141
+Caregiver linguistic,52.401,52.834,0.433,papitas,papitas,papas,0,normal,192
 Caregiver linguistic,261.02,261.886,0.866,pedacito de cebolla,pedacito de cebolla,cebolla,0,normal,157
 Caregiver linguistic,71.683,72.723,1.04,pedacito de naranja,pedacito de naranja,naranja,0,normal,182
 Caregiver linguistic,350.398,351.202,0.804,pedazo de banana,pedazo de banana,banana,0,normal,182
@@ -1605,8 +1605,8 @@ Caregiver linguistic,311.888,312.203,0.315,plato,plato,plato,0,normal,411
 Caregiver linguistic,52.873,53.195,0.322,plato,plato,plato,0,normal,401
 Caregiver linguistic,53.972,54.339,0.367,plato,plato,plato,0,normal,401
 Caregiver linguistic,55.635,55.973,0.338,plato,plato,plato,0,normal,401
-Caregiver linguistic,40.353,41.038,0.685,plato,plato,plato,0,normal,105
-Caregiver linguistic,263.785,264.214,0.429,plato,plato,plato,0,normal,105
+Caregiver linguistic,329.932,330.436,0.504,galletas,galleta,cookie,0,normal,105
+Caregiver linguistic,330.654,331.6,0.946,cazerola,caserola,caserola,0,normal,105
 Caregiver linguistic,49.379,50.27,0.891,plato,plato,plato,0,normal,109
 Caregiver linguistic,308.37,308.895,0.525,plato,plato,plato,0,normal,109
 Caregiver linguistic,112.962,113.602,0.64,plato,plato,plato,0,normal,196
@@ -1642,30 +1642,30 @@ Caregiver linguistic,161.319,161.919,0.6,plato ,plato ,plato,1,relevant,355
 Caregiver linguistic,338.097,338.95,0.853,platos,platos,plato,0,normal,433
 Caregiver linguistic,269.472,270.147,0.675,platos,platos,plato,0,normal,232
 Caregiver linguistic,276.84,277.453,0.613,platos,platos,plato,0,normal,232
-Caregiver linguistic,373.08,373.852,0.772,platos,platos,plato,0,normal,105
+Caregiver linguistic,338.717,339.563,0.846,brocoli,brocoli,brocoli,0,normal,105
 Caregiver linguistic,197.132,198.057,0.925,platos ,platos ,plato,1,relevant,400
 Caregiver linguistic,201.18,202.277,1.097,platos ,platos ,plato,1,relevant,400
 Caregiver linguistic,240.13,240.475,0.345,platos ,platos ,plato,1,relevant,133
 Caregiver linguistic,350.725,351.343,0.618,postre,postre,postre,0,normal,411
 Caregiver linguistic,301.904,302.362,0.458,puerta,puerta,puerta,0,normal,141
 Caregiver linguistic,153.405,154.52,1.115,pure de papas,pure de papas,papas,0,normal,232
-Caregiver linguistic,7.739,8.38,0.641,sandwhich,sandwhich,sandwhich,0,normal,157
-Caregiver linguistic,42.106,43.006,0.9,sandwhich,sandwhich,sandwhich,0,normal,168
-Caregiver linguistic,125.865,126.738,0.873,sandwhich,sandwhich,sandwhich,0,normal,141
-Caregiver linguistic,336.986,338.126,1.14,sandwhich,sandwhich,sandwhich,0,normal,140
-Caregiver linguistic,339.935,341.055,1.12,sandwhich,sandwhich,sandwhich,0,normal,140
-Caregiver linguistic,272.875,273.635,0.76,sandwhich,sandwhich,sandwhich,0,normal,109
-Caregiver linguistic,274.141,274.702,0.561,sandwhich,sandwhich,sandwhich,0,normal,109
-Caregiver linguistic,277.251,277.872,0.621,sandwhich,sandwhich,sandwhich,0,normal,109
-Caregiver linguistic,112.324,113.179,0.855,sandwhich ,sandwhich,sandwhich,1,relevant,431
-Caregiver linguistic,44.332,45.165,0.833,sandwhich ,sandwhich,sandwhich,1,relevant,121
-Caregiver linguistic,46.38,47,0.62,sandwhich ,sandwhich,sandwhich,1,relevant,121
-Caregiver linguistic,47.416,47.909,0.493,sandwhich ,sandwhich,sandwhich,1,relevant,121
-Caregiver linguistic,56.739,57.378,0.639,sandwhich ,sandwhich,sandwhich,1,relevant,121
-Caregiver linguistic,102.395,103.165,0.77,sandwhich ,sandwhich,sandwhich,1,relevant,400
-Caregiver linguistic,339.277,340.231,0.954,sandwich de jamon ,sandwhich de jamon ,sandwhich,1,relevant,157
-Caregiver linguistic,315.626,316.649,1.023,sandwich de lechuga ,sandwhich de lechuga ,sandwhich,1,relevant,260
-Caregiver linguistic,105.092,106.401,1.309,sandwhich de pan ,sandwhich de pan,sandwhich,1,relevant,400
+Caregiver linguistic,7.739,8.38,0.641,sandwhich,sandwhich,pan,0,normal,157
+Caregiver linguistic,42.106,43.006,0.9,sandwhich,sandwhich,pan,0,normal,168
+Caregiver linguistic,125.865,126.738,0.873,sandwhich,sandwhich,pan,0,normal,141
+Caregiver linguistic,336.986,338.126,1.14,sandwhich,sandwhich,pan,0,normal,140
+Caregiver linguistic,339.935,341.055,1.12,sandwhich,sandwhich,pan,0,normal,140
+Caregiver linguistic,272.875,273.635,0.76,sandwhich,sandwhich,pan,0,normal,109
+Caregiver linguistic,274.141,274.702,0.561,sandwhich,sandwhich,pan,0,normal,109
+Caregiver linguistic,277.251,277.872,0.621,sandwhich,sandwhich,pan,0,normal,109
+Caregiver linguistic,112.324,113.179,0.855,sandwhich ,sandwhich,pan,1,relevant,431
+Caregiver linguistic,44.332,45.165,0.833,sandwhich ,sandwhich,pan,1,relevant,121
+Caregiver linguistic,46.38,47,0.62,sandwhich ,sandwhich,pan,1,relevant,121
+Caregiver linguistic,47.416,47.909,0.493,sandwhich ,sandwhich,pan,1,relevant,121
+Caregiver linguistic,56.739,57.378,0.639,sandwhich ,sandwhich,pan,1,relevant,121
+Caregiver linguistic,102.395,103.165,0.77,sandwhich ,sandwhich,pan,1,relevant,400
+Caregiver linguistic,339.277,340.231,0.954,sandwich de jamon ,sandwhich de jamon ,pan,1,relevant,157
+Caregiver linguistic,315.626,316.649,1.023,sandwich de lechuga ,sandwhich de lechuga ,pan,1,relevant,260
+Caregiver linguistic,105.092,106.401,1.309,sandwhich de pan ,sandwhich de pan,pan,1,relevant,400
 Caregiver linguistic,18.1,18.81,0.71,sandwich,sandwich,sandwich,0,normal,414
 Caregiver linguistic,19.755,20.508,0.753,sandwich,sandwich,sandwich,0,normal,414
 Caregiver linguistic,250.8,251.84,1.04,sandwich,sandwich,sandwich,0,normal,372
@@ -1705,26 +1705,26 @@ Caregiver linguistic,318.599,319.173,0.574,sopa,sopa,sopa,0,normal,145
 Caregiver linguistic,337.657,338.069,0.412,sopa,sopa,sopa,0,normal,145
 Caregiver linguistic,343.322,343.706,0.384,sopa,sopa,sopa,0,normal,145
 Caregiver linguistic,352.935,353.319,0.384,sopa,sopa,sopa,0,normal,145
-Caregiver linguistic,288.646,288.896,0.25,sopa ,sopa ,sopa ,1,relevant,435
-Caregiver linguistic,174.38,174.84,0.46,sopa ,sopa ,sopa ,0,normal,140
-Caregiver linguistic,175.07,175.51,0.44,sopa ,sopa ,sopa ,0,normal,140
-Caregiver linguistic,176.49,177.07,0.58,sopa ,sopa ,sopa ,0,normal,140
-Caregiver linguistic,178.12,179.66,1.54,sopa ,sopa ,sopa ,0,normal,140
-Caregiver linguistic,370.832,371.33,0.498,sopa ,sopa ,sopa ,0,normal,182
-Caregiver linguistic,372.087,372.506,0.419,sopa ,sopa ,sopa ,0,normal,182
-Caregiver linguistic,376.079,376.524,0.445,sopa ,sopa ,sopa ,0,normal,182
-Caregiver linguistic,377.864,379.023,1.159,sopa de cebolla,sopa de cebolla,sopa ,0,normal,105
-Caregiver linguistic,293.45,294.393,0.943,sopa de cebolla,sopa de cebolla,sopa ,0,normal,109
-Caregiver linguistic,73.692,74.227,0.535,sopita,sopita,sopa ,0,normal,431
-Caregiver linguistic,313.86,314.61,0.75,sopita,sopita,sopa ,0,normal,372
-Caregiver linguistic,71.847,72.417,0.57,sopita ,sopita ,sopa ,0,normal,431
-Caregiver linguistic,245.371,245.881,0.51,sopita ,sopita ,sopa ,0,normal,133
+Caregiver linguistic,288.646,288.896,0.25,sopa ,sopa ,sopa,1,relevant,435
+Caregiver linguistic,174.38,174.84,0.46,sopa ,sopa ,sopa,0,normal,140
+Caregiver linguistic,175.07,175.51,0.44,sopa ,sopa ,sopa,0,normal,140
+Caregiver linguistic,176.49,177.07,0.58,sopa ,sopa ,sopa,0,normal,140
+Caregiver linguistic,178.12,179.66,1.54,sopa ,sopa ,sopa,0,normal,140
+Caregiver linguistic,370.832,371.33,0.498,sopa ,sopa ,sopa,0,normal,182
+Caregiver linguistic,372.087,372.506,0.419,sopa ,sopa ,sopa,0,normal,182
+Caregiver linguistic,376.079,376.524,0.445,sopa ,sopa ,sopa,0,normal,182
+Caregiver linguistic,343.466,344.462,0.996,fresas,fresas,fresa,0,normal,105
+Caregiver linguistic,293.45,294.393,0.943,sopa de cebolla,sopa de cebolla,sopa,0,normal,109
+Caregiver linguistic,73.692,74.227,0.535,sopita,sopita,sopa,0,normal,431
+Caregiver linguistic,313.86,314.61,0.75,sopita,sopita,sopa,0,normal,372
+Caregiver linguistic,71.847,72.417,0.57,sopita ,sopita ,sopa,0,normal,431
+Caregiver linguistic,245.371,245.881,0.51,sopita ,sopita ,sopa,0,normal,133
 Caregiver linguistic,280.518,281.999,1.481,spoon ,spoon ,spoon ,0,normal,140
 Caregiver linguistic,59.985,60.945,0.96,strawberry,strawberry,strawberry,0,normal,133
 Caregiver linguistic,109.223,109.997,0.774,strawberry,strawberry,strawberry,0,normal,145
-Caregiver linguistic,109.223,109.997,0.774,strawberry ,strawberry ,strawberry ,1,relevant,145
+Caregiver linguistic,109.223,109.997,0.774,strawberry ,strawberry ,strawberry,1,relevant,145
 Caregiver linguistic,293.483,293.782,0.299,suelo,suelo,suelo,0,normal,145
-Caregiver linguistic,291.058,291.43,0.372,suelo ,suelo ,suelo ,1,relevant,145
+Caregiver linguistic,291.058,291.43,0.372,suelo ,suelo ,suelo,1,relevant,145
 Caregiver linguistic,48.725,49.138,0.413,tabla,tabla,tabla,0,normal,433
 Caregiver linguistic,80.315,80.82,0.505,tablita,tablita,tabla,0,normal,431
 Caregiver linguistic,336.371,336.901,0.53,tablita,tablita,tabla,0,normal,260
@@ -1738,7 +1738,7 @@ Caregiver linguistic,280.543,281.207,0.664,tacita ,tacita ,taza,1,relevant,431
 Caregiver linguistic,78.109,78.529,0.42,tacita ,tacita ,taza,1,relevant,310
 Caregiver linguistic,110.15,110.909,0.759,tacita ,tacita ,taza,1,relevant,168
 Caregiver linguistic,134.914,135.807,0.893,tacita ,tacita ,taza,1,relevant,411
-Caregiver linguistic,195.912,196.621,0.709,tazita de cafe,tacita de cafe,taza,0,normal,105
+Caregiver linguistic,346.63,347.335,0.705,elotes,elotes,elote,0,normal,105
 Caregiver linguistic,337.046,337.953,0.907,tacita de leche ,tacita de leche ,taza,1,relevant,168
 Caregiver linguistic,14.345,15.82,1.475,tacitas,tacitas,taza,0,normal,431
 Caregiver linguistic,133.635,134.535,0.9,tacitas ,tacitas ,taza,1,relevant,444
@@ -1757,7 +1757,7 @@ Caregiver linguistic,109.182,109.655,0.473,taza,taza,taza,0,normal,157
 Child linguistic,110.124,110.751,0.627,taza,taza,taza,0,normal,157
 Caregiver linguistic,110.678,111.524,0.846,taza,taza,taza,0,normal,157
 Caregiver linguistic,49.429,49.989,0.56,taza,taza,taza,0,normal,150
-Caregiver linguistic,154.505,154.962,0.457,taza,taza,taza,0,normal,105
+Caregiver linguistic,350.063,350.751,0.688,brocoli,brocoli,brocoli,0,normal,105
 Caregiver linguistic,52.924,53.877,0.953,taza,taza,taza,0,normal,109
 Caregiver linguistic,138.385,139.095,0.71,taza ,taza ,taza,1,relevant,414
 Caregiver linguistic,20.213,20.56,0.347,taza ,taza ,taza,1,relevant,157
@@ -1768,34 +1768,34 @@ Caregiver linguistic,158.009,158.464,0.455,taza ,taza ,taza,1,relevant,141
 Caregiver linguistic,142.691,143.247,0.556,taza ,taza ,taza,1,relevant,400
 Caregiver linguistic,145.56,146.248,0.688,taza ,taza ,taza,1,relevant,400
 Caregiver linguistic,100.773,101.161,0.388,taza ,taza ,taza,1,relevant,355
-Caregiver linguistic,160.382,161.046,0.664,taza de cafe,taza de cafe,taza,0,normal,105
-Caregiver linguistic,162.265,163.083,0.818,taza de cafe,taza de cafe,taza,0,normal,105
-Caregiver linguistic,194.839,195.49,0.651,taza de cafe,taza de cafe,taza,0,normal,105
-Caregiver linguistic,53.947,54.521,0.574,te,te,te,0,normal,190
-Caregiver linguistic,55.994,56.454,0.46,te,te,te,0,normal,190
-Caregiver linguistic,57.453,58.313,0.86,te,te,te,0,normal,190
-Caregiver linguistic,303.324,304.144,0.82,te,te,te,0,normal,190
-Caregiver linguistic,306.274,307.094,0.82,te,te,te,0,normal,190
-Caregiver linguistic,310.037,310.664,0.627,te,te,te,0,normal,190
-Caregiver linguistic,317.924,318.724,0.8,te,te,te,0,normal,190
-Caregiver linguistic,320.144,320.55,0.406,te,te,te,0,normal,190
-Caregiver linguistic,143.345,144.425,1.08,te,te,te,0,normal,444
-Caregiver linguistic,163.025,163.645,0.62,te,te,te,0,normal,444
-Caregiver linguistic,229.225,229.673,0.448,te,te,te,0,normal,192
-Caregiver linguistic,231.192,231.465,0.273,te,te,te,0,normal,192
-Caregiver linguistic,145.377,146.067,0.69,te,te,te,0,normal,109
-Caregiver linguistic,147.181,147.739,0.558,te,te,te,0,normal,109
-Caregiver linguistic,136.705,136.94,0.235,te,te,te,0,normal,400
-Caregiver linguistic,138.439,138.639,0.2,te,te,te,0,normal,400
-Caregiver linguistic,147.26,147.495,0.235,te,te,te,0,normal,400
-Caregiver linguistic,149.049,149.274,0.225,te,te,te,0,normal,400
-Child linguistic,149.645,149.885,0.24,te,te,te,0,normal,400
-Caregiver linguistic,49.571,50.198,0.627,te ,te ,te,0,normal,190
-Caregiver linguistic,51.659,52.359,0.7,te ,te ,te,0,normal,190
-Caregiver linguistic,156.465,156.745,0.28,te ,te ,te,0,normal,444
-Caregiver linguistic,79.709,80.143,0.434,te ,te ,te,0,normal,310
-Caregiver linguistic,139.376,139.776,0.4,te ,te ,te,0,normal,109
-Caregiver linguistic,352.106,353.186,1.08,te de fresa,te de fresa,te,0,normal,310
+Caregiver linguistic,351.025,351.55,0.525,brocoli,brocoli,brocoli,0,normal,105
+Caregiver linguistic,353.973,354.584,0.611,brocoli ,brocoli,brocoli,1,relevant,105
+Caregiver linguistic,355.574,356.043,0.469,brocoli ,brocoli,brocoli,1,relevant,105
+Caregiver linguistic,53.947,54.521,0.574,te,te,taza,0,normal,190
+Caregiver linguistic,55.994,56.454,0.46,te,te,taza,0,normal,190
+Caregiver linguistic,57.453,58.313,0.86,te,te,taza,0,normal,190
+Caregiver linguistic,303.324,304.144,0.82,te,te,taza,0,normal,190
+Caregiver linguistic,306.274,307.094,0.82,te,te,taza,0,normal,190
+Caregiver linguistic,310.037,310.664,0.627,te,te,taza,0,normal,190
+Caregiver linguistic,317.924,318.724,0.8,te,te,taza,0,normal,190
+Caregiver linguistic,320.144,320.55,0.406,te,te,taza,0,normal,190
+Caregiver linguistic,143.345,144.425,1.08,te,te,taza,0,normal,444
+Caregiver linguistic,163.025,163.645,0.62,te,te,taza,0,normal,444
+Caregiver linguistic,229.225,229.673,0.448,te,te,taza,0,normal,192
+Caregiver linguistic,231.192,231.465,0.273,te,te,taza,0,normal,192
+Caregiver linguistic,145.377,146.067,0.69,te,te,taza,0,normal,109
+Caregiver linguistic,147.181,147.739,0.558,te,te,taza,0,normal,109
+Caregiver linguistic,136.705,136.94,0.235,te,te,taza,0,normal,400
+Caregiver linguistic,138.439,138.639,0.2,te,te,taza,0,normal,400
+Caregiver linguistic,147.26,147.495,0.235,te,te,taza,0,normal,400
+Caregiver linguistic,149.049,149.274,0.225,te,te,taza,0,normal,400
+Child linguistic,149.645,149.885,0.24,te,te,taza,0,normal,400
+Caregiver linguistic,49.571,50.198,0.627,te ,te ,taza,0,normal,190
+Caregiver linguistic,51.659,52.359,0.7,te ,te ,taza,0,normal,190
+Caregiver linguistic,156.465,156.745,0.28,te ,te ,taza,0,normal,444
+Caregiver linguistic,79.709,80.143,0.434,te ,te ,taza,0,normal,310
+Caregiver linguistic,139.376,139.776,0.4,te ,te ,taza,0,normal,109
+Caregiver linguistic,352.106,353.186,1.08,te de fresa,te de fresa,taza,0,normal,310
 Caregiver linguistic,171.113,171.54,0.427,tea,tea,tea,0,normal,192
 Caregiver linguistic,177.609,177.969,0.36,tea,tea,tea,0,normal,192
 Caregiver linguistic,180.964,181.964,1,tea,tea,tea,0,normal,192
@@ -1831,11 +1831,11 @@ Caregiver linguistic,271.244,272.036,0.792,tomate,tomate,tomate,0,normal,141
 Caregiver linguistic,275.762,276.909,1.147,tomate,tomate,tomate,0,normal,182
 Caregiver linguistic,161.966,162.86,0.894,tomate,tomate,tomate,0,normal,411
 Caregiver linguistic,108.295,108.73,0.435,tomate,tomate,tomate,0,normal,401
-Caregiver linguistic,94.15,95.291,1.141,tomate,tomate,tomate,0,normal,105
-Caregiver linguistic,95.915,97.17,1.255,tomate,tomate,tomate,0,normal,105
-Caregiver linguistic,144.005,144.676,0.671,tomate,tomate,tomate,0,normal,105
-Caregiver linguistic,146.649,147.34,0.691,tomate,tomate,tomate,0,normal,105
-Caregiver linguistic,148.203,148.8,0.597,tomate,tomate,tomate,0,normal,105
+Caregiver linguistic,358.688,359.166,0.478,brocoli ,brocoli,brocoli,1,relevant,105
+Caregiver linguistic,360.175,360.752,0.577,cuchara,cuchara,cuchara,0,normal,105
+Caregiver linguistic,373.08,373.852,0.772,platos,platos,plato,0,normal,105
+Caregiver linguistic,376.164,376.755,0.591,cebolla,cebolla,cebolla,0,normal,105
+Caregiver linguistic,377.864,379.023,1.159,sopa de cebolla,sopa de cebolla,sopa,0,normal,105
 Caregiver linguistic,380.365,381.016,0.651,tomate,tomate,tomate,0,normal,105
 Caregiver linguistic,50.208,51.043,0.835,tomate,tomate,tomate,0,normal,400
 Caregiver linguistic,52.229,53.139,0.91,tomate,tomate,tomate,0,normal,400
