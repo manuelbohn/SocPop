@@ -168,11 +168,11 @@ socpop %>%
 
 ```
 
-Note: Proportion of labels with gestures is shows inverse relations: it's positively related to RT and negatively to CDI.
+Note: Proportion of labels with gestures shows inverse relations: it's positively related to RT and negatively to CDI.
 
 
 ```{r}
-socpop%>%
+socpop %>%
   select(gestures, labels, labels_w_gestures,labels_w_rel_gestures,awc_phr_18m, rt_25m, cdi_25m)%>%
   corrr::correlate()%>%
   gather(task, cor, -rowname)%>%
@@ -262,9 +262,9 @@ ggplot(data_model, aes(x=rt_25m))+
 #           iter = 50000)%>%
 #   add_criterion("waic")%>%
 #   saveRDS("saves/model_rt_label_me.rds")
-# 
+
  model_rt_label_me <- readRDS("saves/model_rt_label_me.rds")
-#
+# 
 # model_rt_awc <- brm(rt_25m ~ awc_phr_18m + ses_18m + rt_18m,
 #                     data = data_model, family = gaussian(),
 #           control = list(adapt_delta = 0.95),
@@ -274,10 +274,10 @@ ggplot(data_model, aes(x=rt_25m))+
 #           iter = 50000)%>%
 #   add_criterion("waic")%>%
 #   saveRDS("saves/model_rt_awc.rds")
-
+# 
  model_rt_awc <- readRDS("saves/model_rt_awc.rds")
 # 
-#  
+# 
 # model_rt_gesture <- brm(rt_25m ~gestures + ses_18m + rt_18m,
 #                     data = data_model, family = gaussian(),
 #           control = list(adapt_delta = 0.95),
@@ -302,7 +302,7 @@ ggplot(data_model, aes(x=rt_25m))+
 # 
  model_rt_label_gesture <- readRDS("saves/model_rt_label_gesture.rds")
 # 
-#  
+# 
 # model_rt_label_gesture_int <- brm(rt_25m ~labels * gestures + ses_18m + rt_18m,
 #                     data = data_model, family = gaussian(),
 #           control = list(adapt_delta = 0.95),
@@ -325,18 +325,18 @@ ggplot(data_model, aes(x=rt_25m))+
 #   add_criterion("waic")%>%
 #   saveRDS("saves/model_rt_overlap.rds")
 # 
- model_rt_overlap <- readRDS("saves/model_rt_overlap.rds")
+#  model_rt_overlap <- readRDS("saves/model_rt_overlap.rds")
 # 
 # 
-model_rt_rel_overlap <- brm(rt_25m ~ labels_w_rel_gestures + ses_18m + rt_18m,
-                    data = data_model, family = gaussian(),
-          control = list(adapt_delta = 0.95),
-          save_all_pars = TRUE,
-          chains = 4,
-          cores = 4,
-          iter = 50000)%>%
-  add_criterion("waic")%>%
-  saveRDS("saves/model_rt_rel_overlap.rds")
+# model_rt_rel_overlap <- brm(rt_25m ~ labels_w_rel_gestures + ses_18m + rt_18m,
+#                     data = data_model, family = gaussian(),
+#           control = list(adapt_delta = 0.95),
+#           save_all_pars = TRUE,
+#           chains = 4,
+#           cores = 4,
+#           iter = 50000)%>%
+#   add_criterion("waic")%>%
+#   saveRDS("saves/model_rt_rel_overlap.rds")
 # 
  model_rt_rel_overlap <- readRDS("saves/model_rt_rel_overlap.rds")
 # 
@@ -510,7 +510,7 @@ ggplot(data_cdi_model, aes(x=cdi_25m))+
 #   saveRDS("saves/model_cdi_label_me.rds")
 # 
  model_cdi_label_me <- readRDS("saves/model_cdi_label_me.rds")
-# 
+#
 # model_cdi_awc <- brm(cdi_25m ~ awc_phr_18m + ses_18m +cdi_18m,
 #                     data = data_cdi_model, family = gaussian(),
 #           control = list(adapt_delta = 0.95),

@@ -57,7 +57,7 @@ overlap_ges <-  gesture %>%
   mutate(start = start -1 ,
          stop = stop + 1) %>%
   group_by(id, tier, start, stop) %>%
-  expand(gesture_start = nesting(label$start,label$stop,label$id)) %>%
+  expand(nesting(label$start,label$stop,label$id)) %>%
   filter(id == `label$id`)%>%
   mutate(overlap_start = ifelse(start <= `label$start` & stop >= `label$start`, T,F),
          overlap_stop = ifelse(start <= `label$stop` & stop >= `label$stop`, T,F))%>%
@@ -76,7 +76,7 @@ label_sum <- label %>%
   group_by(id)%>%
   summarise(labels = n())
 
-data_ges <- plyr::join_all(list(gesture_sum,label_sum,overlap_ges,relevant_sum), by='id', type='left') %>% 
+data_ges <- plyr::join_all(list(gesture_sum,label_sum,overlap_ges), by='id', type='left') %>% 
   mutate_all(~replace(., is.na(.), 0)) # this replaces NA with 0, when there no gestures or labels
 
 write.csv(data_ges, "./data/data_ges.csv")
