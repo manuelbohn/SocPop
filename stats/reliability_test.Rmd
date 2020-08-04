@@ -140,7 +140,9 @@ NOTE: For labels, we will want to look into the categorization of present vs. im
 
 ### joining data files
 ```{r}
-rel <- left_join(data_label_coder1, data_label_coder2, by = "id")
+rel <- left_join(data_label_coder1, data_label_coder2, by = "id") %>% 
+  mutate(labels_coder1 = replace_na(labels_coder1, 0), 
+         labels_w_gestures_coder1 = replace_na(labels_w_gestures_coder1, 0))
 ```
 
 
