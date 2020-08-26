@@ -274,8 +274,21 @@ ggplot(data_model, aes(x=rt_25m))+
 #           iter = 50000)%>%
 #   add_criterion("waic")%>%
 #   saveRDS("saves/model_rt_awc.rds")
-# 
+
  model_rt_awc <- readRDS("saves/model_rt_awc.rds")
+ 
+model_rt_label_awc <- brm(rt_25m ~ awc_phr_18m + labels+ ses_18m + rt_18m,
+                    data = data_model, family = gaussian(),
+          control = list(adapt_delta = 0.95),
+          save_all_pars = TRUE,
+          chains = 4,
+          cores = 4,
+          iter = 50000)%>%
+  add_criterion("waic")%>%
+  saveRDS("saves/model_rt_label_awc.rds")
+
+ model_rt_label_awc <- readRDS("saves/model_rt_label_awc.rds") 
+
 # 
 # 
 # model_rt_gesture <- brm(rt_25m ~gestures + ses_18m + rt_18m,
@@ -325,7 +338,7 @@ ggplot(data_model, aes(x=rt_25m))+
 #   add_criterion("waic")%>%
 #   saveRDS("saves/model_rt_overlap.rds")
 # 
-#  model_rt_overlap <- readRDS("saves/model_rt_overlap.rds")
+  model_rt_overlap <- readRDS("saves/model_rt_overlap.rds")
 # 
 # 
 # model_rt_rel_overlap <- brm(rt_25m ~ labels_w_rel_gestures + ses_18m + rt_18m,
@@ -338,7 +351,7 @@ ggplot(data_model, aes(x=rt_25m))+
 #   add_criterion("waic")%>%
 #   saveRDS("saves/model_rt_rel_overlap.rds")
 # 
- model_rt_rel_overlap <- readRDS("saves/model_rt_rel_overlap.rds")
+# model_rt_rel_overlap <- readRDS("saves/model_rt_rel_overlap.rds")
 # 
 # 
 # model_rt_null <- brm(rt_25m ~ ses_18m + rt_18m,
@@ -384,13 +397,14 @@ ggplot(data_model, aes(x=rt_25m))+
 # BF = Bayes factor in favor of the winning model in this case label
 
 loo_compare(model_rt_label, 
-            model_rt_label_me,
+            #model_rt_label_me,
             model_rt_awc,
                     model_rt_gesture,
                     model_rt_label_gesture,
                     model_rt_label_gesture_int,
                     model_rt_overlap,
-            model_rt_rel_overlap,
+            model_rt_label_awc,
+            #model_rt_rel_overlap,
             model_rt_null,
             criterion = "waic")%>%
   as.data.frame()%>%
@@ -423,7 +437,7 @@ tidy(model_rt_awc, prob = 0.95)%>%mutate(model = "awc"),
 tidy(model_rt_label_me, prob = 0.95)%>%mutate(model = "label - overlap"),
 tidy(model_rt_gesture, prob = 0.95)%>%mutate(model = "gesture"),
 tidy(model_rt_overlap, prob = 0.95)%>%mutate(model = "overlap"),
-tidy(model_rt_rel_overlap, prob = 0.95)%>%mutate(model = "relevant_overlap"),
+#tidy(model_rt_rel_overlap, prob = 0.95)%>%mutate(model = "relevant_overlap"),
 tidy(model_rt_label_gesture, prob = 0.95)%>%mutate(model = "label+gesture"),
 tidy(model_rt_label_gesture_int, prob = 0.95)%>%mutate(model = "label*gesture"),
 tidy(model_rt_null, prob = 0.95)%>%mutate(model = "null")
@@ -669,7 +683,7 @@ tidy(model_cdi_awc, prob = 0.95)%>%mutate(model = "awc"),
 tidy(model_cdi_label_me, prob = 0.95)%>%mutate(model = "label - overlap"),
 tidy(model_cdi_gesture, prob = 0.95)%>%mutate(model = "gesture"),
 tidy(model_cdi_overlap, prob = 0.95)%>%mutate(model = "overlap"),
-tidy(model_cdi_rel_overlap, prob = 0.95)%>%mutate(model = "relevant_overlap"),
+#tidy(model_cdi_rel_overlap, prob = 0.95)%>%mutate(model = "relevant_overlap"),
 tidy(model_cdi_label_gesture, prob = 0.95)%>%mutate(model = "label+gesture"),
 tidy(model_cdi_label_gesture_int, prob = 0.95)%>%mutate(model = "label*gesture"),
 tidy(model_cdi_null, prob = 0.95)%>%mutate(model = "null")
