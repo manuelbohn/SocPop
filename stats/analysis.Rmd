@@ -536,6 +536,18 @@ ggplot(data_cdi_model, aes(x=cdi_25m))+
 #   saveRDS("saves/model_cdi_awc.rds")
 
  model_cdi_awc <- readRDS("saves/model_cdi_awc.rds")
+ 
+ model_cdi_label_awc <- brm(rt_25m ~ awc_phr_18m + labels+ ses_18m + rt_18m,
+                    data = data_cdi_model, family = gaussian(),
+          control = list(adapt_delta = 0.95),
+          save_all_pars = TRUE,
+          chains = 4,
+          cores = 4,
+          iter = 50000)%>%
+  add_criterion("waic")%>%
+  saveRDS("saves/model_cdi_label_awc.rds")
+
+ model_cdi_label_awc <- readRDS("saves/model_cdi_label_awc.rds") 
 # 
 # model_cdi_gesture <- brm(cdi_25m ~ gestures + ses_18m +cdi_18m,
 #                     data = data_cdi_model, family = gaussian(),
