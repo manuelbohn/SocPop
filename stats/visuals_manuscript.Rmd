@@ -15,6 +15,7 @@ library(ggthemes)
 library(bayesplot)
 library(broom)
 library(corrr)
+library(ggcorrplot)
 library(readxl)
 library(ggpubr)
 library(lsr)
@@ -89,7 +90,7 @@ ggsave("./figures/fig.1a.png", height = 4, width = 8 , scale = 1.5)
 ```{r}
 socpop %>%
   select(gestures, labels, labels_w_gestures,awc_phr_18m, rt_25m, cdi_25m)%>%
-  corrr::correlate()%>%
+  corrr::correlate(method ="pearson", use = "pairwise.complete.obs")%>%
   gather(task, cor, -rowname)%>%
   filter(rowname == "rt_25m" | rowname == "cdi_25m")%>%
   mutate_if(is.numeric, round, digits = 2)%>%
@@ -117,6 +118,28 @@ socpop %>%
 
 ggsave("./figures/fig.1b.png", height = 3, width = 6 , scale = 1.5)
 ```
+```{r}
+
+socpop %>%
+  select(gestures, labels, labels_w_gestures,awc_phr_18m, rt_25m, cdi_25m)%>%
+  rename(`Labels (18m)` = labels,
+         `Gestures (18m)` = gestures,
+         `Adult Words per Hour (18m)` = awc_phr_18m,
+         `Label-Gesture Combinations (18m)` = labels_w_gestures, 
+         `Vocabulary Size (25m)` = cdi_25m,
+         `Reaction Time (25m)` = rt_25m
+  )%>%
+  cor(method ="pearson", use = "pairwise.complete.obs")%>%
+  ggcorrplot::ggcorrplot(method="circle",type="lower", show.diag = F, lab = TRUE, digits = 2, lab_size = 2,tl.cex = 8 )+
+  scale_fill_gradientn(colours = colorRampPalette(c("#CC6677","white","#117733"))(200), limits = c(-1,1), name = "Correlation")+
+  theme(text = element_text(size=8),
+        legend.position = "top")
+  
+
+ggsave("./figures/fig.1c.png", height = 4, width = 4 , scale = 1)
+
+```
+
 
 # Models RT
 
@@ -217,9 +240,8 @@ cdi_model_comp <- loo_compare(
                         label_gesture_int = "Labels * Gestures",
                         overlap = "Label-Gesture Combinations",
                         awc = "Adult Words per Hour",
-                        null = "Null Model (Control Predictos Only)"
-                        
-                        ))
+                        null = "Null Model (Control Predictos Only)"),
+         DV = factor(DV, levels=c("Vocabulary Size (25m)","Reaction Time (25m)")))
 ```
 
 ```{r}
@@ -227,9 +249,10 @@ ggplot(rt_model_comp, aes(x = Model))+
   geom_pointrange(aes(y = waic, ymin = waic - se_waic, ymax = waic + se_waic))+
   coord_flip()
 
-ggplot(model_comp, aes(fill=Model, y=weight, x = DV))+
+ggplot(model_comp, aes(fill=Model, y=weight, x = DV, label = waic))+
   geom_bar(position="stack", stat="identity", width = .5)+
-  labs(x = "", y = "Model Weights (Based on WAIC)")+
+  geom_text(size = 3, position = position_stack(vjust = 0.5),angle = 90)+
+  labs(x = "", y = "Model Weights (WAIC)")+
   scale_fill_ptol(name = "Model (Test Predictor)")+
   theme_minimal()+
   guides(fill = guide_legend(reverse = TRUE))+
