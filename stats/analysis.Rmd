@@ -18,7 +18,7 @@ library(corrr)
 library(readxl)
 library(ggpubr)
 library(lsr)
-library(langcog)
+library(tidyboot)
 #library(sjPlot)
 
 opts_chunk$set(echo=F,
@@ -70,7 +70,7 @@ p_acc1 <- socpop%>%
 
 p_acc2 <- p_acc1%>%
   group_by(time)%>%
-  multi_boot_standard(col = "acc", na.rm = T)
+  tidyboot_mean(col = acc, na.rm = T)
 
 ggarrange(
 
@@ -111,7 +111,6 @@ nrow = 1
 ) 
 
 ```
-
 
 # Visualizing raw correlations
 
@@ -277,15 +276,15 @@ ggplot(data_model, aes(x=rt_25m))+
 
  model_rt_awc <- readRDS("saves/model_rt_awc.rds")
  
-model_rt_label_awc <- brm(rt_25m ~ awc_phr_18m + labels+ ses_18m + rt_18m,
-                    data = data_model, family = gaussian(),
-          control = list(adapt_delta = 0.95),
-          save_all_pars = TRUE,
-          chains = 4,
-          cores = 4,
-          iter = 50000)%>%
-  add_criterion("waic")%>%
-  saveRDS("saves/model_rt_label_awc.rds")
+# model_rt_label_awc <- brm(rt_25m ~ awc_phr_18m + labels + ses_18m + rt_18m,
+#                     data = data_model, family = gaussian(),
+#           control = list(adapt_delta = 0.95),
+#           save_all_pars = TRUE,
+#           chains = 4,
+#           cores = 4,
+#           iter = 50000)%>%
+#   add_criterion("waic")%>%
+#   saveRDS("saves/model_rt_label_awc.rds")
 
  model_rt_label_awc <- readRDS("saves/model_rt_label_awc.rds") 
 
@@ -399,11 +398,11 @@ model_rt_label_awc <- brm(rt_25m ~ awc_phr_18m + labels+ ses_18m + rt_18m,
 loo_compare(model_rt_label, 
             #model_rt_label_me,
             model_rt_awc,
+            model_rt_label_awc,
                     model_rt_gesture,
                     model_rt_label_gesture,
                     model_rt_label_gesture_int,
                     model_rt_overlap,
-            model_rt_label_awc,
             #model_rt_rel_overlap,
             model_rt_null,
             criterion = "waic")%>%
@@ -537,15 +536,15 @@ ggplot(data_cdi_model, aes(x=cdi_25m))+
 
  model_cdi_awc <- readRDS("saves/model_cdi_awc.rds")
  
- model_cdi_label_awc <- brm(rt_25m ~ awc_phr_18m + labels+ ses_18m + rt_18m,
-                    data = data_cdi_model, family = gaussian(),
-          control = list(adapt_delta = 0.95),
-          save_all_pars = TRUE,
-          chains = 4,
-          cores = 4,
-          iter = 50000)%>%
-  add_criterion("waic")%>%
-  saveRDS("saves/model_cdi_label_awc.rds")
+ # model_cdi_label_awc <- brm(rt_25m ~ awc_phr_18m + labels+ ses_18m + rt_18m,
+ #                    data = data_cdi_model, family = gaussian(),
+ #          control = list(adapt_delta = 0.95),
+ #          save_all_pars = TRUE,
+ #          chains = 4,
+ #          cores = 4,
+ #          iter = 50000)%>%
+ #  add_criterion("waic")%>%
+ #  saveRDS("saves/model_cdi_label_awc.rds")
 
  model_cdi_label_awc <- readRDS("saves/model_cdi_label_awc.rds") 
 # 
@@ -657,11 +656,12 @@ ggplot(data_cdi_model, aes(x=cdi_25m))+
 
 loo_compare(model_cdi_label,
             model_cdi_label_me,
+            model_cdi_label_awc,
             model_cdi_awc,
-                    model_cdi_gesture,
-                    model_cdi_label_gesture,
-                    model_cdi_label_gesture_int,
-                    model_cdi_overlap,
+            model_cdi_gesture,
+            model_cdi_label_gesture,
+            model_cdi_label_gesture_int,
+            model_cdi_overlap,
             model_cdi_rel_overlap,
             model_cdi_null,
             criterion = "waic")%>%
