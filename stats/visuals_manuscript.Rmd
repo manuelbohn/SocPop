@@ -70,7 +70,7 @@ socpop %>%
   gather(DV, y, -id, -gestures,-labels_w_gestures,-awc_phr_18m, -labels,)%>%
   gather(input, freq, -id, -DV, -y)%>%
   mutate(DV = factor(DV, levels = c("rt_25m", "cdi_25m"), labels = c("Reaction Time (25m)", "Vocabulary Size (25m)")), 
-         input = factor(input,levels = c("labels", "awc_phr_18m", "labels_w_gestures", "gestures"), labels = c("Labels (18m)","Adult Words per Hour (18m)", "Label-Gesture Combinations (18m)", "Gestures (18m)")),
+         input = factor(input,levels = c("labels", "awc_phr_18m", "labels_w_gestures", "gestures"), labels = c("Labels (18m)","Adult Words per Hour (18m)", "Label-Gesture Overlap (18m)", "Gestures (18m)")),
          y = as.numeric(y)) %>%
   ggplot(aes(x = freq, y = y))+
   geom_point(alpha = 0.5)+
@@ -98,7 +98,7 @@ socpop %>%
   filter(task != "rt_25m", 
          task != "cdi_25m")%>%
   mutate(rowname = factor(rowname, levels = c("cdi_25m","rt_25m"), labels = c("Vocabulary Size (25m)","Reaction Time (25m)")), 
-         task = factor(task,levels = c("labels", "awc_phr_18m", "labels_w_gestures", "gestures"), labels = c("Labels (18m)","Adult Words per Hour (18m)", "Label-Gesture Combinations (18m)", "Gestures (18m)")))%>%
+         task = factor(task,levels = c("labels", "awc_phr_18m", "labels_w_gestures", "gestures"), labels = c("Labels (18m)","Adult Words per Hour (18m)", "Label-Gesture Overlap (18m)", "Gestures (18m)")))%>%
   ggplot(., aes(y = rowname, x = task, fill = cor))+
   geom_tile(color = "white")+
   labs(x = "", y = "")+
@@ -125,7 +125,7 @@ socpop %>%
   rename(`Labels (18m)` = labels,
          `Gestures (18m)` = gestures,
          `Adult Words per Hour (18m)` = awc_phr_18m,
-         `Label-Gesture Combinations (18m)` = labels_w_gestures, 
+         `Label-Gesture Overlap (18m)` = labels_w_gestures, 
          `Vocabulary Size (25m)` = cdi_25m,
          `Reaction Time (25m)` = rt_25m
   )%>%
@@ -133,10 +133,12 @@ socpop %>%
   ggcorrplot::ggcorrplot(method="circle",type="lower", show.diag = F, lab = TRUE, digits = 2, lab_size = 2,tl.cex = 8 )+
   scale_fill_gradientn(colours = colorRampPalette(c("#CC6677","white","#117733"))(200), limits = c(-1,1), name = "Correlation")+
   theme(text = element_text(size=8),
-        legend.position = "top")
+        legend.position = "top",
+        axis.text.x = element_text(angle=35))+
+  theme(legend.position = "right")
   
 
-ggsave("./figures/fig.1c.png", height = 4, width = 4 , scale = 1)
+ggsave("./figures/fig.1c.png", height = 4, width = 5 , scale = 1)
 
 ```
 
@@ -160,6 +162,40 @@ ggsave("./figures/fig.1c.png", height = 4, width = 4 , scale = 1)
  model_rt_null <- readRDS("saves/model_rt_null.rds")
 
 ```
+
+```{r}
+data_model <- socpop %>%
+  filter(rt_25m != "NA",
+         gestures != "NA",
+         labels != "NA")%>%
+  mutate(gestures = scale(gestures, center = TRUE, scale = T),
+         labels_z = scale(labels, center = TRUE, scale = T),
+         labels_w_gestures = scale(labels_w_gestures, center = TRUE, scale = T),
+         labels_w_rel_gestures = scale(labels_w_rel_gestures, center = TRUE, scale = T),
+         labels_me = scale(labels_me, center = TRUE, scale = T),
+         awc_phr_18m = scale(awc_phr_18m, center = TRUE, scale = T),
+         rt_18m = scale(rt_18m, center = TRUE, scale = T),
+         ses_18m = scale(ses_18m, center = TRUE, scale = T))
+
+## plot expected predictions against actual response
+```
+
+```{r}
+ggplot(data = fit_label_rt, aes(x = rt_25m, y = Estimate))+
+  geom_abline(linetype = 2, color = "grey50", size = .5) +
+  geom_point(size = 1.5, color = "firebrick4", alpha = 3/4) +
+  geom_linerange(aes(ymin = Q2.5, ymax = Q97.5),
+                 size = 1/4, color = "firebrick4") +
+  geom_linerange(aes(ymin = Estimate - Est.Error, 
+                     ymax = Estimate + Est.Error),
+                 size = 1/2, color = "firebrick4")+
+  xlim(range(data_model$rt_25m))+
+  ylim(range(data_model$rt_25m))+
+  labs(x = "Observed Reaction Time", 
+       y = "Predicted Reaction Time")+
+  theme_minimal()
+```
+
 
 ### Models CDI
 
@@ -238,19 +274,17 @@ cdi_model_comp <- loo_compare(
                         gesture = "Gestures" ,
                         label_gesture = "Labels + Gestures",
                         label_gesture_int = "Labels * Gestures",
-                        overlap = "Label-Gesture Combinations",
+                        overlap = "Label-Gesture Overlap",
                         awc = "Adult Words per Hour",
                         null = "Null Model (Control Predictos Only)"),
-         DV = factor(DV, levels=c("Vocabulary Size (25m)","Reaction Time (25m)")))
+         DV = factor(DV, levels=c("Vocabulary Size (25m)","Reaction Time (25m)")))%>%
+  group_by(DV)%>%
+  mutate(Model = reorder(Model, -waic))
 ```
 
 ```{r}
-ggplot(rt_model_comp, aes(x = Model))+
-  geom_pointrange(aes(y = waic, ymin = waic - se_waic, ymax = waic + se_waic))+
-  coord_flip()
-
 ggplot(model_comp, aes(fill=Model, y=weight, x = DV, label = waic))+
-  geom_bar(position="stack", stat="identity", width = .5)+
+  geom_bar(position="stack", stat="identity", width = .5, alpha = .8)+
   geom_text(size = 3, position = position_stack(vjust = 0.5),angle = 90)+
   labs(x = "", y = "Model Weights (WAIC)")+
   scale_fill_ptol(name = "Model (Test Predictor)")+
@@ -261,11 +295,12 @@ ggplot(model_comp, aes(fill=Model, y=weight, x = DV, label = waic))+
 ggsave("./figures/fig.2.png", height = 2, width = 8 , scale = 1.4)
 
 ```
+
 #### Visualizing model parameters RT
 
 ```{r}
-ggarrange(
-  model_rt_label %>%
+
+plot_pred_rt_label <- model_rt_label %>%
   gather_draws(b_labels, b_ses_18m, b_rt_18m)%>%
   mutate(Predictor = recode(.variable,
                         b_labels = "Labels at 18m",
@@ -273,17 +308,17 @@ ggarrange(
                         b_rt_18m = "Reaction Time at 18m"),
          Predictor = factor(Predictor, levels = c("Labels at 18m","Reaction Time at 18m","SES at 18m")))%>%
   ggplot(aes(y = Predictor, x = .value, fill = stat(x) > 0)) +
-  stat_halfeye(alpha = .7) +
+  stat_halfeye(alpha = .7, .width = c(.95, .80)) +
     labs(x = "Model Estimate", y ="")+
   guides(fill = F)+
-  ggtitle("Reaction Time (25m)")+
+  ggtitle("DV: Reaction Time (25m)")+
   geom_vline(xintercept = 0, linetype = "dashed") +
   scale_fill_manual(values = c("#85AD00","grey"))+
   theme_minimal()+
-  theme(legend.position = "bottom")
-,
+  theme(legend.position = "bottom")+ 
+  theme(plot.title = element_text(hjust=-0.2))
 
-model_cdi_label %>%
+plot_pred_cdi_label <- model_cdi_label %>%
   gather_draws(b_labels, b_ses_18m, b_cdi_18m)%>%
   mutate(Predictor = recode(.variable,
                         b_labels = "Labels at 18m",
@@ -291,23 +326,147 @@ model_cdi_label %>%
                         b_cdi_18m = "Vocabulary Size at 18m"),
          Predictor = factor(Predictor, levels = c("Labels at 18m","Vocabulary Size at 18m","SES at 18m")))%>%
   ggplot(aes(y = Predictor, x = .value, fill = stat(x) > 0)) +
-  stat_halfeye(alpha = .7) +
+  stat_halfeye(alpha = .7, .width = c(.95, .80)) +
   labs(x = "Model Estimate", y ="")+
   guides(fill = F)+
-  ggtitle("Vocabulary Size (25m)")+
+  ggtitle("DV: Vocabulary Size (25m)")+
   geom_vline(xintercept = 0, linetype = "dashed") +
   scale_fill_manual(values = c("grey","#85AD00"))+
   theme_minimal()+
-  theme(legend.position = "bottom")
+  theme(legend.position = "bottom")+ 
+  theme(plot.title = element_text(hjust=-0.2))
 
-
-)
-
-ggsave("./figures/fig.3.png", height = 2, width = 8 , scale = 1.4)
 
 ```
 
 
+```{r}
+fit_label_rt <- 
+  fitted(model_rt_label) %>%
+  as_tibble() %>%
+  bind_cols(data_model)%>%
+  mutate(model = "Labels")
+
+plot_fit_rt_label <- ggplot(data = fit_label_rt, aes(x = labels, y = rt_25m)) +
+  geom_segment(aes(xend = labels, yend = Estimate), 
+               size = 1/2, col = "grey")+
+  geom_point(size = 2, shape = 1)+
+  geom_point(aes(y = Estimate), color = "firebrick4",size = 2, shape = 1)+
+  labs(x = "Labels at 18m", 
+       y = "Reaction Time at 25m")+
+  coord_cartesian(ylim = range(data_model$rt_25m)) +
+  theme_minimal()
+
+```
+
+```{r}
+data_cdi_model <- socpop %>%
+  filter(cdi_18m != "NA",
+         cdi_25m != "NA",
+         gestures != "NA",
+         labels != "NA")%>%
+  mutate(gestures = scale(gestures, center = TRUE, scale = T),
+         labels_z = scale(labels, center = TRUE, scale = T),
+         labels_w_gestures = scale(labels_w_gestures, center = TRUE, scale = T),
+         labels_w_rel_gestures = scale(labels_w_rel_gestures, center = TRUE, scale = T),
+         labels_me = scale(labels_me, center = TRUE, scale = T),
+         cdi_18m = scale(cdi_18m, center = TRUE, scale = T),
+         ses_18m = scale(ses_18m, center = TRUE, scale = T),
+                  awc_phr_18m = scale(awc_phr_18m, center = TRUE, scale = T))
+```
+
+```{r}
+fit_label_cdi <- 
+  fitted(model_cdi_label) %>%
+  as_tibble() %>%
+  bind_cols(data_cdi_model)%>%
+  mutate(model = "Labels")
+
+plot_fit_cdi_label <- ggplot(data = fit_label_cdi, aes(x = labels, y = cdi_25m)) +
+  geom_segment(aes(xend = labels, yend = Estimate), 
+               size = 1/2, col = "grey")+
+  geom_point(aes(col = "black"),size = 2, shape = 1)+
+  geom_point(aes(y = Estimate,color = "firebrick4"),size = 2, shape = 1)+
+      labs(x = "Labels at 18m", 
+       y = "Vocabulary Size at 25m")+
+  coord_cartesian(ylim = range(data_cdi_model$cdi_25m)) +
+  scale_y_continuous(breaks = c(0,200,400))+
+  theme_minimal()+
+  scale_colour_manual(name="", labels = c("Predicted","Observed"), values = c("firebrick4","black"))+
+  theme(legend.position = c(0.9,.2))
+
+```
+
+```{r}
+ggplot(data = fit_cdi, aes(x = cdi_25m, y = Estimate))+
+  geom_abline(linetype = 2, color = "grey50", size = .5) +
+  geom_point(size = 1.5, color = "firebrick4", alpha = 3/4) +
+  geom_linerange(aes(ymin = Q2.5, ymax = Q97.5),
+                 size = 1/4, color = "firebrick4") +
+  geom_linerange(aes(ymin = Estimate - Est.Error, 
+                     ymax = Estimate + Est.Error),
+                 size = 1/2, color = "firebrick4")+
+  xlim(range(data_model$cdi_25m))+
+  ylim(range(data_model$cdi_25m))+
+  labs(x = "Observed Reaction Time", 
+       y = "Predicted Reaction Time")+
+  theme_minimal()
+```
+
+```{r}
+ggarrange(
+  plot_pred_rt_label,
+  plot_fit_rt_label,
+  plot_pred_cdi_label,
+  plot_fit_cdi_label,
+  ncol = 2, 
+  nrow = 2,
+  labels = c("A-i","A-ii","B-i","B-ii")
+)
+```
+
+```{r}
+ggsave("./figures/fig.3.png", height = 4.5, width = 8 , scale = 1.4)
+```
+
+# Labels and gestures across models
+```{r}
+plot_pred_rt_label <- model_rt_label %>%
+  gather_draws(b_labels, b_ses_18m, b_rt_18m)%>%
+  mutate(Predictor = recode(.variable,
+                        b_labels = "Labels at 18m",
+                        b_ses_18m = "SES at 18m" ,
+                        b_rt_18m = "Reaction Time at 18m"),
+  Predictor = factor(Predictor, levels = c("Labels at 18m","Reaction Time at 18m","SES at 18m")))
+
+pred_comp <- bind_rows(
+broom.mixed::tidy(model_rt_label) %>% filter(term == "labels" | term == "gestures" | term == "labels:gestures")%>% mutate(DV = "Reaction Time", Model = "Labels"),
+broom.mixed::tidy(model_rt_gesture) %>% filter(term == "labels" | term == "gestures" | term == "labels:gestures")%>% mutate(DV = "Reaction Time", Model = "Gestures"),
+broom.mixed::tidy(model_rt_label_gesture) %>% filter(term == "labels" | term == "gestures" | term == "labels:gestures")%>% mutate(DV = "Reaction Time", Model = "Labels + Gestures"),
+broom.mixed::tidy(model_rt_label_gesture_int) %>% filter(term == "labels" | term == "gestures" | term == "labels:gestures")%>% mutate(DV = "Reaction Time", Model = "Labels * Gestures"),
 
 
+broom.mixed::tidy(model_cdi_label) %>% filter(term == "labels" | term == "gestures" | term == "labels:gestures")%>% mutate(DV = "Vocabulary Size", Model = "Labels"),
+broom.mixed::tidy(model_cdi_gesture) %>% filter(term == "labels" | term == "gestures" | term == "labels:gestures")%>% mutate(DV = "Vocabulary Size", Model = "Gestures"),
+broom.mixed::tidy(model_cdi_label_gesture) %>% filter(term == "labels" | term == "gestures" | term == "labels:gestures")%>% mutate(DV = "Vocabulary Size", Model = "Labels + Gestures"),
+broom.mixed::tidy(model_cdi_label_gesture_int) %>% filter(term == "labels" | term == "gestures" | term == "labels:gestures")%>% mutate(DV = "Vocabulary Size", Model = "Labels * Gestures"),
 
+)%>%
+  filter(term != "labels:gestures")%>%
+  mutate(Model = factor(Model, levels = c("Labels","Gestures", "Labels + Gestures", "Labels * Gestures")),
+         Predictor = factor(term, levels = c("labels", "gestures", "labels:gestures"), labels = c("Labels", "Gestures", "Labels * Gestures")))
+
+
+ggplot(data = pred_comp, aes(y = estimate, x = Predictor, col = Model)) +
+  geom_hline(yintercept = 0, linetype = "dashed") +
+  geom_pointrange(aes(ymin = conf.low, ymax = conf.high), position = position_dodge(width = .8))+
+  facet_grid(~DV)+
+  ylab("Estimate")+
+  theme_minimal()+
+  coord_flip()+
+  scale_color_manual( values = c("#AA4499", "#88CCEE","#CC6677","#44AA99"))+
+  theme(legend.position = "bottom", axis.title.x=element_blank(), axis.title.y=element_blank())
+```
+```{r}
+ggsave("./figures/fig.4.png", height = 2, width = 5 , scale = 1.4)
+```
