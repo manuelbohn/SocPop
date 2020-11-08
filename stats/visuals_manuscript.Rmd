@@ -21,6 +21,7 @@ library(ggpubr)
 library(lsr)
 library(tidyboot)
 library(tidybayes)
+library(gmodels)
 
 opts_chunk$set(echo=F,
               warning=FALSE, message=FALSE,
@@ -118,9 +119,39 @@ socpop %>%
 
 ggsave("./figures/fig.1b.png", height = 3, width = 6 , scale = 1.5)
 ```
-```{r}
 
-socpop %>%
+```{r}
+fig_1_a <- socpop %>%
+  select(gestures, labels, labels_w_gestures,awc_phr_18m)%>%
+  rename(`Labels (18m)` = labels,
+         `Gestures (18m)` = gestures,
+         `Adult Words per Hour (18m)` = awc_phr_18m,
+         `Label-Gesture Overlap (18m)` = labels_w_gestures
+  )%>%
+  gather(Input, Count)%>%
+  mutate(Input = factor(Input, levels = c( "Adult Words per Hour (18m)","Labels (18m)", "Gestures (18m)", "Label-Gesture Overlap (18m)")))%>%
+  group_by(Input)%>%
+  mutate(mean = ci(Count, na.rm = T)[1],
+         l_ci = ci(Count, na.rm = T)[2],
+         u_ci = ci(Count, na.rm = T)[3]
+         )%>%
+ggplot(aes(x= Count))+
+  geom_histogram(colour="black", fill="white")+
+  geom_point(aes(x = mean, y = -0.25), col = "#FF6666")+
+  geom_errorbarh(aes(xmin = l_ci, xmax = u_ci, y = -0.25), col = "#FF6666", height = 0)+
+  ylim(-0.5,6)+
+  #geom_density(alpha=.2, fill="#FF6666")+
+  facet_wrap(~Input, scales = "free_x")+
+  labs(y = "Count", x = "No occurences in Play Session")+
+  theme_minimal()
+  
+
+ggsave("./figures/fig.1d.png", height = 4, width = 5 , scale = 1)
+```
+
+
+```{r}
+fig_1_b <- socpop %>%
   select(gestures, labels, labels_w_gestures,awc_phr_18m, rt_25m, cdi_25m)%>%
   rename(`Labels (18m)` = labels,
          `Gestures (18m)` = gestures,
@@ -136,9 +167,10 @@ socpop %>%
         legend.position = "top",
         axis.text.x = element_text(angle=35))+
   theme(legend.position = "right")
-  
 
-ggsave("./figures/fig.1c.png", height = 4, width = 5 , scale = 1)
+ggarrange(fig_1_a, fig_1_b, labels = c("A","B"))  
+
+ggsave("./figures/fig.1ab.png", height = 4, width = 10 , scale = 1)
 
 ```
 
@@ -222,7 +254,7 @@ model_cdi_null <- readRDS("saves/model_cdi_null.rds")
 ```{r}
 # Putting things together in a dataframe
 # BF = Bayes factor in favor of the winning model in this case label
-model_comp <- bind_rows(
+
 rt_model_comp <- loo_compare(model_rt_label, 
             model_rt_awc,
             model_rt_gesture,
@@ -241,9 +273,17 @@ rt_model_comp <- loo_compare(model_rt_label,
   select(Model, waic, se_waic, weight)%>%
   arrange(-waic)%>%
   mutate(Model=factor(Model, levels=Model),
-         DV = "Reaction Time (25m)")
+         DV = "Reaction Time")%>%
+  mutate(Model = recode(Model,
+                        label = "Labels",
+                        gesture = "Gestures" ,
+                        label_gesture = "Labels + Gestures",
+                        label_gesture_int = "Labels * Gestures",
+                        overlap = "Label-Gesture Overlap",
+                        awc = "Adult Words per Hour",
+                        null = "Baseline (Covariates)"))
 
-,
+
 
 
 cdi_model_comp <- loo_compare(
@@ -267,8 +307,7 @@ cdi_model_comp <- loo_compare(
   select(Model, waic, se_waic, weight)%>%
   arrange(-waic)%>%
   mutate(Model=factor(Model, levels=Model),
-         DV = "Vocabulary Size (25m)")
-)%>%
+         DV = "Vocabulary Size")%>%
   mutate(Model = recode(Model,
                         label = "Labels",
                         gesture = "Gestures" ,
@@ -276,24 +315,28 @@ cdi_model_comp <- loo_compare(
                         label_gesture_int = "Labels * Gestures",
                         overlap = "Label-Gesture Overlap",
                         awc = "Adult Words per Hour",
-                        null = "Null Model (Control Predictos Only)"),
-         DV = factor(DV, levels=c("Vocabulary Size (25m)","Reaction Time (25m)")))%>%
-  group_by(DV)%>%
-  mutate(Model = reorder(Model, -waic))
+                        null = "Baseline (Covariates)"))
+
+order <- tibble(DV = c( "Reaction Time","Vocabulary Size"))%>%
+  mutate(DV = factor(DV, levels=c("Reaction Time","Vocabulary Size")))
+  
+
 ```
 
 ```{r}
-ggplot(model_comp, aes(fill=Model, y=weight, x = DV, label = waic))+
-  geom_bar(position="stack", stat="identity", width = .5, alpha = .8)+
-  geom_text(size = 3, position = position_stack(vjust = 0.5),angle = 90)+
+ggplot()+
+      geom_bar(data = rt_model_comp, aes(fill=Model, y=weight, x = DV, label = waic), position="stack", stat="identity", width = .5, alpha = .8)+
+  geom_text(data = rt_model_comp, aes(fill=Model, y=weight, x = DV, label = waic),size = 3, position = position_stack(vjust = 0.5),angle = 90)+
+  geom_bar(data = cdi_model_comp, aes(fill=Model, y=weight, x = DV, label = waic), position="stack", stat="identity", width = .5, alpha = .8)+
+  geom_text(data = cdi_model_comp, aes(fill=Model, y=weight, x = DV, label = waic),size = 3, position = position_stack(vjust = 0.5),angle = 90)+
   labs(x = "", y = "Model Weights (WAIC)")+
   scale_fill_ptol(name = "Model (Test Predictor)")+
   theme_minimal()+
   guides(fill = guide_legend(reverse = TRUE))+
-  coord_flip()
+  coord_flip()+
+  scale_x_discrete(limits =c("Vocabulary Size","Reaction Time"))
 
-ggsave("./figures/fig.2.png", height = 2, width = 8 , scale = 1.4)
-
+ggsave("./figures/fig.2.png", height = 3, width = 10 , scale = 1)
 ```
 
 #### Visualizing model parameters RT
