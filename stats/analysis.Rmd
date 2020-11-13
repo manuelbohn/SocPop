@@ -27,9 +27,9 @@ opts_chunk$set(echo=F,
 ```
 
 ```{r}
-input <- read_csv("./data/input.csv")
+input <- read_csv("./data/data_iv.csv")
 
-data <- read_excel("./data/data_children_n42.xlsx") %>% 
+data <- read_excel("./data/data_dv.xlsx") %>% 
   mutate(id = as.character(id)) %>% 
   select(c(id, L1PRE_mom_ed,
            L1PRE_hi, L1POST_hi,
