@@ -28,6 +28,27 @@ opts_chunk$set(echo=F,
               cache=FALSE, fig.align = "center")
 ```
 
+# figure of 3 different caregivers
+```{r}
+df_n3 <- read_csv("./data/data_for_n3_fig.csv", col_names = T)
+
+ggplot(df_n3, aes(colour = behavior)) + 
+  geom_segment(aes(x = start, xend = stop, y = behavior, yend = behavior), size=3) +
+  labs(x = "\nTime (s)", y = "") + 
+  facet_wrap(~ id, ncol = 1) + 
+  theme_minimal() + 
+  theme(legend.position = "none",
+        axis.text = element_text(size = 13),
+        axis.title = element_text(size = 13),
+        strip.text.x = element_text(size = 13))
+
+ggsave("./figures/fig.durations.png", height = 4, width = 8 , scale = 1.5)
+
+```
+
+
+
+
 ```{r}
 input <- read_csv("./data/data_iv.csv")
 
@@ -36,7 +57,7 @@ data <- read_excel("./data/data_dv.xlsx") %>%
   select(c(id, L1PRE_mom_ed,
            L1PRE_hi, L1POST_hi,
            L1PRE_gooddrt, L1POST_gooddrt, L1PRE_goodacc_3001800, L1POST_goodacc_3001800,
-           L1PRE_cdi_version, L1PRE_cdi_age, L1PRE_cdi_vocab, L1POST_cdi_age, L1POST_cdi_vocab, 
+           L1PRE_cdi_version, age_L1PRE, L1PRE_cdi_vocab, age_L1POST, L1POST_cdi_vocab, 
            L1PRE_PS_AWChr)) %>% 
   mutate(L1PRE_cdi_vocab = as.numeric(L1PRE_cdi_vocab), 
          cdi_18m = ifelse(L1PRE_cdi_version == "wg", (L1PRE_cdi_vocab * 396 / 680), 
@@ -49,7 +70,7 @@ data <- read_excel("./data/data_dv.xlsx") %>%
          acc25m = L1POST_goodacc_3001800,
          ses_18m = L1PRE_hi, ses_25m = L1POST_hi, awc_phr_18m = L1PRE_PS_AWChr, 
          mom_ed_18m = L1PRE_mom_ed, 
-         cdi_age_18m = L1PRE_cdi_age, cdi_age_25m = L1POST_cdi_age)
+         age_18m = age_L1PRE, age_25m = age_L1POST)
 
 # merge into 1 dataframe
 socpop <- input %>% 
