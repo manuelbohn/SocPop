@@ -1,0 +1,99 @@
+---
+title: "SocPop reliability"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+
+library(tidyverse)
+library(irr)
+
+```
+
+
+# Reliability
+
+Summary: For gestures, labels, and labels_w_gestures, ICC correlations were > .88, indicating a high degree of reliability for all three measures.  
+
+Coders were more aligned on gestures (Cohen's kappa = .88, 95% CI [.54, .98] than labels (Cohen's kappa = .99, 95% CI [.96, 1]. When we examine the absolute number of codes in the scatterplots, we can see that coder 1 was slightly more conservative than coder 2 for coding of gestures, but labels were in near perfect agreement. Overlaps (using labels_w_gestures) were also in near perfect agreement at an absolute level and had a high ICC value (Cohen's kappa = .99, 95% CI [.95, 1]), which is expected since this metric is based on the number of labels. However, the high degree of reliability in overlaps also suggests that coder 1 and coder 2 were also probably capturing the same gestures at similar points in the video (versus coder 1 and coder 2 capturing the same total gestures but at different points during the video).
+
+### reading in data
+```{r}
+coder1 <- read_csv("./data/data_rel_coder1.csv", col_names = T) %>% 
+  dplyr::select(-X1)
+
+coder2 <- read_csv("./data/data_rel_coder2.csv", col_names = T) %>% 
+  dplyr::select(-X1)
+
+
+rel <- left_join(coder1, coder2, by = "id") %>% 
+  mutate(labels_coder1 = replace_na(labels_coder1, 0), 
+         labels_w_gestures_coder1 = replace_na(labels_w_gestures_coder1, 0))
+```
+
+
+
+## scatterplots
+red line = perfect agreement between coder 1 and coder 2
+
+points under the red line indicates coder 1 coded more than coder 2
+
+points above red line indicates coder 2 coded more than coder 1
+
+### gestures
+```{r}
+ggplot(rel, aes(gestures_coder1, gestures_coder2)) + 
+  geom_point() + 
+  geom_smooth(method = "lm") + 
+  geom_abline(intercept = 0, slope = 1, color = "red") + 
+  labs(title = "gestures: coder 2 coded more than coder 1")
+
+cor.test(rel$gestures_coder1, rel$gestures_coder2)
+```
+
+
+### labels
+```{r}
+ggplot(rel, aes(labels_coder1, labels_coder2)) + 
+  geom_point() + 
+  geom_smooth(method = "lm") + 
+  geom_abline(intercept = 0, slope = 1, color = "red") + 
+  labs(title = "labels: near perfect agreement")
+
+cor.test(rel$labels_coder1, rel$labels_coder2)
+```
+
+
+### overlaps - labels_w_gestures
+```{r}
+ggplot(rel, aes(labels_w_gestures_coder1, labels_w_gestures_coder2)) + 
+  geom_point() + 
+  geom_smooth(method = "lm") + 
+  geom_abline(intercept = 0, slope = 1, color = "red") + 
+  labs(title = "labels_w_gestures: near perfect agreement")
+
+cor.test(rel$labels_w_gestures_coder1, rel$labels_w_gestures_coder2)
+```
+
+
+## ICC calculations
+### gesture
+```{r}
+icc(rel %>% select(gestures_coder1, gestures_coder2), model = "twoway", type = "consistency")
+```
+
+### labels
+```{r}
+
+icc(rel%>%select(labels_coder1, labels_coder2), model = "twoway", type = "consistency")
+
+```
+
+### overlaps - labels_w_gestures
+```{r}
+
+icc(rel %>% select(labels_w_gestures_coder1, labels_w_gestures_coder2), model = "twoway", type = "consistency")
+
+```
+
+
