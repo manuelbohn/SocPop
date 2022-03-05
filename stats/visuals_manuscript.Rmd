@@ -30,7 +30,14 @@ opts_chunk$set(echo=F,
 
 # figure of 3 different caregivers
 ```{r}
-df_n3 <- read_csv("./data/data_for_n3_fig.csv", col_names = T)
+df_n3 <- read_csv("./data/data_for_n3_fig.csv", col_names = T) %>% 
+  mutate(id = ifelse(str_detect(id, "Caregiver 1"), "Caregiver 1: average number of labels and gestures",
+              ifelse(str_detect(id, "Caregiver 2"), "Caregiver 2: above average number of labels and below average number of gestures", 
+              ifelse(str_detect(id, "Caregiver 3"), "Caregiver 3: above average number of labels and gestures", "CHECK"))))
+
+
+# count of labels and gestures for those in figure
+df_n3 %>% group_by(id) %>% count(behavior)
 
 ggplot(df_n3, aes(colour = behavior)) + 
   geom_segment(aes(x = start, xend = stop, y = behavior, yend = behavior), size=3) +
