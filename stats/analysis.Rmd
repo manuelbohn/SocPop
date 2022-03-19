@@ -33,7 +33,9 @@ data <- read_excel("./data/data_dv.xlsx") %>%
   mutate(id = as.character(id)) %>% 
   select(c(id, L1PRE_mom_ed,
            L1PRE_hi, L1POST_hi,
-           L1PRE_gooddrt, L1POST_gooddrt, L1PRE_goodacc_3001800, L1POST_goodacc_3001800,
+           L1PRE_mom_birth_country,
+           L1PRE_gooddrt, L1POST_gooddrt, L1POST_drtsd, L1POST_drtn,
+           L1PRE_goodacc_3001800, L1POST_goodacc_3001800,
            L1PRE_cdi_version, age_L1PRE, L1PRE_cdi_vocab, age_L1POST, L1POST_cdi_vocab, 
            L1PRE_PS_AWChr)) %>% 
   mutate(L1PRE_cdi_vocab = as.numeric(L1PRE_cdi_vocab), 
@@ -42,7 +44,10 @@ data <- read_excel("./data/data_dv.xlsx") %>%
          cdi_18m = round(as.numeric(cdi_18m), digits = 0)) %>% 
   select(-c(L1PRE_cdi_version, L1PRE_cdi_vocab)) %>% 
   rename(rt_18m = L1PRE_gooddrt,
-         rt_25m = L1POST_gooddrt, cdi_25m = L1POST_cdi_vocab,
+         rt_25m = L1POST_gooddrt, 
+         rt_25m_sd = L1POST_drtsd,
+         rt_25m_ntrials = L1POST_drtn,
+         cdi_25m = L1POST_cdi_vocab,
          acc_18m = L1PRE_goodacc_3001800, 
          acc25m = L1POST_goodacc_3001800,
          ses_18m = L1PRE_hi, ses_25m = L1POST_hi, awc_phr_18m = L1PRE_PS_AWChr, 
