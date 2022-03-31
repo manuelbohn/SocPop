@@ -64,6 +64,9 @@ socpop <- input %>%
          labels_me = labels - labels_w_gestures,
          prop_lab_ges = labels_w_gestures/labels)
 
+
+write_csv(socpop,"./data/tidy_data.csv")
+
 ```
 
 # Visualizing RT and Accuracy
