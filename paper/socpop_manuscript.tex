@@ -3,12 +3,11 @@
 \PassOptionsToPackage{hyphens}{url}
 %
 \documentclass[
-  english,
-  man,floatsintext]{apa6}
+  man,mask,floatsintext]{apa6}
+\usepackage{amsmath,amssymb}
 \usepackage{lmodern}
-\usepackage{amssymb,amsmath}
-\usepackage{ifxetex,ifluatex}
-\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+\usepackage{iftex}
+\ifPDFTeX
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
   \usepackage{textcomp} % provide euro and other symbols
@@ -38,13 +37,12 @@
 \IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
 \hypersetup{
   pdftitle={Spanish-speaking caregivers' use of referential labels with toddlers is a better predictor of later vocabulary than their use of referential gestures},
-  pdfauthor={Janet Y. Bang1,2,*, Manuel Bohn1,3,*, Joel Ramírez, Jr1,3, Virginia A. Marchman1,3, \& Anne Fernald1,3},
   pdflang={en-EN},
   pdfkeywords={communicative reference, gestures, labels, word learning, language processing, vocabulary size},
   hidelinks,
   pdfcreator={LaTeX via pandoc}}
 \urlstyle{same} % disable monospaced font for URLs
-\usepackage{graphicx,grffile}
+\usepackage{graphicx}
 \makeatletter
 \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
 \def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
@@ -70,6 +68,38 @@
   \let\oldsubparagraph\subparagraph
   \renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
 \fi
+\newlength{\cslhangindent}
+\setlength{\cslhangindent}{1.5em}
+\newlength{\csllabelwidth}
+\setlength{\csllabelwidth}{3em}
+\newlength{\cslentryspacingunit} % times entry-spacing
+\setlength{\cslentryspacingunit}{\parskip}
+\newenvironment{CSLReferences}[2] % #1 hanging-ident, #2 entry spacing
+ {% don't indent paragraphs
+  \setlength{\parindent}{0pt}
+  % turn on hanging indent if param 1 is 1
+  \ifodd #1
+  \let\oldpar\par
+  \def\par{\hangindent=\cslhangindent\oldpar}
+  \fi
+  % set entry spacing
+  \setlength{\parskip}{#2\cslentryspacingunit}
+ }%
+ {}
+\usepackage{calc}
+\newcommand{\CSLBlock}[1]{#1\hfill\break}
+\newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{#1}}
+\newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{#1}\break}
+\newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
+\ifLuaTeX
+\usepackage[bidi=basic]{babel}
+\else
+\usepackage[bidi=default]{babel}
+\fi
+\babelprovide[main,import]{english}
+% get rid of language-specific shorthands (see #6817):
+\let\LanguageShortHands\languageshorthands
+\def\languageshorthands#1{}
 % Manuscript styling
 \usepackage{upgreek}
 \captionsetup{font=singlespacing,justification=justified}
@@ -100,6 +130,20 @@
 % \setlength{\parindent}{0.5in}
 % \setlength{\parskip}{0pt plus 0pt minus 0pt}
 
+% Overwrite redefinition of paragraph and subparagraph by the default LaTeX template
+% See https://github.com/crsh/papaja/issues/292
+\makeatletter
+\renewcommand{\paragraph}{\@startsection{paragraph}{4}{\parindent}%
+  {0\baselineskip \@plus 0.2ex \@minus 0.2ex}%
+  {-1em}%
+  {\normalfont\normalsize\bfseries\itshape\typesectitle}}
+
+\renewcommand{\subparagraph}[1]{\@startsection{subparagraph}{5}{1em}%
+  {0\baselineskip \@plus 0.2ex \@minus 0.2ex}%
+  {-\z@\relax}%
+  {\normalfont\normalsize\itshape\hspace{\parindent}{#1}\textit{\addperi}}{\relax}}
+\makeatother
+
 % \usepackage{etoolbox}
 \makeatletter
 \patchcmd{\HyOrg@maketitle}
@@ -111,24 +155,30 @@
   {\section*{\protect\normalfont{\@title}}}
   {}{\typeout{Failed to patch title.}}
 \makeatother
-\shorttitle{Predicting vocabulary from labels and gestures}
+
+\usepackage{xpatch}
+\makeatletter
+\xapptocmd\appendix
+  {\xapptocmd\section
+    {\addcontentsline{toc}{section}{\appendixname\ifoneappendix\else~\theappendix\fi\\: #1}}
+    {}{\InnerPatchFailed}%
+  }
+{}{\PatchFailed}
 \keywords{communicative reference, gestures, labels, word learning, language processing, vocabulary size\newline\indent Word count: X}
 \usepackage{lineno}
 
 \linenumbers
 \usepackage{csquotes}
-\ifxetex
-  % Load polyglossia as late as possible: uses bidi with RTL langages (e.g. Hebrew, Arabic)
-  \usepackage{polyglossia}
-  \setmainlanguage[]{english}
-\else
-  \usepackage[shorthands=off,main=english]{babel}
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
 \fi
 
 \title{Spanish-speaking caregivers' use of referential labels with toddlers is a better predictor of later vocabulary than their use of referential gestures}
 \author{Janet Y. Bang\textsuperscript{1,2,*}, Manuel Bohn\textsuperscript{1,3,*}, Joel Ramírez, Jr\textsuperscript{1,3}, Virginia A. Marchman\textsuperscript{1,3}, \& Anne Fernald\textsuperscript{1,3}}
 \date{}
 
+
+\shorttitle{Predicting vocabulary from labels and gestures}
 
 \authornote{
 
@@ -142,7 +192,7 @@ Correspondence concerning this article should be addressed to Janet Y. Bang, One
 
 \affiliation{\vspace{0.5cm}\textsuperscript{1} Department of Psychology, Stanford University\\\textsuperscript{2} Department of Child and Adolescent Development, San José State University\\\textsuperscript{3} Department of Comparative Cultural Psychology, Max Planck Institute for Evolutionary Anthropology\\\textsuperscript{*} These authors contributed equally}
 
-\abstract{
+\abstract{%
 Variation in how frequently caregivers engage with their children is associated with variation in children's later language outcomes. One explanation for this link is that caregivers use both verbal behaviors, such as labels, and non-verbal behaviors, such as gestures, to help children establish reference to objects or events in the world. However, few studies have directly explored whether language outcomes are more strongly associated with referential behaviors that are expressed verbally, such as labels, or non-verbally, such as gestures, or whether both are equally predictive. Here, we observed caregivers from 42 Spanish-speaking families in the US engage with their 18-month-old children during 5-min lab-based, play sessions. Children's language processing speed and vocabulary size were assessed when children were 25 months. Bayesian model comparisons assessed the extent to which the frequencies of caregivers' referential labels, referential gestures, or labels and gestures together, were more strongly associated with children's language outcomes than their total numbers of words, or overall talkativeness. The best-fitting models showed that children who heard more referential labels at 18 months were faster in language processing and had larger vocabularies at 25 months. Models including gestures, or labels and gestures together, showed weaker fits to the data. Caregivers' total words predicted children's language processing speed, but predicted vocabulary size less well. These results suggest that the frequency with which caregivers of 18-month-old children use referential labels, more so than referential gestures, is a critical feature of caregiver verbal engagement that contributes to language processing development and vocabulary growth.
 }
 
@@ -170,18 +220,18 @@ Variation in how frequently caregivers engage with their children is associated 
 
 Children learn language through interactions with others. Studies of caregiver-child interactions have documented extensive variability in the frequency with which caregivers use verbal behaviors (e.g., words) and nonverbal behaviors (e.g., gestures) when they engage with their children. Individual differences among caregivers have been noted in studies of families across diverse linguistic, cultural, and socioeconomic status (SES) backgrounds (Casillas, Brown, \& Levinson, 2019; Hart \& Risley, 1995; Hoff, 2003; Weber, Fernald, \& Diop, 2017). Moreover, variability in the frequency of caregivers' use of verbal behaviors (Gilkerson et al., 2018; Huttenlocher, Haight, Bryk, Seltzer, \& Lyons, 1991; Rowe, 2012; Shneidman \& Goldin-Meadow, 2012; Walker, Greenwood, Hart, \& Carta, 1994; Weisleder \& Fernald, 2013) and nonverbal behaviors (Cartmill et al., 2013; Pan, Rowe, Singer, \& Snow, 2005; Rowe, 2008; Rowe \& Goldin-Meadow, 2009) has been shown to be positively associated with children's later language development.
 
-There are multiple proposals to explain how caregivers' verbal and nonverbal behaviors support later language learning. Both can be used to refer to objects and events. By using verbal behaviors, such as labels, in the presence of objects, caregivers support children's learning of word-referent mappings, a critical step in children's early comprehension and subsequent word production (Baldwin, 1993; Bohn \& Frank, 2019; McMurray, Horst, \& Samuelson, 2012). Nonverbal behaviors, such as gestures, can also be used to refer to and communicate about the identity of referents (e.g., by pointing to, holding out, or giving a cup to someone). For example, caregivers' deictic gestures, such as pointing, can help children disambiguate the referent of a label from other candidate referents (Iverson, Capirci, Longobardi, \& Caselli, 1999; Puccini, Hassemer, Salomo, \& Liszkowski, 2010; Rowe, 2000; Tfouni \& Klatzky, 1983; Yuksel \& Brooks, 2017; Zukow-Goldring, 1996). Labels and gestures can also be used together (e.g., saying \enquote{give me the cup,} while pointing to a cup), providing the child with two cues to reference in differing modalities. Thus, caregivers' use of labels, gestures, or both together, can help children to map language onto specific concepts, strengthening their understanding of how language represents objects or events in their world. In this study, we compare Spanish-speaking caregivers' use of verbal behaviors (i.e., total words and referential labels) and non-verbal behaviors (i.e., referential gestures) during a play session with their 18-month-old children. We then assess the degree to which these behaviors are linked to children's language processing efficiency and vocabulary outcomes at 25 months.
+There are multiple proposals to explain how caregivers' verbal and nonverbal behaviors support later language learning. Both can be used to refer to objects and events. By using verbal behaviors, such as labels, in the presence of objects, caregivers support children's learning of word-referent mappings, a critical step in children's early comprehension and subsequent word production (Baldwin, 1993; Bohn \& Frank, 2019; McMurray, Horst, \& Samuelson, 2012). Nonverbal behaviors, such as gestures, can also be used to refer to and communicate about the identity of referents (e.g., by pointing to, holding out, or giving a cup to someone). For example, caregivers' deictic gestures, such as pointing, can help children disambiguate the referent of a label from other candidate referents (Iverson, Capirci, Longobardi, \& Caselli, 1999; Puccini, Hassemer, Salomo, \& Liszkowski, 2010; Rowe, 2000; Tfouni \& Klatzky, 1983; Yuksel \& Brooks, 2017; Zukow-Goldring, 1996). Labels and gestures can also be used together (e.g., saying ``give me the cup,'' while pointing to a cup), providing the child with two cues to reference in differing modalities. Thus, caregivers' use of labels, gestures, or both together, can help children to map language onto specific concepts, strengthening their understanding of how language represents objects or events in their world. In this study, we compare Spanish-speaking caregivers' use of verbal behaviors (i.e., total words and referential labels) and non-verbal behaviors (i.e., referential gestures) during a play session with their 18-month-old children. We then assess the degree to which these behaviors are linked to children's language processing efficiency and vocabulary outcomes at 25 months.
 
 \hypertarget{variation-in-caregivers-verbal-and-non-verbal-behaviors}{%
 \subsection{Variation in caregivers' verbal and non-verbal behaviors}\label{variation-in-caregivers-verbal-and-non-verbal-behaviors}}
 
-Documenting variability among caregivers in their frequency of communicative behaviors is critical for establishing links between these behaviors and later child outcomes. Verbal behaviors have been examined using numerous measures that capture the quantity and quality of caregivers' speech -- although they mostly do so ignoring the referential context. Using the LENA technology, Gilkerson et al. (2017) collected day-long recordings of the speech children heard in 329 American families with 2- to 48-month-old English-speaking children from varying SES backgrounds. Speech recognition software provided automated estimates of the quantity of caregivers' speech, i.e., adult word counts (AWC), revealing that children were exposed to as few as 8,000 and as many as 17,000 words in a 12-hour day. Bergelson et al. (2019) collected LENA daylong recordings with 3- to 20-month-old children in 61 American families. Instead of total adult-word counts, they assessed variation in caregiver talk by measuring the amount of time each child was exposed to child-directed speech (CDS). The authors found that children were exposed to CDS for 11.36 min per hour, on average, with a standard deviation over a third of the mean (SD = 4.24 min). Studies of caregiver-child interactions in different sociocultural contexts, such as subsistence farming communities, have found that, children were exposed to far less speech, on average, than in other communities; however, there was still substantial variability among families (Bunce et al., 2020; Casillas et al., 2019; Casillas, Brown, \& Levinson, 2021; Shneidman \& Goldin-Meadow, 2012; Yuksel \& Brooks, 2017). Other studies have specifically examined caregivers' use of nouns in verbal labels and noted variability among caregivers in multiple languages, including English, Italian, French, Spanish, Turkish, Mandarin, and Korean (Altınkamış, Kern, \& Sofu, 2014; Bergelson, Casillas, et al., 2019; Choi, 2000; Rosemberg et al., 2020; Tardif, Shatz, \& Naigles, 1997).
+Documenting variability among caregivers in their frequency of communicative behaviors is critical for establishing links between these behaviors and later child outcomes. Verbal behaviors have been examined using numerous measures that capture the quantity and quality of caregivers' speech -- although they mostly do so ignoring the referential context. Using the LENA technology, Gilkerson et al. (2017) collected day-long recordings of the speech children heard in 329 American families with 2- to 48-month-old English-speaking children from varying SES backgrounds. Speech recognition software provided automated estimates of the quantity of caregivers' speech, i.e., adult word counts (AWC), revealing that children were exposed to as few as 8,000 and as many as 17,000 words in a 12-hour day. Bergelson et al. (2019) collected LENA daylong recordings with 3- to 20-month-old children in 61 American families. Instead of total adult-word counts, they assessed variation in caregiver talk by measuring the amount of time each child was exposed to child-directed speech (CDS). The authors found that children were exposed to CDS for 11.36 min per hour, on average, with a standard deviation over a third of the mean (SD = 4.24 min). Studies of caregiver-child interactions in different sociocultural contexts, such as subsistence farming communities, have found that, children were exposed to far less speech, on average, than in other communities; however, there was still substantial variability among families (Bunce et al., 2020; Casillas et al., 2019, 2021; Shneidman \& Goldin-Meadow, 2012; Yuksel \& Brooks, 2017). Other studies have specifically examined caregivers' use of nouns in verbal labels and noted variability among caregivers in multiple languages, including English, Italian, French, Spanish, Turkish, Mandarin, and Korean (Altınkamış, Kern, \& Sofu, 2014; Bergelson et al., 2019; S. Choi, 2000; Rosemberg et al., 2020; Tardif, Shatz, \& Naigles, 1997).
 
-Substantial variability among caregivers in their use of nonverbal gestures is also well documented. Studies examining caregivers' use of gestures have primarily focused on gestures that are symbolic or representational to some degree {[}rowe2022early{]}, such as iconic gestures (e.g., flapping hands for a bird), conventional gestures (e.g., nodding one's head to mean \enquote{yes} in the US), and referential gestures (e.g., holding out objects or deictic gestures such as pointing). For example, Rowe et al. (2008) videotaped 90-min interactions in 53 English-speaking families with children from 14 to 34 months. They found that caregivers produced, on average, 100-115 symbolic, conventional, and deictic gestures, with values ranging from only a few gestures to over 400. Other studies have examined deictic gesture use in families speaking non-English languages and living in different sociocultural contexts, e.g., in families speaking Yucatec Mayan in Mexico (Salomo \& Liszkowski, 2013) and Lazuri in Turkey (Yuksel \& Brooks, 2017), also noting extensive variability among caregivers in both groups.
+Substantial variability among caregivers in their use of nonverbal gestures is also well documented. Studies examining caregivers' use of gestures have primarily focused on gestures that are symbolic or representational to some degree (Rowe, Wei, \& Salo, 2022), such as iconic gestures (e.g., flapping hands for a bird), conventional gestures (e.g., nodding one's head to mean `yes' in the US), and referential gestures (e.g., holding out objects or deictic gestures such as pointing). For example, Rowe, Özçalışkan, and Goldin-Meadow (2008) videotaped 90-min interactions in 53 English-speaking families with children from 14 to 34 months. They found that caregivers produced, on average, 100-115 symbolic, conventional, and deictic gestures, with values ranging from only a few gestures to over 400. Other studies have examined deictic gesture use in families speaking non-English languages and living in different sociocultural contexts, e.g., in families speaking Yucatec Mayan in Mexico (Salomo \& Liszkowski, 2013) and Lazuri in Turkey (Yuksel \& Brooks, 2017), also noting extensive variability among caregivers in both groups.
 
-Variability among caregivers in their use of verbal behaviors and gestures has been linked to child language outcomes. In some studies, language samples are used to capture variation in the frequency of young children's production of recognizable words during interactions with their caregiver (Huttenlocher et al., 1991). In older school-age children, researchers have also reported links between frequency of caregiver verbal engagement and children's scores on standardized tests of language, such as vocabulary (Gilkerson et al., 2018). When children are infants and toddlers, many studies rely on parent-reports assessments of children's vocabulary size, such as the MacArthur-Bates Communicative Developmental Inventories (CDI, Fenson et al., 2007), which ask parents to indicate which words their child \enquote{understands and says} from among several hundred words on a checklist (e.g., Weisleder \& Fernald, 2013). Still other studies have explored links between caregivers' verbal behaviors and children's performance in tasks that capture skill at processing language in real time, such as the Looking-While-Listening task (Fernald, Zangl, Luz, Virginia, \& Marchman, 2008). For example, in a sample of 27 Spanish-speaking caregiver-child dyads, Hurtado, Marchman, and Fernald (2008) reported that children who experienced more speech from their caregivers during a lab-based play session were reported both to know more words on the CDI and were more efficient at recognizing spoken words in real time. Weisleder and Fernald (2013) reported similar findings based on estimates of caregivers' child-directed word counts during day-long recordings. In both studies, mediation models explored possible pathways among caregiver talk, vocabulary size, and processing efficiency. Results suggested that frequent engagement with caregivers may be \enquote{tuning up} children's abilities to map real-time spoken language onto referents in the world around them, allowing for more efficient use of the input to support language learning.
+Variability among caregivers in their use of verbal behaviors and gestures has been linked to child language outcomes. In some studies, language samples are used to capture variation in the frequency of young children's production of recognizable words during interactions with their caregiver (Huttenlocher et al., 1991). In older school-age children, researchers have also reported links between frequency of caregiver verbal engagement and children's scores on standardized tests of language, such as vocabulary (Gilkerson et al., 2018). When children are infants and toddlers, many studies rely on parent-reports assessments of children's vocabulary size, such as the MacArthur-Bates Communicative Developmental Inventories (CDI, Fenson et al., 2007), which ask parents to indicate which words their child ``understands and says'' from among several hundred words on a checklist (e.g., Weisleder \& Fernald, 2013). Still other studies have explored links between caregivers' verbal behaviors and children's performance in tasks that capture skill at processing language in real time, such as the Looking-While-Listening task (Fernald, Zangl, Portillo, \& Marchman, 2008). For example, in a sample of 27 Spanish-speaking caregiver-child dyads, Hurtado, Marchman, and Fernald (2008) reported that children who experienced more speech from their caregivers during a lab-based play session were reported both to know more words on the CDI and were more efficient at recognizing spoken words in real time. Weisleder and Fernald (2013) reported similar findings based on estimates of caregivers' child-directed word counts during day-long recordings. In both studies, mediation models explored possible pathways among caregiver talk, vocabulary size, and processing efficiency. Results suggested that frequent engagement with caregivers may be ``tuning up'' children's abilities to map real-time spoken language onto referents in the world around them, allowing for more efficient use of the input to support language learning.
 
-Links between caregivers' use of gesture and children's later vocabulary abilities have also been reported (Iverson et al., 1999; Pan et al., 2005; Rowe, 2008). Rowe and Goldin-Meadow (2009) examined socioeconomically-diverse caregivers and children in the home across multiple visits, beginning when children were 14 months. They found that variation among children in their gesture use at 14 months was related to their vocabulary skills at 54 months, measured using a standardized test. Importantly, this study and others have found that the frequency of caregivers' gesture use is related to the frequency of children's gesture use. In particular, caregivers' use of deictic gestures, such as pointing, has been viewed as a potential means of influencing children's own use of deictic gestures, an important prelinguistic skill (Goodwyn, Acredolo, \& Brown, 2000; Matthews, Behne, Lieven, \& Tomasello, 2012; Rowe, 2000; Rowe \& Goldin-Meadow, 2009; Rowe \& Leech, 2019). Other studies propose that caregivers' use of deictic gestures can support word learning by bringing attention to an object and reducing spatial ambiguity, thus allowing children to attend more effectively to the referent and/or the auditory signal (Iverson et al., 1999; Puccini et al., 2010; Rowe, 2000; Tfouni \& Klatzky, 1983; Yuksel \& Brooks, 2017; Zukow-Goldring, 1996).
+Links between caregivers' use of gesture and children's later vocabulary abilities have also been reported (Iverson et al., 1999; Pan et al., 2005; Rowe, 2008). Rowe and Goldin-Meadow (2009) examined socioeconomically-diverse caregivers and children in the home across multiple visits, beginning when children were 14 months. They found that variation among children in their gesture use at 14 months was related to their vocabulary skills at 54 months, measured using a standardized test. Importantly, this study and others have found that the frequency of caregivers' gesture use is related to the frequency of children's gesture use. In particular, caregivers' use of deictic gestures, such as pointing, has been viewed as a potential means of influencing children's own use of deictic gestures, an important prelinguistic skill (Goodwyn, Acredolo, \& Brown, 2000; Matthews, Behne, Lieven, \& Tomasello, 2012; Rowe, 2000; Rowe \& Leech, 2019). Other studies propose that caregivers' use of deictic gestures can support word learning by bringing attention to an object and reducing spatial ambiguity, thus allowing children to attend more effectively to the referent and/or the auditory signal (Iverson et al., 1999; Puccini et al., 2010; Rowe, 2000; Tfouni \& Klatzky, 1983; Yuksel \& Brooks, 2017; Zukow-Goldring, 1996).
 
 \hypertarget{labels-gestures-or-both}{%
 \subsection{Labels, gestures, or both?}\label{labels-gestures-or-both}}
@@ -202,7 +252,34 @@ We predicted that if children's later language abilities are best predicted by t
 \hypertarget{participants}{%
 \subsection{Participants}\label{participants}}
 
-Participants were 43 primarily Spanish-speaking children\footnote{As seen in our pre-registration, we determined a sample size of \emph{n} = 50 based on a priori frequentist power analyses, but stopped at n = 43 because at the time of analysis there were no more available families to include in the study.} (43 females) and their caregivers who were participating in a longitudinal study examining language development in primarily monolingual Spanish-speaking families in the US. Families were recruited from birth records or community contacts in Northern California and were excluded if the child was born preterm, had a known neurodevelopmental disorder, or loss of hearing or vision. As shown in Table X, children were approximately 18 months at the start of the study and approximately 25 months when we assessed language processing speed and vocabulary size. We calculated SES using the Hollingshead Index, which reflects education and occupation for both mothers and fathers. SES was included as a covariate based on prior studies (Daneri, Blair, \& Kuhn, 2018; Hoff, 2003; Huttenlocher, Waterfall, Vasilyeva, Vevea, \& Hedges, 2010), to examine the unique role of caregiver behaviors on children's language skills over and above potential confounding variables.
+\begin{table}[tbp]
+
+\begin{center}
+\begin{threeparttable}
+
+\caption{\label{tab:tab0}Participant age and SES.}
+
+\begin{tabular}{cccc}
+\toprule
+  & \multicolumn{1}{c}{M} & \multicolumn{1}{c}{SD} & \multicolumn{1}{c}{Range}\\
+\midrule
+Age (pre-test) & 18.54 & 0.84 & 17.1 - 19.8\\
+Age (post-test) & 25.46 & 0.68 & 24.2 - 26.8\\
+SES (pre-test) & 26.44 & 11.82 & 8 - 62\\
+\bottomrule
+\addlinespace
+\end{tabular}
+
+\begin{tablenotes}[para]
+\normalsize{\textit{Note.} SES was calculated based on the Hollingshead Index.}
+\end{tablenotes}
+
+\end{threeparttable}
+\end{center}
+
+\end{table}
+
+Participants were 42 primarily Spanish-speaking children\footnote{As seen in our pre-registration, we determined a sample size of \emph{n} = 50 based on a priori frequentist power analyses, but stopped at n = 42 because at the time of analysis there were no more available families to include in the study.} (42 females) and their caregivers who were participating in a longitudinal study examining language development in primarily monolingual Spanish-speaking families in the US. Families were recruited from birth records or community contacts in Northern California and were excluded if the child was born preterm, had a known neurodevelopmental disorder, or loss of hearing or vision. As shown in Table \ref{tab:tab0}, children were approximately 18 months at the start of the study and approximately 25 months when we assessed language processing speed and vocabulary size. We calculated SES using the Hollingshead Index, which reflects education and occupation for both mothers and fathers. SES was included as a covariate based on prior studies (Daneri, Blair, \& Kuhn, 2018; Hoff, 2003; Huttenlocher, Waterfall, Vasilyeva, Vevea, \& Hedges, 2010), to examine the unique role of caregiver behaviors on children's language skills over and above potential confounding variables.
 
 Families represented a diverse range of SES backgrounds. All mothers reported that they were native Spanish speakers. All families lived in the US but the mothers were primarily born in Mexico (33), with a few from Central America (5).
 
@@ -217,9 +294,9 @@ Native Spanish-speaking research staff met with the caregiver to explain study p
 \hypertarget{coding-of-caregiver-referential-gestures-and-labels.}{%
 \subsubsection{Coding of caregiver referential gestures and labels.}\label{coding-of-caregiver-referential-gestures-and-labels.}}
 
-A native Spanish-speaker using ELAN (version 5.0; Wittenburg, Brugman, Russel, Klassmann, \& Sloetjes, 2006) coded all caregivers' referential gestures and labels from the video recordings of the play sessions. Gestures were coded first without audio. Referential gestures were defined as those gestures used to attract infants' attention to the toys or other objects in the environment. Gestures included holding out objects/giving, pointing, descriptive or iconic gestures (e.g., making a chopping motion with their hand), and touching with an open hand. Physically playing with toys was not included as a gesture (e.g., holding the knife and pretending to cut vegetables in front of the child). A standardized protocol used to define the onset and offset of each gesture is available in our full codebook (\url{https://osf.io/s2jqy}). Frequency of gestures was derived for each caregiver, and the onset and offset of gestures were used for our overlap measure below.
+A native Spanish-speaker using ELAN (version 5.0, Wittenburg, Brugman, Russel, Klassmann, \& Sloetjes, 2006) coded all caregivers' referential gestures and labels from the video recordings of the play sessions. Gestures were coded first without audio. Referential gestures were defined as those gestures used to attract infants' attention to the toys or other objects in the environment. Gestures included holding out objects/giving, pointing, descriptive or iconic gestures (e.g., making a chopping motion with their hand), and touching with an open hand. Physically playing with toys was not included as a gesture (e.g., holding the knife and pretending to cut vegetables in front of the child). A standardized protocol used to define the onset and offset of each gesture is available in our full codebook (\url{https://osf.io/xqpsy/}). Frequency of gestures was derived for each caregiver, and the onset and offset of gestures were used for our overlap measure below.
 
-Caregivers' use of object labels was then coded by the same coder. The coder listened to the video and marked the onset and offset of all object labels that referred to objects in the play session. Frequency counts of label tokens were derived for each caregiver. Successive repetitions of a single label were counted as individual tokens. General category terms (e.g., \enquote{comida} {[}food{]}, or \enquote{juguetes} {[}toys{]}) were excluded because our goal was to focus on specific labels rather than category names for available objects. All English labels were excluded, given that we were assessing children's later Spanish language outcomes.
+Caregivers' use of object labels was then coded by the same coder. The coder listened to the video and marked the onset and offset of all object labels that referred to objects in the play session. Frequency counts of label tokens were derived for each caregiver. Successive repetitions of a single label were counted as individual tokens. General category terms (e.g., ``comida'' {[}food{]}, or ``juguetes'' {[}toys{]}) were excluded because our goal was to focus on specific labels rather than category names for available objects. All English labels were excluded, given that we were assessing children's later Spanish language outcomes.
 
 Finally, we determined the number of times that each caregiver produced an object label while using a gesture (overlaps: labels + gestures). An R script used the duration coding of each label and gesture in the ELAN output to identify the number of labels that occurred within a 1-sec window before or after a gesture (Cartmill et al., 2013).
 
@@ -242,14 +319,14 @@ During the play session, a LENA audio recorder was used to provide an estimate o
 \hypertarget{spoken-language-processing}{%
 \subsubsection{Spoken language processing}\label{spoken-language-processing}}
 
-At each time point, the child participated in the Looking-While-Listening task (LWL; Fernald et al., 2008). In this task, the child sits on their caregiver's lap while viewing pictures of two familiar objects on a screen. After 2 sec, a voice of a female, native-Spanish speaker names one of the objects (e.g., \enquote{¿Dónde está el perro?}, Where's the doggy?), followed by an attention-getter phrase (e.g., ``¿Te gustan las fotos?, Do you like the pictures?). On each trial, the pictures were presented in fixed pairs, matched for salience, and the target words were matched in grammatical gender. At 18 months, auditory stimuli consisted of eight familiar words presented 6 times each as target and distracter. At 25 months, auditory stimuli consisted of twelve familiar words presented 4 times each as target and distracter. Each word in the pair served an equal number of times as target and distracter, for a total of 48 trials, with target picture counterbalanced across side across trials.
+At each time point, the child participated in the Looking-While-Listening task (LWL, Fernald et al., 2008). In this task, the child sits on their caregiver's lap while viewing pictures of two familiar objects on a screen. After 2 sec, a voice of a female, native-Spanish speaker names one of the objects (e.g., ``¿Dónde está el perro?'', Where's the doggy?), followed by an attention-getter phrase (e.g., ``¿Te gustan las fotos?, Do you like the pictures?). On each trial, the pictures were presented in fixed pairs, matched for salience, and the target words were matched in grammatical gender. At 18 months, auditory stimuli consisted of eight familiar words presented 6 times each as target and distracter. At 25 months, auditory stimuli consisted of twelve familiar words presented 4 times each as target and distracter. Each word in the pair served an equal number of times as target and distracter, for a total of 48 trials, with target picture counterbalanced across side across trials.
 
 After a brief calibration session, trials were presented in two fixed pseudo-random orders such that the target picture was not presented on the same side for more than two trials in a row. Patterns of children's eye-gaze were captured at 60 frames/sec by a Tobii X60 eye-tracker, mounted to the bottom of the monitor. A video camera attached to the top of the monitor also provided a record of children's eye gaze across the full session. All video-recordings of the testing sessions were prescreened to exclude trials when the child was inattentive or if there was any concern that the caregiver was biasing the child. Based on which picture the child was fixated at target noun onset, trials were defined as distracter or target initial. Trials on which the child was not looking at either picture at target noun onset were not analyzed. Trials were also later removed on a child-by-child basis if the parent reported that the child did not know the target word. Due to calibration failures or experimental error, some portion of the sessions (11/42, 26\%) were hand-coded by trained coders following standard protocols (Fernald et al., 2008). Processing speed was calculated on all distracter-initial trials as the mean reaction time (RT) in milliseconds to shift from the distracter to the target picture measured from the onset of the target noun. Trials were excluded if shifts were faster than 300 ms or slower than 1800 ms from target noun onset, since these shifts are not likely to be in response to the target word. Given that children could have different numbers of distracter-initial trials, the mean number of trials per child varied (M = 9.81, SD = 4.70), however, all children had at least 2 trials contributing to the computation of RT (range = 2 -- 21).
 
 \hypertarget{vocabulary-size}{%
 \subsubsection{Vocabulary size}\label{vocabulary-size}}
 
-Children's vocabulary size in Spanish was assessed at each time point by parent report with the MacArthur-Bates Inventarios del Desarollo de Habilidades Communicativas (CDI; Jackson-Maldonado et al., 2003). These instruments ask parents to indicate what words their child can \enquote{understand and say} from a list of hundreds of items. At 18 months, some parents completed the Inventario I form and others completed Inventario II form, due to slight changes in protocol over time. For those children whose parents completed Inventario I, scores were converted to proportions based on the number of items on the Inventario II form. At 25 months, all parents completed Inventario II. Vocabulary size was the number of words chosen (680 words maximum). Due to missing data, 37 families are included for analyses with the CDI.
+Children's vocabulary size in Spanish was assessed at each time point by parent report with the MacArthur-Bates Inventarios del Desarollo de Habilidades Communicativas (CDI, Jackson-Maldonado et al., 2003). These instruments ask parents to indicate what words their child can ``understand and say'' from a list of hundreds of items. At 18 months, some parents completed the Inventario I form and others completed Inventario II form, due to slight changes in protocol over time. For those children whose parents completed Inventario I, scores were converted to proportions based on the number of items on the Inventario II form. At 25 months, all parents completed Inventario II. Vocabulary size was the number of words chosen (680 words maximum). Due to missing data, 37 families are included for analyses with the CDI.
 
 \hypertarget{analysis-strategy}{%
 \subsection{Analysis Strategy}\label{analysis-strategy}}
@@ -258,7 +335,7 @@ We first present descriptive statistics of all variables at 18 and 25 months. We
 
 For each dependent variable (dv), we compared the same set of models\footnote{The preregistration did not include a) the adult word count model and b) the baseline model. We added these models later a) to see if the number of labels was simply an indicator of overall caregiver talkativeness and b) to be able to judge if the inclusion of predictors improved predictions at all.}: (1) \texttt{dv\ \textasciitilde{}\ labels}; (2) \texttt{dv\ \textasciitilde{}\ gestures}; (3) \texttt{dv\ \textasciitilde{}\ overlaps}; (4) \texttt{dv\ \textasciitilde{}\ adult\_words\_per\_hour}, which considers all speech using AWC; (5) \texttt{dv\ \textasciitilde{}\ labels\ +\ gestures}, which assumes that both labels and gestures contribute independently; (6) \texttt{dv\ \textasciitilde{}\ labels\ *\ gestures}, which assumes that the contribution of labels and gestures are conditional on one another, and (7) \texttt{dv\ \textasciitilde{}\ covariates} is the baseline model. If a model performs at or worse than the baseline, its predictor(s) do not contribute to predicting gains in processing or vocabulary over and above the covariates.
 
-All models were fit in a Bayesian framework as linear models in \texttt{R} (R Core Team, 2021) via the function \texttt{brm} from the R-package \texttt{brms} (Bürkner, 2017) using default priors for all model parameters. All caregiver behavior variables were scaled to have a mean of 0 and a standard deviation of 1. Following McElreath (2020), we compared models using WAIC (widely applicable information criterion) scores and weights, an indicator of the model's predictive accuracy for out-of-sample data; models with lower scores are preferred. Roughly speaking, WAIC scores reflect the model's predictive accuracy with a penalty for the number of effective parameters. As such, model comparisons favor simpler models and thereby guard against overfitting. WAIC weights are an estimate of the probability that each model (compared to all models considered) will make the best predictions on new data. We next inspected the posterior distributions of the model predictors in the best models via their means and 95\% credible intervals (CI) to inform the nature (positive or negative) and strength of the influence of the respective caregiver engagement variable on the dependent variable.
+All models were fit in a Bayesian framework as linear models in \texttt{R} (Team, 2021) via the function \texttt{brm} from the R-package \texttt{brms} (Bürkner, 2017) using default priors for all model parameters. All caregiver behavior variables were scaled to have a mean of 0 and a standard deviation of 1. Following McElreath (2020), we compared models using WAIC (widely applicable information criterion) scores and weights, an indicator of the model's predictive accuracy for out-of-sample data; models with lower scores are preferred. Roughly speaking, WAIC scores reflect the model's predictive accuracy with a penalty for the number of effective parameters. As such, model comparisons favor simpler models and thereby guard against overfitting. WAIC weights are an estimate of the probability that each model (compared to all models considered) will make the best predictions on new data. We next inspected the posterior distributions of the model predictors in the best models via their means and 95\% credible intervals (CI) to inform the nature (positive or negative) and strength of the influence of the respective caregiver engagement variable on the dependent variable.
 
 \hypertarget{results}{%
 \section{Results}\label{results}}
@@ -305,7 +382,7 @@ Labels * gestures & 557.17 & 9.82 & 0.06\\
 
 Table \ref{tab:tab1} shows WAIC scores and weights for each model predicting children's language processing speed (RT). Only two models outperformed the baseline model: labels and AWC per hour, with both models similar in their weights (model weights: 0.23 labels; 0.18 AWC per hour). None of the models that included gestures, either as the only test predictor or in combination with labels, made better predictions compared to the baseline model than models that included labels. Thus, children's language processing speed at 25 months was best predicted by models that included some form of caregivers' verbal behavior as predictors.
 
-Figure \ref{fig:fig3}A-i shows the posterior distribution of the model estimates for number of labels to be negative (\(\beta\) = -39.96) and largely different from 0 (95\% credible interval (CrI) = -91.91 - 12.11). This speaks for a positive relation: the more labels the caregiver used at 18 months, the more the child improved in their reaction time from 18 to 25 months. However, the fact that the 95\% CrI included zero, cautions against an overly strong interpretation. The effect of SES was similar. Children from families higher in SES tended to have greater developmental gains in reaction time, however, this effect was weak in magnitude (\(\beta\) = -27.67, 95\% CrI = -79.96 - 24.31). Finally, children with a slower reaction time at 18 months were also slower at 25 months (\(\beta\) = 52.69, 95\% CrI = 0.12 - 105.42). Figure A-ii shows the observed vs.~predicted values from the model with labels as the test predictor.
+Figure \ref{fig:fig3}A-i shows the posterior distribution of the model estimates for number of labels to be negative (\(\beta\) = -39.96) and largely different from 0 (95\% credible interval (CrI) = -91.91 - 12.11). This speaks for a positive relation: the more labels the caregiver used at 18 months, the more the child improved in their reaction time from 18 to 25 months. However, the fact that the 95\% CrI included zero, cautions against an overly strong interpretation. A similar pattern was found when investiagting the estimate for adult word count in the respective model: more adult talk was related to gains in reaction time -- with considerable uncertainty (\(\beta\) = -27.88, 95\% CrI = -80.57 - 25.19). The effect of SES was also similar. Children from families higher in SES tended to have greater developmental gains in reaction time, however, this effect was weak in magnitude (\(\beta\) = -27.67, 95\% CrI = -79.96 - 24.31). Finally, children with a slower reaction time at 18 months were also slower at 25 months (\(\beta\) = 52.69, 95\% CrI = 0.12 - 105.42). Figure A-ii shows the observed vs.~predicted values from the model with labels as the test predictor.
 
 \begin{figure}
 \includegraphics[width=1\linewidth]{../stats/figures/fig.3} \caption{Left: Posterior distributions for model estimates, right: model predictions. On the left, the green area denotes the section of the distribution that is supportive (i.e. faster reaction time and larger vocabulary). Points below each distribution show means, and error bars show 80\% (thick) and 95\% (thin) CrIs.  A-i shows the posterior distribution of all model estimates in the labels model for reaction time. B-i shows the same in the model predicting vocabulary size. On the right, A-ii and B-ii contrast the observed (black) values with the values predicted by the model (red) for reaction time (A) and for vocabulary size (B).}\label{fig:fig3}
@@ -361,7 +438,7 @@ Our goal was to compare variation among Spanish-speaking caregivers in the numbe
 \hypertarget{why-might-caregivers-use-of-referential-labels-predict-childrens-language-processing-efficiency-and-vocabulary-size}{%
 \subsection{Why might caregivers' use of referential labels predict children's language processing efficiency and vocabulary size?}\label{why-might-caregivers-use-of-referential-labels-predict-childrens-language-processing-efficiency-and-vocabulary-size}}
 
-Those caregivers who used more labels also used more words overall (Figure \ref{fig:fig2}B), reflecting an r2 of 45\% shared variance and demonstrating a strong relation between these measures. However, while both measures of talk predicted reaction time, only caregivers' use of labels better predicted both outcomes of children's language processing and their vocabulary size. One possibility is that the frequency of caregiver labels is more closely linked to children's understanding of word meaning, which is reflected in outcome measures of both language processing and vocabulary size. Labels themselves are symbols that refer to the objects, ideas, or events they represent (Acredolo \& Goodwyn, 1988; Bates, Thal, Whitesell, Fenson, \& Oakes, 1989; Colonnesi, Stams, Koster, \& Noom, 2010), and both the mapping of a label to a referent and the learning of a label for a referent are directly assessed in both of our outcome measures. Language processing speed reflects children's ability to map a spoken object name in real time onto one of two familiar pictures, assessed only on trials when the child demonstrates a clear shift from the distracter to the target picture. Thus, this task taps into children's familiar knowledge of these everyday objects where children who are faster at processing the object label may have stronger conceptual and linguistic representations than those who are slower. Vocabulary size, as reported by parents on the CDI, reflects children's abilities to produce the names of objects and concepts. Therefore, variation among caregivers in the frequency of specific use of referential labels may provide a closer link to individual differences in children's linguistic knowledge about objects or events. While caregivers' use of total words use may help \enquote{tune} up children's language processing speed, and provide children with the practice of hearing language, caregivers' use of labels, in particular, specifically provides the linguistic information that enables early word learning. These results suggest that during early stages of language learning, repeated and varied exposure to labels embedded within day-to-day conversations may help children associate, prune, and strengthen these links (McMurray et al., 2012), quickly process how labels map onto objects in real time (Fernald, Perfors, \& Marchman, 2006), and build a vocabulary that reflects their understanding about the world (Weisleder \& Fernald, 2013).
+Those caregivers who used more labels also used more words overall (Figure \ref{fig:fig2}B), reflecting an r2 of 45\% shared variance and demonstrating a strong relation between these measures. However, while both measures of talk predicted reaction time, only caregivers' use of labels better predicted both outcomes of children's language processing and their vocabulary size. One possibility is that the frequency of caregiver labels is more closely linked to children's understanding of word meaning, which is reflected in outcome measures of both language processing and vocabulary size. Labels themselves are symbols that refer to the objects, ideas, or events they represent (Acredolo \& Goodwyn, 1988; Bates, Thal, Whitesell, Fenson, \& Oakes, 1989; Colonnesi, Stams, Koster, \& Noom, 2010), and both the mapping of a label to a referent and the learning of a label for a referent are directly assessed in both of our outcome measures. Language processing speed reflects children's ability to map a spoken object name in real time onto one of two familiar pictures, assessed only on trials when the child demonstrates a clear shift from the distracter to the target picture. Thus, this task taps into children's familiar knowledge of these everyday objects where children who are faster at processing the object label may have stronger conceptual and linguistic representations than those who are slower. Vocabulary size, as reported by parents on the CDI, reflects children's abilities to produce the names of objects and concepts. Therefore, variation among caregivers in the frequency of specific use of referential labels may provide a closer link to individual differences in children's linguistic knowledge about objects or events. While caregivers' use of total words use may help `tune' up children's language processing speed, and provide children with the practice of hearing language, caregivers' use of labels, in particular, specifically provides the linguistic information that enables early word learning. These results suggest that during early stages of language learning, repeated and varied exposure to labels embedded within day-to-day conversations may help children associate, prune, and strengthen these links (McMurray et al., 2012), quickly process how labels map onto objects in real time (Fernald, Perfors, \& Marchman, 2006), and build a vocabulary that reflects their understanding about the world (Weisleder \& Fernald, 2013).
 
 \hypertarget{why-are-labels-more-predictive-than-gestures}{%
 \subsection{Why are labels more predictive than gestures?}\label{why-are-labels-more-predictive-than-gestures}}
@@ -372,14 +449,14 @@ It is important to note that as in previous studies, our measures of referential
 
 These results should not be taken as evidence that caregivers' gesture use plays a less influential role in children's language learning. In exploratory analyses, we found that caregivers' use of referential gestures predicted vocabulary growth when included as the only test predictor, although not in combination with labels. These links are in line with those of prior studies showing that variation in caregiver gestures or nonverbal behaviors predicted children's later vocabulary, although those studies differed in whether or not they controlled for children's earlier language skills (Cartmill et al., 2013; Rowe \& Goldin-Meadow, 2009). By directly contrasting the use of referential labels and gestures in the same context, our study demonstrated that knowing the number of referential gestures did not improve our predictions for growth in children's language processing or vocabulary size, if the number of labels was already known (Iverson et al., 1999 ; Pan et al., 2005).
 
-It is also possible that caregivers' use of referential labels and gestures are of different importance at different phases of children's communicative development. Children in our study were 17 to 19 months old, whereas prior studies linking caregivers' gesture use to later outcomes examined gestures when children were around 14 to 16 months old (Iverson et al., 1999 ; Pan et al., 2005; Rowe \& Goldin-Meadow, 2009). At earlier ages more children are in an early pre-linguistic stage, and thus may benefit more from the support for learning provided by caregivers' use of referential gestures. Children who produce more gestures early in life have been found to have stronger vocabulary later on (e.g., Colonnesi et al., 2010). Caregivers' gestures may be particularly supportive of children's prelinguistic gestures and short-term language outcomes (Rowe \& Leech, 2019), an effect that is less evident as children become more linguistically advanced. It is also important to note that the current study focused specifically on referential gestures, whereas prior work has considered a larger set of caregivers' communicative behaviors, including symbolic gestures (e.g., cutting motion with hands) and conventional gestures (e.g., nodding to mean \enquote{yes} in the United States). Therefore, at any given moment, caregivers can use both referential and non-referential gestures to direct children's attention to the label-object link, support visual object recognition, and resolve ambiguity of the intended referent (Tincoff et al., 2019; Villiers Rader \& Zukow-Goldring, 2012; Zukow-Goldring, 1996), all of which are likely to provide a foundation for stronger language learning.
+It is also possible that caregivers' use of referential labels and gestures are of different importance at different phases of children's communicative development. Children in our study were 17 to 19 months old, whereas prior studies linking caregivers' gesture use to later outcomes examined gestures when children were around 14 to 16 months old (Iverson et al., 1999 ; Pan et al., 2005; Rowe \& Goldin-Meadow, 2009). At earlier ages more children are in an early pre-linguistic stage, and thus may benefit more from the support for learning provided by caregivers' use of referential gestures. Children who produce more gestures early in life have been found to have stronger vocabulary later on (e.g., Colonnesi et al., 2010). Caregivers' gestures may be particularly supportive of children's prelinguistic gestures and short-term language outcomes (Rowe \& Leech, 2019), an effect that is less evident as children become more linguistically advanced. It is also important to note that the current study focused specifically on referential gestures, whereas prior work has considered a larger set of caregivers' communicative behaviors, including symbolic gestures (e.g., cutting motion with hands) and conventional gestures (e.g., nodding to mean `yes' in the United States). Therefore, at any given moment, caregivers can use both referential and non-referential gestures to direct children's attention to the label-object link, support visual object recognition, and resolve ambiguity of the intended referent (Tincoff et al., 2019; Villiers Rader \& Zukow-Goldring, 2012; Zukow-Goldring, 1996), all of which are likely to provide a foundation for stronger language learning.
 
 \hypertarget{limitations}{%
 \subsection{Limitations}\label{limitations}}
 
 While our results shed light on which specific features of caregiver communicative behaviors may be important for language learning, we are unable to establish definitively the direction of any causal link between caregivers' verbal behaviors and children's language skills. Though we included a covariate of children's initial language skills on the respective outcome measure to assess caregivers' contribution to children's growth in language skills, we cannot rule out the possibility that caregivers who use more labels do so because their children are more verbal. Correlational links represent average effects, with much still left unexplained (Bailey, Duncan, Watts, Clements, \& Sarama, 2018). Rather than a causal pathway of caregivers influencing children, correlations may represent relatively stable individual differences among children and families with shared genes and/or environments. Correlations may also be attributable to individual differences in children's propensity or ability to elicit engagement from others or in children's ability to effectively process information (Pace, Luo, Hirsh-Pasek, \& Golinkoff, 2017; Weisleder \& Fernald, 2013). Though there is growing research examining whether intervening with caregivers in their use of verbal and nonverbal behaviors can influence children's early language development (Matthews et al., 2012; Rowe \& Leech, 2019; Suskind et al., 2016), findings to date are mixed. Ongoing research should continue to explore the effectiveness of such interventions for children's short- and long-term outcomes, as well as potential moderators that influence which families are likely to benefit the most (Rowe \& Leech, 2019).
 
-Moreover, the potential for short- or long-term causal impacts of caregivers' verbal or nonverbal behaviors for children's language outcomes should be considered within the context of broader socioeconomic and political systems that underlie families' day-to-day experiences (Rowe \& Weisleder, 2020). This work examined caregiver behaviors in a lab-based interaction, which may be consistent with caregivers' densest periods of interactions in the home; however, testing children in a lab still differs from the ebb and flow of interactions over the course of a day, when children may engage with multiple individuals (Bergelson et al., 2019; Reynolds, Vernon-Feagans, Bratsch-Hines, Baker, \& Investigators, 2019). Our study also included children with typical development from one unique cultural context, primarily Spanish-speaking families raising their children in an English-dominant community in the United States. More work is needed to understand if these links are seen in comparative studies across cultures, languages, and in populations which include neurodiverse children (Bang, Adiao, Marchman, and Feldman (2019) ;Choi, Shah, Rowe, Nelson, and Tager-Flusberg (2020); Salomo and Liszkowski (2013){]}. Across contexts, children and parenting practices may vary widely (Rowe \& Weisleder, 2020), likely influencing how frequently children are exposed to labels and gestures during direct engagement with caregivers. There is still much to understand for what processes may be shared, but also what may very well be different pathways that support language acquisition in different populations.
+Moreover, the potential for short- or long-term causal impacts of caregivers' verbal or nonverbal behaviors for children's language outcomes should be considered within the context of broader socioeconomic and political systems that underlie families' day-to-day experiences (Rowe \& Weisleder, 2020). This work examined caregiver behaviors in a lab-based interaction, which may be consistent with caregivers' densest periods of interactions in the home; however, testing children in a lab still differs from the ebb and flow of interactions over the course of a day, when children may engage with multiple individuals (Bergelson, Amatuni, Dailey, Koorathota, \& Tor, 2019; Reynolds, Vernon-Feagans, Bratsch-Hines, Baker, \& Investigators, 2019). Our study also included children with typical development from one unique cultural context, primarily Spanish-speaking families raising their children in an English-dominant community in the United States. More work is needed to understand if these links are seen in comparative studies across cultures, languages, and in populations which include neurodiverse children (Bang, Adiao, Marchman, and Feldman (2019) ;B. Choi, Shah, Rowe, Nelson, and Tager-Flusberg (2020); Salomo and Liszkowski (2013){]}. Across contexts, children and parenting practices may vary widely (Rowe \& Weisleder, 2020), likely influencing how frequently children are exposed to labels and gestures during direct engagement with caregivers. There is still much to understand for what processes may be shared, but also what may very well be different pathways that support language acquisition in different populations.
 
 \hypertarget{conclusion}{%
 \subsection{Conclusion}\label{conclusion}}
@@ -392,203 +469,209 @@ Children who engage more frequently with their caregivers tend to have stronger 
 \section{References}\label{references}}
 
 \hypertarget{refs}{}
-\leavevmode\hypertarget{ref-acredolo_symbolic_1988}{}%
-Acredolo, L., \& Goodwyn, S. (1988). Symbolic gesturing in normal infants. \emph{Child Development}, \emph{59}(2), 450--466. \url{https://doi.org/https://doi.org/10.2307/1130324}
+\begin{CSLReferences}{1}{0}
+\leavevmode\vadjust pre{\hypertarget{ref-acredolo_symbolic_1988}{}}%
+Acredolo, L., \& Goodwyn, S. (1988). Symbolic gesturing in normal infants. \emph{Child Development}, \emph{59}(2), 450--466. \url{https://doi.org/10.2307/1130324}
 
-\leavevmode\hypertarget{ref-altinkamis_when_2014}{}%
-Altınkamış, N. F., Kern, S., \& Sofu, H. (2014). When context matters more than language: Verb or noun in French and Turkish caregiver speech. \emph{First Language}, \emph{34}(6), 537--550. \url{https://doi.org/10.1177/0142723714560179}
+\leavevmode\vadjust pre{\hypertarget{ref-altinkamis_when_2014}{}}%
+Altınkamış, N. F., Kern, S., \& Sofu, H. (2014). When context matters more than language: {Verb} or noun in {French} and {Turkish} caregiver speech. \emph{First Language}, \emph{34}(6), 537--550. \url{https://doi.org/10.1177/0142723714560179}
 
-\leavevmode\hypertarget{ref-bailey_risky_2018}{}%
-Bailey, D. H., Duncan, G. J., Watts, T., Clements, D. H., \& Sarama, J. (2018). Risky business: Correlation and causation in longitudinal studies of skill development. \emph{American Psychologist}, \emph{73}(1), 81--94. \url{https://doi.org/10.1037/amp0000146}
+\leavevmode\vadjust pre{\hypertarget{ref-bailey_risky_2018}{}}%
+Bailey, D. H., Duncan, G. J., Watts, T., Clements, D. H., \& Sarama, J. (2018). Risky business: {Correlation} and causation in longitudinal studies of skill development. \emph{American Psychologist}, \emph{73}(1), 81--94. \url{https://doi.org/10.1037/amp0000146}
 
-\leavevmode\hypertarget{ref-baldwin_infants_1993}{}%
+\leavevmode\vadjust pre{\hypertarget{ref-baldwin_infants_1993}{}}%
 Baldwin, D. A. (1993). Infants' ability to consult the speaker for clues to word reference. \emph{Journal of Child Language}, \emph{20}(2), 395--418. \url{https://doi.org/10.1017/S0305000900008345}
 
-\leavevmode\hypertarget{ref-bang_language_2019}{}%
-Bang, J. Y., Adiao, A. S., Marchman, V. A., \& Feldman, H. M. (2019). Language nutrition for language health in children with disorders: A scoping review. \emph{Pediatric Research}, \emph{87}(2), 300--308. \url{https://doi.org/10.1038/s41390-019-0551-0}
+\leavevmode\vadjust pre{\hypertarget{ref-bang_language_2019}{}}%
+Bang, J. Y., Adiao, A. S., Marchman, V. A., \& Feldman, H. M. (2019). Language nutrition for language health in children with disorders: {A} scoping review. \emph{Pediatric Research}, \emph{87}(2), 300--308. \url{https://doi.org/10.1038/s41390-019-0551-0}
 
-\leavevmode\hypertarget{ref-bates_integrating_1989}{}%
+\leavevmode\vadjust pre{\hypertarget{ref-bates_integrating_1989}{}}%
 Bates, E., Thal, D., Whitesell, K., Fenson, L., \& Oakes, L. (1989). Integrating language and gesture in infancy. \emph{Developmental Psychology}, \emph{25}(6), 1004--1019. \url{https://doi.org/10.1037/0012-1649.25.6.1004}
 
-\leavevmode\hypertarget{ref-bergelson_day_2019}{}%
-Bergelson, E., Amatuni, A., Dailey, S., Koorathota, S., \& Tor, S. (2019). Day by day, hour by hour: Naturalistic language input to infants. \emph{Developmental Science}, \emph{22}(1), N.PAG--N.PAG. \url{https://doi.org/10.1111/desc.12715}
+\leavevmode\vadjust pre{\hypertarget{ref-bergelson_day_2019}{}}%
+Bergelson, E., Amatuni, A., Dailey, S., Koorathota, S., \& Tor, S. (2019). Day by day, hour by hour: {Naturalistic} language input to infants. \emph{Developmental Science}, \emph{22}(1), e12715. \url{https://doi.org/10.1111/desc.12715}
 
-\leavevmode\hypertarget{ref-bergelson_what_2019}{}%
-Bergelson, E., Casillas, M., Soderstrom, M., Seidl, A., Warlaumont, A. S., \& Amatuni, A. (2019). What do north American babies hear? A large‐scale cross‐corpus analysis. \emph{Developmental Science}, \emph{22}(1), e12724. \url{https://doi.org/10.1111/desc.12724}
+\leavevmode\vadjust pre{\hypertarget{ref-bergelson_what_2019}{}}%
+Bergelson, E., Casillas, M., Soderstrom, M., Seidl, A., Warlaumont, A. S., \& Amatuni, A. (2019). What do north {American} babies hear? {A} large‐scale cross‐corpus analysis. \emph{Developmental Science}, \emph{22}(1), e12724. \url{https://doi.org/10.1111/desc.12724}
 
-\leavevmode\hypertarget{ref-bohn_pervasive_2019}{}%
-Bohn, M., \& Frank, M. (2019). The pervasive role of pragmatics in early language. \emph{Annual Review of Developmental Psychology}, \emph{1}, 223--249. \url{https://doi.org/https://doi.org/10.1146/annurev-devpsych-121318-\%20085037}
+\leavevmode\vadjust pre{\hypertarget{ref-bohn_pervasive_2019}{}}%
+Bohn, M., \& Frank, M. (2019). The pervasive role of pragmatics in early language. \emph{Annual Review of Developmental Psychology}, \emph{1}, 223--249. \href{https://doi.org/10.1146/annurev-devpsych-121318-\%20085037}{https://doi.org/10.1146/annurev-devpsych-121318- 085037}
 
-\leavevmode\hypertarget{ref-bunce_cross-cultural_2020}{}%
-Bunce, J., Soderstrom, M., Bergelson, E., Rosemberg, C., Stein, A., Alam, F., \ldots{} Casillas, M. (2020). A cross-cultural examination of young children's everyday language experiences. \url{https://doi.org/10.31234/osf.io/723pr}
+\leavevmode\vadjust pre{\hypertarget{ref-bunce_cross-cultural_2020}{}}%
+Bunce, J., Soderstrom, M., Bergelson, E., Rosemberg, C., Stein, A., Alam, F., \ldots{} Casillas, M. (2020). \emph{A cross-cultural examination of young children's everyday language experiences}. \url{https://doi.org/10.31234/osf.io/723pr}
 
-\leavevmode\hypertarget{ref-burkner2017brms}{}%
-Bürkner, P.-C. (2017). Brms: An r package for bayesian multilevel models using stan. \emph{Journal of Statistical Software}, \emph{80}, 1--28.
+\leavevmode\vadjust pre{\hypertarget{ref-burkner_brms_2017}{}}%
+Bürkner, P. C. (2017). Brms: {An} r package for bayesian multilevel models using stan. \emph{Journal of Statistical Software}, \emph{80}(1), 1--28. \url{https://doi.org/10.18637/jss.v080.i01}
 
-\leavevmode\hypertarget{ref-cartmill_quality_2013}{}%
+\leavevmode\vadjust pre{\hypertarget{ref-cartmill_quality_2013}{}}%
 Cartmill, E. A., Armstrong, B. F., Gleitman, L. R., Goldin-Meadow, S., Medina, T. N., \& Trueswell, J. C. (2013). Quality of early parent input predicts child vocabulary 3 years later. \emph{Proceedings of the National Academy of Sciences}, \emph{110}(28), 11278--11283. \url{https://doi.org/10.1073/pnas.1309518110}
 
-\leavevmode\hypertarget{ref-casillas_early_2019}{}%
-Casillas, M., Brown, P., \& Levinson, S. C. (2019). Early language experience in a Tseltal Mayan village. \emph{Child Development}, \emph{91}(5), 1819--1835. \url{https://doi.org/10.1111/cdev.13349}
+\leavevmode\vadjust pre{\hypertarget{ref-casillas_early_2019}{}}%
+Casillas, M., Brown, P., \& Levinson, S. C. (2019). Early language experience in a {Tseltal} {Mayan} village. \emph{Child Development}, \emph{91}(5), 1819--1835. \url{https://doi.org/10.1111/cdev.13349}
 
-\leavevmode\hypertarget{ref-casillas2021early}{}%
-Casillas, M., Brown, P., \& Levinson, S. C. (2021). Early language experience in a papuan community. \emph{Journal of Child Language}, \emph{48}(4), 792--814.
+\leavevmode\vadjust pre{\hypertarget{ref-casillas_early_2021}{}}%
+Casillas, M., Brown, P., \& Levinson, S. C. (2021). Early language experience in a {Papuan} community. \emph{Journal of Child Language}, \emph{48}(4), 792--814. \url{https://doi.org/10.1017/S0305000920000549}
 
-\leavevmode\hypertarget{ref-choi_gesture_2020}{}%
-Choi, B., Shah, P., Rowe, M. L., Nelson, C. A., \& Tager-Flusberg, H. (2020). Gesture development, caregiver responsiveness, and language and diagnostic outcomes in infants at high and low risk for Autism. \emph{Journal of Autism and Developmental Disorders}, \emph{50}(7), 2556--2572. \url{https://doi.org/10.1007/s10803-019-03980-8}
+\leavevmode\vadjust pre{\hypertarget{ref-choi_gesture_2020}{}}%
+Choi, B., Shah, P., Rowe, M. L., Nelson, C. A., \& Tager-Flusberg, H. (2020). Gesture development, caregiver responsiveness, and language and diagnostic outcomes in infants at high and low risk for {Autism}. \emph{Journal of Autism and Developmental Disorders}, \emph{50}(7), 2556--2572. \url{https://doi.org/10.1007/s10803-019-03980-8}
 
-\leavevmode\hypertarget{ref-choi_caregiver_2000}{}%
-Choi, S. (2000). Caregiver input in English and Korean: Use of nouns and verbs in book-reading and toy-play contexts. \emph{Journal of Child Language}, \emph{27}(1), 69--96. \url{https://doi.org/10.1017/S0305000999004018}
+\leavevmode\vadjust pre{\hypertarget{ref-choi_caregiver_2000}{}}%
+Choi, S. (2000). Caregiver input in {English} and {Korean}: Use of nouns and verbs in book-reading and toy-play contexts. \emph{Journal of Child Language}, \emph{27}(1), 69--96. \url{https://doi.org/10.1017/S0305000999004018}
 
-\leavevmode\hypertarget{ref-colonnesi_relation_2010}{}%
-Colonnesi, C., Stams, G. J. J. M., Koster, I., \& Noom, M. J. (2010). The relation between pointing and language development: A meta-analysis. \emph{Developmental Review}, \emph{30}(4), 352--366. \url{https://doi.org/10.1016/j.dr.2010.10.001}
+\leavevmode\vadjust pre{\hypertarget{ref-colonnesi_relation_2010}{}}%
+Colonnesi, C., Stams, G. J. J. M., Koster, I., \& Noom, M. J. (2010). The relation between pointing and language development: {A} meta-analysis. \emph{Developmental Review}, \emph{30}(4), 352--366. \url{https://doi.org/10.1016/j.dr.2010.10.001}
 
-\leavevmode\hypertarget{ref-daneri_maternal_2018}{}%
+\leavevmode\vadjust pre{\hypertarget{ref-daneri_maternal_2018}{}}%
 Daneri, M. P., Blair, C., \& Kuhn, L. J. (2018). Maternal language and child vocabulary mediate relations between socioeconomic status and executive function during early childhood. \emph{Child Development}, \emph{90}(6), 1--18. \url{https://doi.org/10.1111/cdev.13065}
 
-\leavevmode\hypertarget{ref-donnellan_infants_2020}{}%
-Donnellan, E., Bannard, C., McGillion, M. L., Slocombe, K. E., \& Matthews, D. (2020). Infants' intentionally communicative vocalizations elicit responses from caregivers and are the best predictors of the transition to language: A longitudinal investigation of infants' vocalizations, gestures and word production. \emph{Developmental Science}, \emph{23}(1), e12843. \url{https://doi.org/10.1111/desc.12843}
+\leavevmode\vadjust pre{\hypertarget{ref-donnellan_infants_2020}{}}%
+Donnellan, E., Bannard, C., McGillion, M. L., Slocombe, K. E., \& Matthews, D. (2020). Infants' intentionally communicative vocalizations elicit responses from caregivers and are the best predictors of the transition to language: {A} longitudinal investigation of infants' vocalizations, gestures and word production. \emph{Developmental Science}, \emph{23}(1), e12843. \url{https://doi.org/10.1111/desc.12843}
 
-\leavevmode\hypertarget{ref-fenson_macarthur-bates_2007}{}%
-Fenson, L., Marchman, V. A., Thal, D. J., Dale, P. S., Reznick, J. S., \& Bates, E. (2007). \emph{MacArthur-Bates Communicative Development Inventories: User's guide and technical manual} (2nd editio). Baltimore: Paul H. Brookes.
+\leavevmode\vadjust pre{\hypertarget{ref-fenson_macarthur-bates_2007}{}}%
+Fenson, L., Marchman, V. A., Thal, D. J., Dale, P. S., Reznick, J. S., \& Bates, E. (2007). \emph{{MacArthur}-{Bates} {Communicative} {Development} {Inventories}: {User}'s guide and technical manual} (2nd editio). Baltimore: Paul H. Brookes.
 
-\leavevmode\hypertarget{ref-fernald_picking_2006}{}%
-Fernald, A., Perfors, A., \& Marchman, V. A. (2006). Picking up speed in understanding: Speech processing efficiency and vocabulary growth across the 2nd year. \emph{Developmental Psychology}, \emph{42}(1), 98--116. \url{https://doi.org/https://doi.org/10.1037/0012-1649.42.1.98}
+\leavevmode\vadjust pre{\hypertarget{ref-fernald_picking_2006}{}}%
+Fernald, A., Perfors, A., \& Marchman, V. A. (2006). Picking up speed in understanding: {Speech} processing efficiency and vocabulary growth across the 2nd year. \emph{Developmental Psychology}, \emph{42}(1), 98--116. \url{https://doi.org/10.1037/0012-1649.42.1.98}
 
-\leavevmode\hypertarget{ref-fernald_looking-while-listening_2008}{}%
-Fernald, A., Zangl, R., Luz, A., Virginia, P., \& Marchman, V. (2008). Looking-while-listening 184 Looking while listening: Using eye movements to monitor spoken language comprehension by infants and young children. In \emph{Developmental Psycholinguistics: Online methods in children's language processing} (In I. A. Sekerina, E. M. Fernández, \& H. Clahsen (Eds.), Vol. 44, pp. 97--135). Amsterdam, The Netherlands: John Benjamins.
+\leavevmode\vadjust pre{\hypertarget{ref-fernald_looking_2008}{}}%
+Fernald, A., Zangl, R., Portillo, A. L., \& Marchman, V. (2008). Looking while listening: {Using} eye movements to monitor spoken language comprehension by infants and young children. In \emph{Developmental {Psycholinguistics}: {Online} methods in children's language processing} (I. A. Sekerina, E. M. Fernández, \& H. Clahsen (Eds.), Vol. 44, pp. 97--135). Amsterdam, The Netherlands: John Benjamins.
 
-\leavevmode\hypertarget{ref-gilkerson_mapping_2017}{}%
+\leavevmode\vadjust pre{\hypertarget{ref-gilkerson_mapping_2017}{}}%
 Gilkerson, J., Richards, J. A., Warren, S. F., Montgomery, J. K., Greenwood, C. R., Kimbrough Oller, D., \ldots{} Paul, T. D. (2017). Mapping the early language environment using all-day recordings and automated analysis. \emph{American Journal of Speech-Language Pathology}, \emph{26}(2), 248--265. \url{https://doi.org/10.1044/2016_AJSLP-15-0169}
 
-\leavevmode\hypertarget{ref-gilkerson_language_2018}{}%
+\leavevmode\vadjust pre{\hypertarget{ref-gilkerson_language_2018}{}}%
 Gilkerson, J., Richards, J. A., Warren, S. F., Oller, D. K., Russo, R., \& Vohr, B. (2018). Language experience in the second year of life and language outcomes in late childhood. \emph{Pediatrics}, \emph{142}(4), e20174276. \url{https://doi.org/10.1542/peds.2017-4276}
 
-\leavevmode\hypertarget{ref-gogate_study_2000}{}%
-Gogate, L. J., Bahrick, L. E., \& Watson, J. D. (2000). A study of multimodal motherese: The role of temporal synchrony between verbal labels and gestures. \emph{Child Development}, \emph{71}(4), 878--894. \url{https://doi.org/10.1111/1467-8624.00197}
+\leavevmode\vadjust pre{\hypertarget{ref-gogate_study_2000}{}}%
+Gogate, L. J., Bahrick, L. E., \& Watson, J. D. (2000). A study of multimodal motherese: {The} role of temporal synchrony between verbal labels and gestures. \emph{Child Development}, \emph{71}(4), 878--894. \url{https://doi.org/10.1111/1467-8624.00197}
 
-\leavevmode\hypertarget{ref-goodwyn2000impact}{}%
-Goodwyn, S. W., Acredolo, L. P., \& Brown, C. A. (2000). Impact of symbolic gesturing on early language development. \emph{Journal of Nonverbal Behavior}, \emph{24}(2), 81--103.
+\leavevmode\vadjust pre{\hypertarget{ref-goodwyn_impact_2000}{}}%
+Goodwyn, S. W., Acredolo, L. P., \& Brown, C. A. (2000). Impact of symbolic gesturing on early language development. \emph{Journal of Nonverbal Behavior}, \emph{24}(2), 81--103. \url{https://doi.org/10.1023/A:1006653828895}
 
-\leavevmode\hypertarget{ref-hart_meaningful_1995}{}%
-Hart, B., \& Risley, T. (1995). \emph{Meaningful differences in the everyday experience of young American children}. Paul H Brookes Publishing.
+\leavevmode\vadjust pre{\hypertarget{ref-hart_meaningful_1995}{}}%
+Hart, B., \& Risley, T. (1995). \emph{Meaningful differences in the everyday experience of young {American} children}. Paul H Brookes Publishing.
 
-\leavevmode\hypertarget{ref-hoff_specificity_2003}{}%
-Hoff, E. (2003). The Specificity of Environmental Influence: Socioeconomic Status Affects Early Vocabulary Development Via Maternal Speech. \emph{Child Development}, \emph{74}(5), 1368--1378. \url{https://doi.org/10.1111/1467-8624.00612}
+\leavevmode\vadjust pre{\hypertarget{ref-hoff_specificity_2003}{}}%
+Hoff, E. (2003). The specificity of environmental influence: {Socioeconomic} status affects early vocabulary development via maternal speech. \emph{Child Development}, \emph{74}(5), 1368--1378. \url{https://doi.org/10.1111/1467-8624.00612}
 
-\leavevmode\hypertarget{ref-hurtado_does_2008}{}%
-Hurtado, N., Marchman, V. A., \& Fernald, A. (2008). Does input influence uptake? Links between maternal talk, processing speed and vocabulary size in Spanish-learning children. \emph{Developmental Science}, \emph{11}(6), 31--39. \url{https://doi.org/10.1111/j.1467-7687.2008.00768.x}
+\leavevmode\vadjust pre{\hypertarget{ref-hurtado_does_2008}{}}%
+Hurtado, N., Marchman, V. A., \& Fernald, A. (2008). Does input influence uptake? {Links} between maternal talk, processing speed and vocabulary size in {Spanish}-learning children. \emph{Developmental Science}, \emph{11}(6), 31--39. \url{https://doi.org/10.1111/j.1467-7687.2008.00768.x}
 
-\leavevmode\hypertarget{ref-huttenlocher_early_1991}{}%
-Huttenlocher, J., Haight, W., Bryk, A., Seltzer, M., \& Lyons, T. (1991). Early vocabulary growth: Relation to language input and gender. \emph{Developmental Psychology}, \emph{27}(2), 236--248. \url{https://doi.org/https://doi.org/10.1037/0012-1649.27.2.236}
+\leavevmode\vadjust pre{\hypertarget{ref-huttenlocher_early_1991}{}}%
+Huttenlocher, J., Haight, W., Bryk, A., Seltzer, M., \& Lyons, T. (1991). Early vocabulary growth: {Relation} to language input and gender. \emph{Developmental Psychology}, \emph{27}(2), 236--248. \url{https://doi.org/10.1037/0012-1649.27.2.236}
 
-\leavevmode\hypertarget{ref-huttenlocher_sources_2010}{}%
+\leavevmode\vadjust pre{\hypertarget{ref-huttenlocher_sources_2010}{}}%
 Huttenlocher, J., Waterfall, H., Vasilyeva, M., Vevea, J., \& Hedges, L. V. (2010). Sources of variability in children's language growth. \emph{Cognitive Psychology}, \emph{61}(4), 343--365. \url{https://doi.org/10.1016/j.cogpsych.2010.08.002}
 
-\leavevmode\hypertarget{ref-iverson_gesturing_1999}{}%
-Iverson, J., M., Capirci, O., Longobardi, E., \& Caselli, M. C. (1999). Gesturing in mother-child interactions. \emph{Cognitive Development}, \emph{14}(1), 57--75. \url{https://doi.org/https://doi.org/10.1016/S0885-2014(99)80018-5}
+\leavevmode\vadjust pre{\hypertarget{ref-iverson_gesturing_1999}{}}%
+Iverson, J., M., Capirci, O., Longobardi, E., \& Caselli, M. C. (1999). Gesturing in mother-child interactions. \emph{Cognitive Development}, \emph{14}(1), 57--75. \url{https://doi.org/10.1016/S0885-2014(99)80018-5}
 
-\leavevmode\hypertarget{ref-jackson-maldonado_macarthur_2003}{}%
-Jackson-Maldonado, D., Thal, D., J., \& Fenson, L. (2003). \emph{MacArthur Inventarios del Desarrollo de Habilidades Comunicativas: User's guide and technical manual}. Brookes Publishing.
+\leavevmode\vadjust pre{\hypertarget{ref-jackson-maldonado_macarthur_2003}{}}%
+Jackson-Maldonado, D., Thal, D., J., \& Fenson, L. (2003). \emph{{MacArthur} {Inventarios} del {Desarrollo} de {Habilidades} {Comunicativas}: {User}'s guide and technical manual}. Brookes Publishing.
 
-\leavevmode\hypertarget{ref-kalagher_effects_2006}{}%
-Kalagher, H., \& Yu, C. (2006). The effects of deictic pointing in word learning. In \emph{Proceedings of the 5th International Conference of Development and Learning}. Bloomington, IN.
+\leavevmode\vadjust pre{\hypertarget{ref-kalagher_effects_2006}{}}%
+Kalagher, H., \& Yu, C. (2006). The effects of deictic pointing in word learning. \emph{Proceedings of the 5th {International} {Conference} of {Development} and {Learning}}. Bloomington, IN.
 
-\leavevmode\hypertarget{ref-mahr_using_2018}{}%
+\leavevmode\vadjust pre{\hypertarget{ref-mahr_using_2018}{}}%
 Mahr, T., \& Edwards, J. (2018). Using language input and lexical processing to predict vocabulary size. \emph{Developmental Science}, \emph{21}(6), e12685. \url{https://doi.org/10.1111/desc.12685}
 
-\leavevmode\hypertarget{ref-marchman_accuracy_2021}{}%
-Marchman, V. A., Weisleder, A., Hurtado, N., \& Fernald, A. (2021). Accuracy of the Language Environment Analyses (LENATM) system for estimating child and adult speech in laboratory settings. \emph{Journal of Child Language}, \emph{48}(3), 605--620. \url{https://doi.org/10.1017/S0305000920000380}
+\leavevmode\vadjust pre{\hypertarget{ref-marchman_accuracy_2021}{}}%
+Marchman, V. A., Weisleder, A., Hurtado, N., \& Fernald, A. (2021). Accuracy of the {Language} {Environment} {Analyses} ({LENA}) system for estimating child and adult speech in laboratory settings. \emph{Journal of Child Language}, \emph{48}(3), 605--620. \url{https://doi.org/10.1017/S0305000920000380}
 
-\leavevmode\hypertarget{ref-matthews_origins_2012}{}%
+\leavevmode\vadjust pre{\hypertarget{ref-matthews_origins_2012}{}}%
 Matthews, D., Behne, T., Lieven, E., \& Tomasello, M. (2012). Origins of the human pointing gesture: A training study. \emph{Developmental Science}, \emph{15}(6), 817--829. \url{https://doi.org/10.1111/j.1467-7687.2012.01181.x}
 
-\leavevmode\hypertarget{ref-mcelreath2020statistical}{}%
-McElreath, R. (2020). \emph{Statistical rethinking: A bayesian course with examples in r and stan}. Chapman; Hall/CRC.
+\leavevmode\vadjust pre{\hypertarget{ref-mcelreath_statistical_2020}{}}%
+McElreath, R. (2020). \emph{Statistical rethinking: {A} bayesian course with examples in r and stan}. Chapman; Hall/CRC.
 
-\leavevmode\hypertarget{ref-mcmurray_word_2012}{}%
+\leavevmode\vadjust pre{\hypertarget{ref-mcmurray_word_2012}{}}%
 McMurray, B., Horst, J. S., \& Samuelson, L. K. (2012). Word learning emerges from the interaction of online referent selection and slow associative learning. \emph{Psychological Review}, \emph{119}(4), 831--877. \url{https://doi.org/10.1037/a0029872}
 
-\leavevmode\hypertarget{ref-pace_identifying_2017}{}%
-Pace, A., Luo, R., Hirsh-Pasek, K., \& Golinkoff, R. M. (2017). Identifying Pathways Between Socioeconomic Status and Language Development. \emph{Annual Review of Linguistics}, \emph{3}, 285--308. \url{https://doi.org/10.1146/annurev-linguistics-011516-034226}
+\leavevmode\vadjust pre{\hypertarget{ref-pace_identifying_2017}{}}%
+Pace, A., Luo, R., Hirsh-Pasek, K., \& Golinkoff, R. M. (2017). Identifying pathways between socioeconomic status and language development. \emph{Annual Review of Linguistics}, \emph{3}, 285--308. \url{https://doi.org/10.1146/annurev-linguistics-011516-034226}
 
-\leavevmode\hypertarget{ref-pan_maternal_2005}{}%
+\leavevmode\vadjust pre{\hypertarget{ref-pan_maternal_2005}{}}%
 Pan, B. A., Rowe, M. L., Singer, J. D., \& Snow, C. E. (2005). Maternal correlates of growth in toddler vocabulary production in low-income families. \emph{Child Development}, \emph{76}(4), 763--782. \url{https://doi.org/10.1111/j.1467-8624.2005.00876.x}
 
-\leavevmode\hypertarget{ref-puccini_type_2010}{}%
+\leavevmode\vadjust pre{\hypertarget{ref-puccini_type_2010}{}}%
 Puccini, D., Hassemer, M., Salomo, D., \& Liszkowski, U. (2010). The type of shared activity shapes caregiver and infant communication. \emph{Gesture}, \emph{10}(2-3), 279--296. \url{https://doi.org/10.1075/gest.10.2-3.08puc}
 
-\leavevmode\hypertarget{ref-citeR}{}%
-R Core Team. (2021). \emph{R: A language and environment for statistical computing}. Vienna, Austria: R Foundation for Statistical Computing. Retrieved from \url{https://www.R-project.org/}
+\leavevmode\vadjust pre{\hypertarget{ref-reynolds_mothers_2019}{}}%
+Reynolds, E., Vernon-Feagans, L., Bratsch-Hines, M., Baker, C., \& Investigators, T. F. L. P. K. (2019). Mothers' and fathers' language input from 6 to 36 months in rural two-parent-families: {Relations} to children's kindergarten achievement. \emph{Early Childhood Research Quarterly}, \emph{47}(2), 385--395. \url{https://doi.org/10.1016/j.ecresq.2018.09.002}
 
-\leavevmode\hypertarget{ref-reynolds_mothers_2019}{}%
-Reynolds, E., Vernon-Feagans, L., Bratsch-Hines, M., Baker, C., \& Investigators, T. F. L. P. K. (2019). Mothers' and fathers' language input from 6 to 36 months in rural two-parent-families: Relations to children's kindergarten achievement. \emph{Early Childhood Research Quarterly}, \emph{47}(2), 385--395. \url{https://doi.org/10.1016/j.ecresq.2018.09.002}
+\leavevmode\vadjust pre{\hypertarget{ref-rosemberg_nouns_2020}{}}%
+Rosemberg, C. R., Alam, F., Audisio, C. P., Ramirez, M. L., Garber, L., \& Migdalek, M. J. (2020). Nouns and verbs in the linguistic environment of {Argentinian} toddlers: {Socioeconomic} and context-related differences. \emph{First Language}, \emph{40}(2), 192--217. \url{https://doi.org/10.1177/0142723719901226}
 
-\leavevmode\hypertarget{ref-rosemberg_nouns_2020}{}%
-Rosemberg, C. R., Alam, F., Audisio, C. P., Ramirez, M. L., Garber, L., \& Migdalek, M. J. (2020). Nouns and verbs in the linguistic environment of Argentinian toddlers: Socioeconomic and context-related differences. \emph{First Language}, \emph{40}(2), 192--217. \url{https://doi.org/10.1177/0142723719901226}
-
-\leavevmode\hypertarget{ref-rowe_pointing_2000}{}%
+\leavevmode\vadjust pre{\hypertarget{ref-rowe_pointing_2000}{}}%
 Rowe, M. L. (2000). Pointing and talk by low-income mothers and their 14-month-old children. \emph{First Language}, \emph{20}(60), 305--330. \url{https://doi.org/10.1177/014272370002006005}
 
-\leavevmode\hypertarget{ref-rowe_child-directed_2008}{}%
+\leavevmode\vadjust pre{\hypertarget{ref-rowe_child-directed_2008}{}}%
 Rowe, M. L. (2008). Child-directed speech: Relation to socioeconomic status, knowledge of child development and child vocabulary skill. \emph{Journal of Child Language}, \emph{35}(1), 185--205. \url{https://doi.org/10.1017/S0305000907008343}
 
-\leavevmode\hypertarget{ref-rowe_longitudinal_2012}{}%
-Rowe, M. L. (2012). A longitudinal investigation of the role of quantity and quality of child-directed speech in vocabulary development: Child-directed speech and vocabulary. \emph{Child Development}, \emph{83}(5), 1762--1774. \url{https://doi.org/10.1111/j.1467-8624.2012.01805.x}
+\leavevmode\vadjust pre{\hypertarget{ref-rowe_longitudinal_2012}{}}%
+Rowe, M. L. (2012). A longitudinal investigation of the role of quantity and quality of child-directed speech in vocabulary development: {Child}-directed speech and vocabulary. \emph{Child Development}, \emph{83}(5), 1762--1774. \url{https://doi.org/10.1111/j.1467-8624.2012.01805.x}
 
-\leavevmode\hypertarget{ref-rowe_differences_2009}{}%
-Rowe, M. L., \& Goldin-Meadow, S. (2009). Differences in early gesture explain SES disparities in child vocabulary size at school entry. \emph{Science}, \emph{323}(5916), 951--953. \url{https://doi.org/10.1126/science.1167025}
+\leavevmode\vadjust pre{\hypertarget{ref-rowe_differences_2009}{}}%
+Rowe, M. L., \& Goldin-Meadow, S. (2009). Differences in early gesture explain {SES} disparities in child vocabulary size at school entry. \emph{Science}, \emph{323}(5916), 951--953. \url{https://doi.org/10.1126/science.1167025}
 
-\leavevmode\hypertarget{ref-rowe_parent_2019}{}%
+\leavevmode\vadjust pre{\hypertarget{ref-rowe_parent_2019}{}}%
 Rowe, M. L., \& Leech, K. A. (2019). A parent intervention with a growth mindset approach improves children's early gesture and vocabulary development. \emph{Developmental Science}, \emph{22}(4), e12792. \url{https://doi.org/10.1111/desc.12792}
 
-\leavevmode\hypertarget{ref-rowe_learning_2008}{}%
-Rowe, M. L., Özçalışkan, Ş., \& Goldin-Meadow, S. (2008). Learning words by hand: Gesture's role in predicting vocabulary development. \emph{First Language}, \emph{28}(2), 182--199. \url{https://doi.org/10.1177/0142723707088310}
+\leavevmode\vadjust pre{\hypertarget{ref-rowe_learning_2008}{}}%
+Rowe, M. L., Özçalışkan, Ş., \& Goldin-Meadow, S. (2008). Learning words by hand: {Gesture}'s role in predicting vocabulary development. \emph{First Language}, \emph{28}(2), 182--199. \url{https://doi.org/10.1177/0142723707088310}
 
-\leavevmode\hypertarget{ref-rowe_language_2020}{}%
-Rowe, M. L., \& Weisleder, A. (2020). Language Development in Context, 23.
+\leavevmode\vadjust pre{\hypertarget{ref-rowe_early_2022}{}}%
+Rowe, M. L., Wei, R., \& Salo, V. C. (2022). Early gesture predicts later language development. In A. Morgenstern \& S. Goldin-Meadow (Eds.), \emph{Gesture in language: {Development} across the lifespan} (A. Morgenstern \& S. Goldin-Meadow (Eds.), pp. 93--111). Boston: De Gruyter Mouton. \url{https://doi.org/10.1037/0000269-004}
 
-\leavevmode\hypertarget{ref-salo_does_2019}{}%
-Salo, V. C., Reeb-Sutherland, B., Frenkel, T. I., Bowman, L. C., \& Rowe, M. L. (2019). Does intention matter? Relations between parent pointing, infant pointing, and developing language ability. \emph{Journal of Cognition and Development : Official Journal of the Cognitive Development Society}, \emph{20}(5), 635--655. \url{https://doi.org/10.1080/15248372.2019.1648266}
+\leavevmode\vadjust pre{\hypertarget{ref-rowe_language_2020}{}}%
+Rowe, M. L., \& Weisleder, A. (2020). \emph{Language development in context}. \emph{2}, 201--223. \url{https://doi.org/10.1146/annurev-devpsych-042220-121816}
 
-\leavevmode\hypertarget{ref-salomo_sociocultural_2013}{}%
+\leavevmode\vadjust pre{\hypertarget{ref-salo_does_2019}{}}%
+Salo, V. C., Reeb-Sutherland, B., Frenkel, T. I., Bowman, L. C., \& Rowe, M. L. (2019). Does intention matter? {Relations} between parent pointing, infant pointing, and developing language ability. \emph{Journal of Cognition and Development}, \emph{20}(5), 635--655. \url{https://doi.org/10.1080/15248372.2019.1648266}
+
+\leavevmode\vadjust pre{\hypertarget{ref-salomo_sociocultural_2013}{}}%
 Salomo, D., \& Liszkowski, U. (2013). Sociocultural settings influence the emergence of prelinguistic deictic gestures. \emph{Child Development}, \emph{84}(4), 1296--1307. \url{https://doi.org/10.1111/cdev.12026}
 
-\leavevmode\hypertarget{ref-shneidman_language_2012}{}%
-Shneidman, L. A., \& Goldin-Meadow, S. (2012). Language input and acquisition in a Mayan village: How important is directed speech? \emph{Developmental Science}, \emph{15}(5), 659--673. \url{https://doi.org/10.1111/j.1467-7687.2012.01168.x}
+\leavevmode\vadjust pre{\hypertarget{ref-shneidman_language_2012}{}}%
+Shneidman, L. A., \& Goldin-Meadow, S. (2012). Language input and acquisition in a {Mayan} village: {How} important is directed speech? \emph{Developmental Science}, \emph{15}(5), 659--673. \url{https://doi.org/10.1111/j.1467-7687.2012.01168.x}
 
-\leavevmode\hypertarget{ref-suskind_parent-directed_2016}{}%
+\leavevmode\vadjust pre{\hypertarget{ref-suskind_parent-directed_2016}{}}%
 Suskind, D. L., Leffel, K. R., Graf, E., Hernandez, M. W., Gunderson, E. A., Sapolich, S. G., \ldots{} Levine, S. C. (2016). A parent-directed language intervention for children of low socioeconomic status: A randomized controlled pilot study. \emph{Journal of Child Language}, \emph{43}(2), 366--406. \url{https://doi.org/10.1017/S0305000915000033}
 
-\leavevmode\hypertarget{ref-tardif_caregiver_1997}{}%
-Tardif, T., Shatz, M., \& Naigles, L. (1997). Caregiver speech and children's use of nouns versus verbs: A comparison of English, Italian, and Mandarin. \emph{Journal of Child Language}, \emph{24}, 535--565.
+\leavevmode\vadjust pre{\hypertarget{ref-tardif_caregiver_1997}{}}%
+Tardif, T., Shatz, M., \& Naigles, L. (1997). Caregiver speech and children's use of nouns versus verbs: A comparison of {English}, {Italian}, and {Mandarin}. \emph{Journal of Child Language}, \emph{24}, 535--565. \url{https://doi.org/10.1017/S030500099700319X}
 
-\leavevmode\hypertarget{ref-tfouni1983discourse}{}%
-Tfouni, L. V., \& Klatzky, R. L. (1983). A discourse analysis of deixis: Pragmatic, cognitive and semantic factors in the comprehension of ``this'',``that'',`here'and ``there''. \emph{Journal of Child Language}, \emph{10}(1), 123--133.
+\leavevmode\vadjust pre{\hypertarget{ref-r_core_team_r_2021}{}}%
+Team, R. C. (2021). \emph{R: {A} language and environment for statistical computing}. Vienna, Austria: R Foundation for Statistical Computing. Retrieved from \url{https://www.R-project.org/}
 
-\leavevmode\hypertarget{ref-tincoff_feeling_2019}{}%
-Tincoff, R., Seidl, A., Buckley, L., Wojcik, C., \& Cristia, A. (2019). Feeling the way to words: Parents' speech and touch cues highlight word-to-world mappings of body parts. \emph{Language Learning and Development}, \emph{15}(2), 103--125. \url{https://doi.org/10.1080/15475441.2018.1533472}
+\leavevmode\vadjust pre{\hypertarget{ref-tfouni1983discourse}{}}%
+Tfouni, L. V., \& Klatzky, R. L. (1983). A discourse analysis of deixis: Pragmatic, cognitive and semantic factors in the comprehension of {``this,''}{``that,''}`here'and {``there.''} \emph{Journal of Child Language}, \emph{10}(1), 123--133.
 
-\leavevmode\hypertarget{ref-de_villiers_rader_caregivers_2012}{}%
+\leavevmode\vadjust pre{\hypertarget{ref-tincoff_feeling_2019}{}}%
+Tincoff, R., Seidl, A., Buckley, L., Wojcik, C., \& Cristia, A. (2019). Feeling the way to words: {Parents}' speech and touch cues highlight word-to-world mappings of body parts. \emph{Language Learning and Development}, \emph{15}(2), 103--125. \url{https://doi.org/10.1080/15475441.2018.1533472}
+
+\leavevmode\vadjust pre{\hypertarget{ref-de_villiers_rader_caregivers_2012}{}}%
 Villiers Rader, N. de, \& Zukow-Goldring, P. (2012). Caregivers' gestures direct infant attention during early word learning: The importance of dynamic synchrony. \emph{Language Sciences}, \emph{34}(5), 559--568. \url{https://doi.org/10.1016/j.langsci.2012.03.011}
 
-\leavevmode\hypertarget{ref-walker_prediction_1994}{}%
-Walker, D., Greenwood, C., Hart, B., \& Carta, J. (1994). Prediction of School Outcomes Based on Early Language Production and Socioeconomic Factors. \emph{Child Development}, \emph{65}(2), 606--621. Retrieved from \url{https://www.jstor.org/stable/1131404}
+\leavevmode\vadjust pre{\hypertarget{ref-walker_prediction_1994}{}}%
+Walker, D., Greenwood, C., Hart, B., \& Carta, J. (1994). Prediction of school outcomes based on early language production and socioeconomic factors. \emph{Child Development}, \emph{65}(2), 606--621. Retrieved from \url{https://doi.org/10.1111/j.1467-8624.1994.tb00771.x}
 
-\leavevmode\hypertarget{ref-weber_when_2017}{}%
-Weber, A., Fernald, A., \& Diop, Y. (2017). When cultural norms discourage talking to babies: Effectiveness of a parenting program in rural senegal. \emph{Child Development}, \emph{88}(5), 1513--1526. \url{https://doi.org/10.1111/cdev.12882}
+\leavevmode\vadjust pre{\hypertarget{ref-weber_when_2017}{}}%
+Weber, A., Fernald, A., \& Diop, Y. (2017). When cultural norms discourage talking to babies: {Effectiveness} of a parenting program in rural senegal. \emph{Child Development}, \emph{88}(5), 1513--1526. \url{https://doi.org/10.1111/cdev.12882}
 
-\leavevmode\hypertarget{ref-weisleder_talking_2013}{}%
-Weisleder, A., \& Fernald, A. (2013). Talking to children matters: Early language experience strengthens processing and builds vocabulary. \emph{Psychological Science}, \emph{24}(11), 2143--2152. \url{https://doi.org/10.3399/096016407782317928}
+\leavevmode\vadjust pre{\hypertarget{ref-weisleder_talking_2013}{}}%
+Weisleder, A., \& Fernald, A. (2013). Talking to children matters: {Early} language experience strengthens processing and builds vocabulary. \emph{Psychological Science}, \emph{24}(11), 2143--2152. \url{https://doi.org/10.3399/096016407782317928}
 
-\leavevmode\hypertarget{ref-wittenburg2006elan}{}%
-Wittenburg, P., Brugman, H., Russel, A., Klassmann, A., \& Sloetjes, H. (2006). ELAN: A professional framework for multimodality research. In \emph{5th international conference on language resources and evaluation (lrec 2006)} (pp. 1556--1559).
+\leavevmode\vadjust pre{\hypertarget{ref-wittenburg2006elan}{}}%
+Wittenburg, P., Brugman, H., Russel, A., Klassmann, A., \& Sloetjes, H. (2006). ELAN: A professional framework for multimodality research. \emph{5th international conference on language resources and evaluation (LREC 2006)}, 1556--1559.
 
-\leavevmode\hypertarget{ref-yuksel_encouraging_2017}{}%
-Yuksel, P., \& Brooks, P. J. (2017). Encouraging usage of an endangered ancestral language: A supportive role for caregivers' deictic gestures. \emph{First Language}, \emph{37}(6), 561--582. \url{https://doi.org/10.1177/0142723717713502}
+\leavevmode\vadjust pre{\hypertarget{ref-yuksel_encouraging_2017}{}}%
+Yuksel, P., \& Brooks, P. J. (2017). Encouraging usage of an endangered ancestral language: {A} supportive role for caregivers' deictic gestures. \emph{First Language}, \emph{37}(6), 561--582. \url{https://doi.org/10.1177/0142723717713502}
 
-\leavevmode\hypertarget{ref-zukow-goldring_sensitive_1996}{}%
-Zukow-Goldring, P. (1996). Sensitive caregiving fosters the comprehension of speech: When gestures speak louder than words. \emph{Early Development and Parenting: An International Journal of Research and Practice}, \emph{5}(4), 195--211. \url{https://doi.org/https://doi.org/10.1002/(SICI)1099-0917(199612)5:4\%3C195::AID-EDP133\%3E3.0.CO;2-H}
+\leavevmode\vadjust pre{\hypertarget{ref-zukow-goldring_sensitive_1996}{}}%
+Zukow-Goldring, P. (1996). Sensitive caregiving fosters the comprehension of speech: {When} gestures speak louder than words. \emph{Early Development and Parenting: An International Journal of Research and Practice}, \emph{5}(4), 195--211. \url{https://doi.org/10.1002/(SICI)1099-0917(199612)5:4\%3C195::AID-EDP133\%3E3.0.CO;2-H}
+
+\end{CSLReferences}
 
 \hypertarget{conflict-of-interest-disclosure}{%
 \section{Conflict of Interest Disclosure}\label{conflict-of-interest-disclosure}}

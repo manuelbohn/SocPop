@@ -31,7 +31,7 @@ input <- read_csv("./data/data_iv.csv")
 
 data <- read_excel("./data/data_dv.xlsx") %>% 
   mutate(id = as.character(id)) %>% 
-  select(c(id, L1PRE_hi, 
+  select(c(id, L1PRE_hi,sex, 
            L1PRE_mom_birth_country,
            L1PRE_gooddrt, L1POST_gooddrt, L1POST_drtsd, L1POST_drtn,
            L1PRE_goodacc_3001800, L1POST_goodacc_3001800,
