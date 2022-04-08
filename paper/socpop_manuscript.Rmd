@@ -36,8 +36,8 @@ author:
   - Writing - Review & Editing
 shorttitle: Predicting vocabulary from labels and gestures
 output:
-  papaja::apa6_word: default
   papaja::apa6_pdf: default
+  papaja::apa6_word: default
 authornote: |
   We are grateful to the families for their contribution to this research. We would also like to thank Jazmin Reyes for her work on the reliability coding, and to Vanessa Bermudez, Monica A. Munévar, Arlyn Mora, Ruby Roldan, Karina Gonzalez, and the Language Learning Lab staff for their contributions to data management and collection. This work was supported by grants from the National Institutes of Health (R01 HD42235, DC008838, HD092343), the Schusterman Foundation, the W.K. Kellogg Foundation, the David and Lucile Packard Foundation, and the Bezos Family Foundation to Anne Fernald, and a Postdoctoral Support Award from the Stanford Maternal and Child Health Research Institute to J. Bang. Manuel Bohn received funding from the European Union’s Horizon 2020 research and innovation programme under the Marie Sklodowska-Curie grant agreement no. 749229. Joel Ramírez, Jr. received funding from the Linguistics summer research internship and the Undergraduate Advising and Research program from Stanford University.
   The authors declare no potential conflicts of interest.
@@ -50,7 +50,7 @@ keywords: communicative reference, gestures, labels, word learning, language pro
   vocabulary size
 wordcount: '6702'
 bibliography: library.bib
-floatsintext: no
+floatsintext: yes
 figurelist: no
 tablelist: no
 footnotelist: no
