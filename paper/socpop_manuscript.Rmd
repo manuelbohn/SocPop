@@ -1,84 +1,76 @@
 ---
-title             : "Spanish-speaking caregivers’ use of referential labels with toddlers is a better predictor of later vocabulary than their use of referential gestures"
-shorttitle        : "Predicting vocabulary from labels and gestures"
-
-author: 
-  - name          : "Janet Y. Bang"
-    affiliation   : "1,2,*"
-    corresponding : yes    # Define only one corresponding author
-    address       : "One Washington Square, San Jose, CA, 95192"
-    email         : "janet.bang@sjsu.edu"
-    role:         # Contributorship roles (e.g., CRediT, https://casrai.org/credit/)
-      - Conceptualization
-      - Analysis
-      - Writing - Original Draft Preparation
-      - Writing - Review & Editing
-  - name          : "Manuel Bohn"
-    affiliation   : "1,3,*"
-    role:
-      - Conceptualization
-      - Analysis
-      - Writing - Original Draft Preparation
-      - Writing - Review & Editing
-  - name          : "Joel Ramírez, Jr"
-    affiliation   : "1,4"
-    role:
-      - Investigation
-      - Writing - Review & Editing
-  - name          : "Virginia A. Marchman"
-    affiliation   : "1,3"
-    role:
-      - Conceptualization
-      - Writing - Review & Editing
-  - name          : "Anne Fernald"
-    affiliation   : "1,3"
-    role:
-      - Conceptualization
-      - Writing - Review & Editing    
-  
-
-affiliation:
-  - id            : "1"
-    institution   : "Department of Psychology, Stanford University"
-  - id            : "2"
-    institution   : "Department of Child and Adolescent Development, San José State University"
-  - id            : "3"
-    institution   : "Department of Comparative Cultural Psychology, Max Planck Institute for Evolutionary Anthropology"
-  - id            : "4"
-    institution   : "Department of Symbolic Systems, Stanford University"
-  - id            : "*"
-    institution   : "These authors contributed equally"
-
+title: Spanish-speaking caregivers’ use of referential labels with toddlers is a better
+  predictor of later vocabulary than their use of referential gestures
+author:
+- name: Janet Y. Bang
+  affiliation: 1,2,*
+  corresponding: yes
+  address: One Washington Square, San Jose, CA, 95192
+  email: janet.bang@sjsu.edu
+  role:
+  - Conceptualization
+  - Analysis
+  - Writing - Original Draft Preparation
+  - Writing - Review & Editing
+- name: Manuel Bohn
+  affiliation: 1,3,*
+  role:
+  - Conceptualization
+  - Analysis
+  - Writing - Original Draft Preparation
+  - Writing - Review & Editing
+- name: Joel Ramírez, Jr
+  affiliation: '1,4'
+  role:
+  - Investigation
+  - Writing - Review & Editing
+- name: Virginia A. Marchman
+  affiliation: '1,3'
+  role:
+  - Conceptualization
+  - Writing - Review & Editing
+- name: Anne Fernald
+  affiliation: '1,3'
+  role:
+  - Conceptualization
+  - Writing - Review & Editing
+shorttitle: Predicting vocabulary from labels and gestures
+output:
+  papaja::apa6_word: default
+  papaja::apa6_pdf: default
 authornote: |
   We are grateful to the families for their contribution to this research. We would also like to thank Jazmin Reyes for her work on the reliability coding, and to Vanessa Bermudez, Monica A. Munévar, Arlyn Mora, Ruby Roldan, Karina Gonzalez, and the Language Learning Lab staff for their contributions to data management and collection. This work was supported by grants from the National Institutes of Health (R01 HD42235, DC008838, HD092343), the Schusterman Foundation, the W.K. Kellogg Foundation, the David and Lucile Packard Foundation, and the Bezos Family Foundation to Anne Fernald, and a Postdoctoral Support Award from the Stanford Maternal and Child Health Research Institute to J. Bang. Manuel Bohn received funding from the European Union’s Horizon 2020 research and innovation programme under the Marie Sklodowska-Curie grant agreement no. 749229. Joel Ramírez, Jr. received funding from the Linguistics summer research internship and the Undergraduate Advising and Research program from Stanford University.
-  
   The authors declare no potential conflicts of interest.
-  
   Pre-registration of study design and analyses are available on the Open Science Framework: https://osf.io/s2jqy. The coding protocol is publicly available:https://osf.io/fmvyc/. All data and reproducible code are available on GitHub: https://github.com/manuelbohn/SocPop
-  
   Janet Y. Bang https://orcid.org/0000-0002-6014-3009
-  
   Manuel Bohn https://orcid.org/0000-0001-6006-1348
-
 abstract: |
   Variation in how frequently caregivers engage with their children is associated with variation in children’s later language outcomes. One explanation for this link is that caregivers use both verbal behaviors, such as labels, and non-verbal behaviors, such as gestures, to help children establish reference to objects or events in the world. However, few studies have directly explored whether language outcomes are more strongly associated with referential behaviors that are expressed verbally, such as labels, or non-verbally, such as gestures, or whether both are equally predictive. Here, we observed caregivers from 42 Spanish-speaking families in the US engage with their 18-month-old children during 5-min lab-based, play sessions. Children’s language processing speed and vocabulary size were assessed when children were 25 months. Bayesian model comparisons assessed the extent to which the frequencies of caregivers’ referential labels, referential gestures, or labels and gestures together, were more strongly associated with children’s language outcomes than their total numbers of words, or overall talkativeness. The best-fitting models showed that children who heard more referential labels at 18 months were faster in language processing and had larger vocabularies at 25 months. Models including gestures, or labels and gestures together, showed weaker fits to the data. Caregivers’ total words predicted children’s language processing speed, but predicted vocabulary size less well. These results suggest that the frequency with which caregivers of 18-month-old children use referential labels, more so than referential gestures, is a critical feature of caregiver verbal engagement that contributes to language processing development and vocabulary growth.
-  
-keywords          : "communicative reference, gestures, labels, word learning, language processing, vocabulary size"
-wordcount         : "6670"
-
-bibliography      : "library.bib"
-
-floatsintext      : yes
-figurelist        : no
-tablelist         : no
-footnotelist      : no
-linenumbers       : yes
-mask              : no
-draft             : no
-
-documentclass     : "apa6"
-classoption       : "man"
-output            : papaja::apa6_pdf
+keywords: communicative reference, gestures, labels, word learning, language processing,
+  vocabulary size
+wordcount: '6702'
+bibliography: library.bib
+floatsintext: no
+figurelist: no
+tablelist: no
+footnotelist: no
+linenumbers: yes
+mask: no
+draft: no
+documentclass: apa6
+classoption: man
+affiliation:
+- id: '1'
+  institution: Department of Psychology, Stanford University
+- id: '2'
+  institution: Department of Child and Adolescent Development, San José State University
+- id: '3'
+  institution: Department of Comparative Cultural Psychology, Max Planck Institute
+    for Evolutionary Anthropology
+- id: '4'
+  institution: Department of Symbolic Systems, Stanford University
+- id: '*'
+  institution: These authors contributed equally
 ---
 
 ```{r setup, include = FALSE}
@@ -106,24 +98,24 @@ knitr::opts_chunk$set(cache.extra = knitr::rand_seed)
 
 # Introduction
 
-Children learn language through interactions with others. Studies of caregiver-child interactions have documented extensive variability in the frequency with which caregivers use verbal behaviors (e.g., words) and nonverbal behaviors (e.g., gestures) when they engage with their children. Individual differences among caregivers have been noted in studies of families across diverse linguistic, cultural, and socioeconomic status (SES) backgrounds [@hart_meaningful_1995; @hoff_specificity_2003; @casillas_early_2019; @weber_when_2017]. Moreover, variability in the frequency of caregivers’ use of verbal behaviors [@gilkerson_language_2018; @huttenlocher_early_1991; @rowe_longitudinal_2012; @weisleder_talking_2013; @shneidman_language_2012;@walker_prediction_1994] and nonverbal behaviors [@cartmill_quality_2013; @rowe_child-directed_2008; @rowe_differences_2009; @pan_maternal_2005] has been shown to be positively associated with children’s later language development.
+Children learn language through interactions with others. Studies of caregiver-child interactions have documented extensive variability in the frequency with which caregivers use verbal behaviors (e.g., words) and nonverbal behaviors (e.g., gestures) when they engage with their children. Individual differences among caregivers have been noted in studies of families across diverse linguistic, cultural, and socioeconomic status (SES) backgrounds [@hart_meaningful_1995; @hoff_specificity_2003; @casillas_early_2019; @weber_when_2017]. Moreover, variability in the frequency of caregivers’ use of verbal behaviors [@gilkerson_language_2018; @huttenlocher_early_1991; @rowe_longitudinal_2012; @weisleder_talking_2013; @shneidman_language_2012;@walker_prediction_1994] and nonverbal behaviors [@cartmill_quality_2013; @rowe_learning_2008; @rowe_differences_2009; @pan_maternal_2005] has been shown to be positively associated with children’s later language development.
 
-There are multiple proposals to explain how caregivers’ verbal and nonverbal behaviors support later language learning. Both can be used to refer to objects and events. By using verbal behaviors, such as labels in the presence of objects, caregivers support children’s learning of word-referent mappings, a critical step in children’s early comprehension and subsequent word production [@baldwin_infants_1993; @mcmurray_word_2012; @bohn_pervasive_2019]. Nonverbal behaviors, such as gestures, can also be used to refer to and communicate about the identity of referents (e.g., by pointing to, holding out, or giving a cup to someone). For example, caregivers’ deictic gestures, such as pointing, can help children disambiguate the referent of a label from other candidate referents [@rowe_pointing_2000; @iverson_gesturing_1999; @puccini_type_2010; @yuksel_encouraging_2017; @zukow-goldring_sensitive_1996; @tfouni1983discourse]. Labels and gestures can also be used together (e.g., saying “give me the cup,” while pointing to a cup), providing the child with two cues to reference in differing modalities. Thus, caregivers’ use of labels, gestures, or both together, can help children to map language onto specific concepts, strengthening their understanding of how language represents objects or events in their world. In this study, we compare Spanish-speaking caregivers’ use of verbal behaviors (i.e., total words and referential labels) and non-verbal behaviors (i.e., referential gestures) during a play session with their 18-month-old children. We then assess the degree to which these behaviors are linked to children’s language processing efficiency and vocabulary outcomes at 25 months.
+There are multiple proposals to explain how caregivers’ verbal and nonverbal behaviors support later language learning. Both can be used to refer to objects and events. By using verbal behaviors, such as labels in the presence of objects, caregivers support children’s learning of word-referent mappings, a critical step in children’s early comprehension and subsequent word production [@baldwin_infants_1993; @mcmurray_word_2012; @bohn_pervasive_2019]. Nonverbal behaviors, such as gestures, can also be used to refer to and communicate about the identity of referents (e.g., by pointing to, holding out, or giving a cup to someone). For example, caregivers’ deictic gestures, such as pointing, can help children disambiguate the referent of a label from other candidate referents [@rowe_pointing_2000; @iverson_gesturing_1999; @puccini_type_2010; @yuksel_encouraging_2017; @zukow-goldring_sensitive_1996; @tfouni_discourse_1983]. Labels and gestures can also be used together (e.g., saying “give me the cup,” while pointing to a cup), providing the child with two cues to reference in differing modalities. Thus, caregivers’ use of labels, gestures, or both together, can help children to map language onto specific concepts, strengthening their understanding of how language represents objects or events in their world. In this study, we compare Spanish-speaking caregivers’ use of verbal behaviors (i.e., total words and referential labels) and non-verbal behaviors (i.e., referential gestures) during a play session with their 18-month-old children. We then assess the degree to which these behaviors are linked to children’s language processing efficiency and vocabulary outcomes at 25 months.
 
 ## Variation in caregivers’ verbal and non-verbal behaviors
 
 Documenting variability among caregivers in their frequency of communicative behaviors is critical for establishing links between these behaviors and later child outcomes. Verbal behaviors have been examined using numerous measures that capture the quantity and quality of caregivers’ speech – although they mostly do so ignoring the referential context. Using the LENA technology, @gilkerson_mapping_2017 collected daylong recordings of the speech children heard in 329 American-English-speaking families with 2- to 48-month-old children from varying SES backgrounds. Speech recognition software provided automated estimates of the quantity of caregivers’ speech, i.e., adult word counts (AWC), revealing that children were exposed to as few as 8,000 and as many as 17,000 words in a 12-hour day. @bergelson_what_2019 collected LENA daylong recordings with 3- to 20-month-old children in 61 American families. Instead of total adult-word counts, they assessed variation in caregiver talk by measuring the amount of time each child was exposed to child-directed speech (CDS). The authors found that children were exposed to CDS for 11.36 min per hour, on average, with a standard deviation over a third of the mean (SD = 4.24 min). Studies of caregiver-child interactions in different sociocultural contexts, such as subsistence farming communities, have found that children were exposed to far less speech, on average, than in other communities; however, there was still substantial variability among families [@bunce_cross-cultural_2020; @casillas_early_2019; @casillas_early_2021; @yuksel_encouraging_2017; @shneidman_language_2012]. Other studies have specifically examined caregivers’ use of nouns in verbal labels and noted variability among caregivers in multiple languages, including English, Italian, French, Spanish, Turkish, Mandarin, and Korean [@altinkamis_when_2014;@bergelson_what_2019; @choi_caregiver_2000; @rosemberg_nouns_2020; @tardif_caregiver_1997].
 
-Substantial variability among caregivers in their use of nonverbal gestures is also well documented. Studies examining caregivers’ use of gestures have primarily focused on gestures that are symbolic or representational to some degree [@rowe_early_2022], such as iconic gestures (e.g., flapping hands for a bird), conventional gestures (e.g., nodding one’s head to mean ‘yes’ in the US), and referential gestures (e.g., holding out objects or deictic gestures such as pointing). For example, @rowe_learning_2008 videotaped 90-min interactions in 53 American-English-speaking families with children from 14 to 34 months. They found that caregivers produced, on average, 100-115 symbolic, conventional, and deictic gestures, with values ranging from only a few gestures to over 400. Other studies have examined deictic gesture use in families speaking non-English languages and living in different sociocultural contexts, e.g., in families speaking Yucatec Mayan in Mexico [@salomo_sociocultural_2013] and Lazuri in Turkey [@yuksel_encouraging_2017], also noting extensive variability among caregivers in both groups.
+Substantial variability among caregivers in their use of nonverbal gestures is also well documented. Studies examining caregivers’ use of gestures have primarily focused on gestures that are symbolic or representational to some degree [@morgenstern_early_2022], such as iconic gestures (e.g., flapping hands for a bird), conventional gestures (e.g., nodding one’s head to mean ‘yes’ in the US), and referential gestures (e.g., holding out objects or deictic gestures such as pointing). For example, @rowe_learning_2008 videotaped 90-min interactions in 53 American-English-speaking families with children from 14 to 34 months. They found that caregivers produced, on average, 100-115 symbolic, conventional, and deictic gestures, with values ranging from only a few gestures to over 400. Other studies have examined deictic gesture use in families speaking non-English languages and living in different sociocultural contexts, e.g., in families speaking Yucatec Mayan in Mexico [@salomo_sociocultural_2013] and Lazuri in Turkey [@yuksel_encouraging_2017], also noting extensive variability among caregivers in both groups.
 
 Variability among caregivers in their use of verbal behaviors and gestures has been linked to child language outcomes. In some studies, language samples are used to capture variation in the frequency of young children’s production of recognizable words during interactions with their caregiver [@huttenlocher_early_1991]. In older school-age children, researchers have also reported links between frequency of caregiver verbal engagement and children’s scores on standardized tests of language, such as vocabulary [@gilkerson_language_2018].  When children are infants and toddlers, many studies rely on parent-reports assessments of children’s vocabulary size, such as the MacArthur-Bates Communicative Developmental Inventories [CDI, @fenson_macarthur-bates_2007], which ask parents to indicate which words their child “understands and says” from among several hundred words on a checklist [e.g., @weisleder_talking_2013].  Still other studies have explored links between caregivers’ verbal behaviors and children’s performance in tasks that capture skill at processing language in real time, such as the Looking-While-Listening task [@fernald_looking_2008]. For example, in a sample of 27 Spanish-speaking caregiver-child dyads, @hurtado_does_2008 reported that children who experienced more speech from their caregivers during a lab-based play session were reported both to know more words on the CDI and were more efficient at recognizing spoken words in real time. @weisleder_talking_2013 reported similar findings based on estimates of caregivers’ child-directed word counts during daylong recordings.  In both studies, mediation models explored possible pathways among caregiver talk, vocabulary size, and processing efficiency. Results suggested that frequent engagement with caregivers may be “tuning up” children’s abilities to map real-time spoken language onto referents in the world around them, allowing for more efficient use of the input to support language learning. 
 
-Links between caregivers’ use of gesture and children’s later vocabulary abilities have also been reported [@iverson_gesturing_1999; @rowe_child-directed_2008; @pan_maternal_2005]. @rowe_differences_2009 examined socioeconomically-diverse caregivers and children in the home across multiple visits, beginning when children were 14 months.  They found that variation among children in their gesture use at 14 months was related to their vocabulary skills at 54 months, measured using a standardized test. Importantly, this study and others have found that the frequency of caregivers’ gesture use is related to the frequency of children’s gesture use. In particular, caregivers’ use of deictic gestures, such as pointing, has been viewed as a potential means of influencing children’s own use of deictic gestures, an important prelinguistic skill [@matthews_origins_2012; @rowe_parent_2019]. Other studies propose that caregivers’ use of different gestures can support word learning by bringing attention to an object and reducing spatial ambiguity, thus allowing children to attend more effectively to the referent and/or the auditory signal [@rowe_pointing_2000; @iverson_gesturing_1999; @puccini_type_2010; @yuksel_encouraging_2017; @zukow-goldring_sensitive_1996; @tfouni1983discourse]. 
+Links between caregivers’ use of gesture and children’s later vocabulary abilities have also been reported [@iverson_gesturing_1999; @rowe_learning_2008; @pan_maternal_2005]. @rowe_differences_2009 examined socioeconomically-diverse caregivers and children in the home across multiple visits, beginning when children were 14 months.  They found that variation among children in their gesture use at 14 months was related to their vocabulary skills at 54 months, measured using a standardized test. Importantly, this study and others have found that the frequency of caregivers’ gesture use is related to the frequency of children’s gesture use. In particular, caregivers’ use of deictic gestures, such as pointing, has been viewed as a potential means of influencing children’s own use of deictic gestures, an important prelinguistic skill [@matthews_origins_2012; @rowe_parent_2019]. Other studies propose that caregivers’ use of different gestures can support word learning by bringing attention to an object and reducing spatial ambiguity, thus allowing children to attend more effectively to the referent and/or the auditory signal [@rowe_pointing_2000; @iverson_gesturing_1999; @puccini_type_2010; @yuksel_encouraging_2017; @zukow-goldring_sensitive_1996; @tfouni_discourse_1983]. 
 
 
 ## Labels, gestures, or both?
 
-Taken together, there is substantial evidence that how frequently caregivers use communicative behaviors is associated with children’s language learning.  However, few studies have directly contrasted the predictive relations to children’s outcomes from verbal versus non-verbal behaviors that establish reference. This referential function of labels and gestures is important because it serves as a means to support children’s early label-referent associations. Additionally, it is critical to remember that these behaviors frequently occur together in real time [@rowe_differences_2009; @iverson_gesturing_1999; @puccini_type_2010; @yuksel_encouraging_2017; @zukow-goldring_sensitive_1996; @tfouni1983discourse; @pan_maternal_2005]. Thus, it is difficult to address whether links between caregiver verbal or nonverbal behaviors and children’s outcomes may in fact be better explained by caregivers’ combined use of labels and gestures. For example, @rowe_pointing_2000 proposed that there may be a shared construct underlying caregivers’ use of verbal behaviors and gestures, such as communicativeness. This hypothesis is supported by evidence of a small to moderate positive correlation between the frequency of caregivers’ verbal behaviors and gestures; those caregivers who used more total words also gestured more frequently than caregivers who used fewer words [@rowe_differences_2009;  @salo_does_2019; @rowe_pointing_2000; @rowe_child-directed_2008; @pan_maternal_2005]. In the present study, we ask if the predictive power of caregivers’ communicative use of reference may be captured more fully by measures that reflect the combined use of referential labels and gestures, rather than each measure taken alone. 
+Taken together, there is substantial evidence that how frequently caregivers use communicative behaviors is associated with children’s language learning.  However, few studies have directly contrasted the predictive relations to children’s outcomes from verbal versus non-verbal behaviors that establish reference. This referential function of labels and gestures is important because it serves as a means to support children’s early label-referent associations. Additionally, it is critical to remember that these behaviors frequently occur together in real time [@rowe_differences_2009; @iverson_gesturing_1999; @puccini_type_2010; @yuksel_encouraging_2017; @zukow-goldring_sensitive_1996; @tfouni_discourse_1983; @pan_maternal_2005]. Thus, it is difficult to address whether links between caregiver verbal or nonverbal behaviors and children’s outcomes may in fact be better explained by caregivers’ combined use of labels and gestures. For example, @rowe_pointing_2000 proposed that there may be a shared construct underlying caregivers’ use of verbal behaviors and gestures, such as communicativeness. This hypothesis is supported by evidence of a small to moderate positive correlation between the frequency of caregivers’ verbal behaviors and gestures; those caregivers who used more total words also gestured more frequently than caregivers who used fewer words [@rowe_differences_2009;  @salo_does_2019; @rowe_pointing_2000; @rowe_learning_2008; @pan_maternal_2005]. In the present study, we ask if the predictive power of caregivers’ communicative use of reference may be captured more fully by measures that reflect the combined use of referential labels and gestures, rather than each measure taken alone. 
 
 How caregivers combine labels and gestures in real time has been widely discussed in the experimental literature on early word learning [@gogate_study_2000; @tincoff_feeling_2019; @de_villiers_rader_caregivers_2012; @zukow-goldring_sensitive_1996]. For example, @kalagher_effects_2006 found that novel word learning was more successful when caregivers introduced words while narrating a story and pointing to the objects than when narrating a story without pointing. @gogate_study_2000 examined European American and Hispanic American families residing in a major metropolitan area in the United States. They found that when they were teaching novel labels to young infants, caregivers were more likely to use labels while moving objects. Moreover, caregivers of linguistically less-advanced infants, compared to more-advanced infants, were those who were more likely to synchronize labels with object motion.  These findings suggest that caregivers are sensitive to children’s level of language skills when using labels and gestures together to highlight new label-referent associations. 
 
@@ -194,7 +186,7 @@ Native Spanish-speaking research staff met with the caregiver to explain study p
 
 ### Coding of caregiver referential gestures and labels. 
 
-A native Spanish-speaker used ELAN [version 5.0, @wittenburg2006elan] to code all caregivers’ referential gestures and labels from the video recordings of the play sessions. Gestures were coded first without audio. Referential gestures were defined as those gestures used to attract infants’ attention to the toys or other objects in the environment. Gestures included holding out objects/giving, pointing, descriptive or iconic gestures (e.g., making a chopping motion with their hand), and touching with an open hand. Physically playing with toys was not included as a gesture (e.g., holding the knife and pretending to cut vegetables in front of the child).  A standardized protocol used to define the onset and offset of each gesture is available in our full codebook (https://osf.io/fmvyc/?view_only=7fd65681a7154f43aa5b5a67c38a1392). Frequency of gestures was derived for each caregiver, and the onset and offset of gestures were used for our overlap measure below.
+A native Spanish-speaker used ELAN [version 5.0, @wittenburg_elan_2006] to code all caregivers’ referential gestures and labels from the video recordings of the play sessions. Gestures were coded first without audio. Referential gestures were defined as those gestures used to attract infants’ attention to the toys or other objects in the environment. Gestures included holding out objects/giving, pointing, descriptive or iconic gestures (e.g., making a chopping motion with their hand), and touching with an open hand. Physically playing with toys was not included as a gesture (e.g., holding the knife and pretending to cut vegetables in front of the child).  A standardized protocol used to define the onset and offset of each gesture is available in our full codebook (https://osf.io/fmvyc/?view_only=7fd65681a7154f43aa5b5a67c38a1392). Frequency of gestures was derived for each caregiver, and the onset and offset of gestures were used for our overlap measure below.
 
 Caregivers’ use of object labels was then coded by the same coder. The coder listened to the video and marked the onset and offset of all object labels that referred to objects in the play session. Frequency counts of label tokens were derived for each caregiver. Successive repetitions of a single label were counted as individual tokens. General category terms (e.g., “comida” [food], or “juguetes” [toys]) were excluded because our goal was to focus on specific labels rather than category names for available objects.  All English labels were excluded, given that we were assessing children’s later Spanish language outcomes. 
 
