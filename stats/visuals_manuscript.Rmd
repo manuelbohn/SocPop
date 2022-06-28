@@ -62,7 +62,7 @@ input <- read_csv("./data/data_iv.csv")
 data <- read_excel("./data/data_dv.xlsx") %>% 
   mutate(id = as.character(id)) %>% 
   select(c(id, L1PRE_mom_ed,
-           L1PRE_hi, L1POST_hi,
+           L1PRE_hi, 
            L1PRE_gooddrt, L1POST_gooddrt, L1PRE_goodacc_3001800, L1POST_goodacc_3001800,
            L1PRE_cdi_version, age_L1PRE, L1PRE_cdi_vocab, age_L1POST, L1POST_cdi_vocab, 
            L1PRE_PS_AWChr)) %>% 
@@ -75,13 +75,13 @@ data <- read_excel("./data/data_dv.xlsx") %>%
          rt_25m = L1POST_gooddrt, cdi_25m = L1POST_cdi_vocab,
          acc_18m = L1PRE_goodacc_3001800, 
          acc25m = L1POST_goodacc_3001800,
-         ses_18m = L1PRE_hi, ses_25m = L1POST_hi, awc_phr_18m = L1PRE_PS_AWChr, 
+         ses_18m = L1PRE_hi, awc_phr_18m = L1PRE_PS_AWChr, 
          mom_ed_18m = L1PRE_mom_ed, 
          age_18m = age_L1PRE, age_25m = age_L1POST)
 
 # merge into 1 dataframe
 socpop <- input %>% 
-  full_join(data, by = "id")%>%
+  full_join(data, by = "id") %>%
   select(-X1)%>%
   mutate(cdi_25m = as.numeric(cdi_25m),
          cdi_18m = as.numeric(cdi_18m),
@@ -96,7 +96,7 @@ socpop <- input %>%
 ```{r, fig.width=12, fig.height=8}
 socpop %>%
   select(id, gestures, labels, labels_w_gestures,awc_phr_18m, rt_25m, cdi_25m)%>%
-  gather(DV, y, -id, -gestures,-labels_w_gestures,-awc_phr_18m, -labels,)%>%
+  gather(DV, y, -id, -gestures,-labels_w_gestures,-awc_phr_18m, -labels)%>%
   gather(input, freq, -id, -DV, -y)%>%
   mutate(DV = factor(DV, levels = c("rt_25m", "cdi_25m"), labels = c("Reaction Time (25m)", "Vocabulary Size (25m)")), 
          input = factor(input,levels = c("labels", "awc_phr_18m", "labels_w_gestures", "gestures"), labels = c("Labels (18m)","Adult Words per Hour (18m)", "Label-Gesture Overlap (18m)", "Gestures (18m)")),
@@ -109,7 +109,6 @@ socpop %>%
   labs(y = "", x = "Frequency") + 
   theme_few(base_size = 12)+
   theme(strip.placement = "outside")
-  
 
 ggsave("./figures/fig.1a.png", height = 4, width = 8 , scale = 1.5)
 
@@ -150,7 +149,7 @@ ggsave("./figures/fig.1b.png", height = 3, width = 6 , scale = 1.5)
 
 ```{r}
 fig_1_a <- socpop %>%
-  select(gestures, labels, labels_w_gestures,awc_phr_18m)%>%
+  select(gestures, labels, labels_w_gestures, awc_phr_18m)%>%
   rename(`Labels (18m)` = labels,
          `Gestures (18m)` = gestures,
          `Adult Words per Hour (18m)` = awc_phr_18m,
@@ -180,13 +179,16 @@ ggsave("./figures/fig.1d.png", height = 4, width = 5 , scale = 1)
 
 ```{r}
 fig_1_b <- socpop %>%
-  select(gestures, labels, labels_w_gestures,awc_phr_18m, rt_25m, cdi_25m)%>%
-  rename(`Labels (18m)` = labels,
+  select(ses_18m, rt_18m, cdi_18m, gestures, labels, labels_w_gestures,awc_phr_18m, rt_25m, cdi_25m)%>%
+  rename(`SES (18m)` = ses_18m,
+         `Vocabulary Size (18m)` = cdi_18m,
+         `Reaction Time (18m)` = rt_18m,
+         `Labels (18m)` = labels,
          `Gestures (18m)` = gestures,
          `Adult Words per Hour (18m)` = awc_phr_18m,
          `Label-Gesture Overlap (18m)` = labels_w_gestures, 
          `Vocabulary Size (25m)` = cdi_25m,
-         `Reaction Time (25m)` = rt_25m
+         `Reaction Time (25m)` = rt_25m, 
   )%>%
   cor(method ="pearson", use = "pairwise.complete.obs")%>%
   ggcorrplot::ggcorrplot(method="circle",type="lower", show.diag = F, lab = TRUE, digits = 2, lab_size = 2,tl.cex = 8 )+
