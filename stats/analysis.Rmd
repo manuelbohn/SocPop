@@ -27,43 +27,45 @@ opts_chunk$set(echo=F,
 ```
 
 ```{r}
-input <- read_csv("./data/data_iv.csv")
+# input <- read_csv("./data/data_iv.csv")
+# 
+# data <- read_excel("./data/data_dv.xlsx") %>% 
+#   mutate(id = as.character(id)) %>% 
+#   select(c(id, L1PRE_hi,sex, 
+#            L1PRE_mom_birth_country,
+#            L1PRE_gooddrt, L1POST_gooddrt, L1POST_drtsd, L1POST_drtn,
+#            L1PRE_goodacc_3001800, L1POST_goodacc_3001800,
+#            L1PRE_cdi_version, age_L1PRE, L1PRE_cdi_vocab, age_L1POST, L1POST_cdi_vocab, 
+#            L1PRE_PS_AWChr)) %>% 
+#   mutate(L1PRE_cdi_vocab = as.numeric(L1PRE_cdi_vocab), 
+#          cdi_18m = ifelse(L1PRE_cdi_version == "wg", (L1PRE_cdi_vocab * 396 / 680), 
+#                    ifelse(L1PRE_cdi_version == "ws", L1PRE_cdi_vocab, "CHECK")), 
+#          cdi_18m = round(as.numeric(cdi_18m), digits = 0)) %>% 
+#   select(-c(L1PRE_cdi_version, L1PRE_cdi_vocab)) %>% 
+#   rename(rt_18m = L1PRE_gooddrt,
+#          rt_25m = L1POST_gooddrt, 
+#          rt_25m_sd = L1POST_drtsd,
+#          rt_25m_ntrials = L1POST_drtn,
+#          cdi_25m = L1POST_cdi_vocab,
+#          acc_18m = L1PRE_goodacc_3001800, 
+#          acc25m = L1POST_goodacc_3001800,
+#          ses_18m = L1PRE_hi, awc_phr_18m = L1PRE_PS_AWChr, 
+#          age_18m = age_L1PRE, age_25m = age_L1POST)
+# 
+# # merge into 1 dataframe
+# socpop <- input %>% 
+#   full_join(data, by = "id")%>%
+#   select(-X1)%>%
+#   mutate(cdi_25m = as.numeric(cdi_25m),
+#          cdi_18m = as.numeric(cdi_18m),
+#          labels_me_rel = labels - labels_w_rel_gestures,
+#          labels_me = labels - labels_w_gestures,
+#          prop_lab_ges = labels_w_gestures/labels,
+#          prop_ges_lab = gestures_w_labels/gestures)
+# 
+# write_csv(socpop,"./data/tidy_data.csv")
 
-data <- read_excel("./data/data_dv.xlsx") %>% 
-  mutate(id = as.character(id)) %>% 
-  select(c(id, L1PRE_hi,sex, 
-           L1PRE_mom_birth_country,
-           L1PRE_gooddrt, L1POST_gooddrt, L1POST_drtsd, L1POST_drtn,
-           L1PRE_goodacc_3001800, L1POST_goodacc_3001800,
-           L1PRE_cdi_version, age_L1PRE, L1PRE_cdi_vocab, age_L1POST, L1POST_cdi_vocab, 
-           L1PRE_PS_AWChr)) %>% 
-  mutate(L1PRE_cdi_vocab = as.numeric(L1PRE_cdi_vocab), 
-         cdi_18m = ifelse(L1PRE_cdi_version == "wg", (L1PRE_cdi_vocab * 396 / 680), 
-                   ifelse(L1PRE_cdi_version == "ws", L1PRE_cdi_vocab, "CHECK")), 
-         cdi_18m = round(as.numeric(cdi_18m), digits = 0)) %>% 
-  select(-c(L1PRE_cdi_version, L1PRE_cdi_vocab)) %>% 
-  rename(rt_18m = L1PRE_gooddrt,
-         rt_25m = L1POST_gooddrt, 
-         rt_25m_sd = L1POST_drtsd,
-         rt_25m_ntrials = L1POST_drtn,
-         cdi_25m = L1POST_cdi_vocab,
-         acc_18m = L1PRE_goodacc_3001800, 
-         acc25m = L1POST_goodacc_3001800,
-         ses_18m = L1PRE_hi, awc_phr_18m = L1PRE_PS_AWChr, 
-         age_18m = age_L1PRE, age_25m = age_L1POST)
-
-# merge into 1 dataframe
-socpop <- input %>% 
-  full_join(data, by = "id")%>%
-  select(-X1)%>%
-  mutate(cdi_25m = as.numeric(cdi_25m),
-         cdi_18m = as.numeric(cdi_18m),
-         labels_me_rel = labels - labels_w_rel_gestures,
-         labels_me = labels - labels_w_gestures,
-         prop_lab_ges = labels_w_gestures/labels)
-
-
-write_csv(socpop,"./data/tidy_data.csv")
+socpop <- read_csv("./data/tidy_data.csv")
 
 ```
 
