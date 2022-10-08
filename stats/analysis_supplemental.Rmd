@@ -1,0 +1,230 @@
+---
+title: "Supplemental Analysis"
+output:
+  pdf_document:
+    toc: yes
+  html_document:
+    toc: yes
+    toc_float: yes
+  word_document:
+    toc: yes
+editor_options:
+  chunk_output_type: console
+---
+
+&nbsp;
+&nbsp;
+
+In the current study (removed for blinding) we chose the Bayesian approach to compare different non-nested models for which model including caregiver behaviors best predicts children’s gains in processing speed (reaction time, RT) and vocabulary size (measured using the MacArthur Inventarios del Desarrollo de Habilidades Comunicativas, CDI). This approach allowed us to compare the predictive power of different models against each other and quantify these differences. Thus, we could examine whether all predictors lead to similar findings or if they diverge.
+
+In contrast to the Bayesian model comparison, standard frequentist regression models require nested models for comparison. This document includes exploratory analyses to illustrate model comparisons using a frequentist approach. 
+
+For each dependent variables of RT and CDI, we tested if models with each of the predictors of AWC, labels, or gestures performed better than the baseline model (with covariates of SES and children’s earlier language skills). We compared them in the following manner: 
+
+1) Baseline (child covariates only) vs. Model 1 (caregiver AWC)
+2) Baseline (child covariates only) vs. Model 2 (caregiver referential labels)
+3) Baseline (child covariates only) vs. Model 3 (caregiver referential gestures)
+
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(knitr)
+library(stargazer)
+
+opts_chunk$set(echo=F,
+              warning=FALSE, message=FALSE,
+              cache=FALSE, fig.align = "center")
+```
+
+
+```{r}
+# input <- read_csv("./data/data_iv.csv")
+# 
+# data <- read_excel("./data/data_dv.xlsx") %>% 
+#   mutate(id = as.character(id)) %>% 
+#   select(c(id, L1PRE_hi,sex, 
+#            L1PRE_mom_birth_country,
+#            L1PRE_gooddrt, L1POST_gooddrt, L1POST_drtsd, L1POST_drtn,
+#            L1PRE_goodacc_3001800, L1POST_goodacc_3001800,
+#            L1PRE_cdi_version, age_L1PRE, L1PRE_cdi_vocab, age_L1POST, L1POST_cdi_vocab, 
+#            L1PRE_PS_AWChr)) %>% 
+#   mutate(L1PRE_cdi_vocab = as.numeric(L1PRE_cdi_vocab), 
+#          cdi_18m = ifelse(L1PRE_cdi_version == "wg", (L1PRE_cdi_vocab * 396 / 680), 
+#                    ifelse(L1PRE_cdi_version == "ws", L1PRE_cdi_vocab, "CHECK")), 
+#          cdi_18m = round(as.numeric(cdi_18m), digits = 0)) %>% 
+#   select(-c(L1PRE_cdi_version, L1PRE_cdi_vocab)) %>% 
+#   rename(rt_18m = L1PRE_gooddrt,
+#          rt_25m = L1POST_gooddrt, 
+#          rt_25m_sd = L1POST_drtsd,
+#          rt_25m_ntrials = L1POST_drtn,
+#          cdi_25m = L1POST_cdi_vocab,
+#          acc_18m = L1PRE_goodacc_3001800, 
+#          acc25m = L1POST_goodacc_3001800,
+#          ses_18m = L1PRE_hi, awc_phr_18m = L1PRE_PS_AWChr, 
+#          age_18m = age_L1PRE, age_25m = age_L1POST)
+# 
+# # merge into 1 dataframe
+# socpop <- input %>% 
+#   full_join(data, by = "id")%>%
+#   select(-X1)%>%
+#   mutate(cdi_25m = as.numeric(cdi_25m),
+#          cdi_18m = as.numeric(cdi_18m),
+#          labels_me_rel = labels - labels_w_rel_gestures,
+#          labels_me = labels - labels_w_gestures,
+#          prop_lab_ges = labels_w_gestures/labels,
+#          prop_ges_lab = gestures_w_labels/gestures)
+# 
+# write_csv(socpop,"./data/tidy_data.csv")
+
+socpop <- read_csv("./data/tidy_data.csv")
+
+```
+
+
+# Standard Hierarchical Regression
+
+
+```{r}
+# Prepare data file
+# center predictors at 0 by subtracting mean to facilitate model fitting
+# remove lines with NAs to allow centering
+
+data_model <- socpop %>%
+  filter(rt_25m != "NA",
+         gestures != "NA",
+         labels != "NA")%>%
+  mutate(gestures = scale(gestures, center = TRUE, scale = T),
+         labels = scale(labels, center = TRUE, scale = T),
+         # labels_w_gestures = scale(labels_w_gestures, center = TRUE, scale = T),
+         # labels_w_rel_gestures = scale(labels_w_rel_gestures, center = TRUE, scale = T),
+         # labels_me = scale(labels_me, center = TRUE, scale = T),
+         awc_phr_18m = scale(awc_phr_18m, center = TRUE, scale = T),
+         rt_18m = scale(rt_18m, center = TRUE, scale = T),
+         ses_18m = scale(ses_18m, center = TRUE, scale = T))
+
+```
+
+
+## Comparing models - RT
+For RT, none of the models with the predictors (models 2, 3, and 4) added significant variance above the covariates (model 1). This finding is different from what we are able to see with the Bayesian comparisons, where we found that either models with labels or AWC seem to perform better than the baseline model. 
+
+```{r}
+# All covariates and predictors are centered and scaled
+
+m1_baseline_rt <- lm(rt_25m ~ ses_18m + rt_18m, 
+         data = data_model) # baseline model - just covariates
+
+m2_awc_rt <- lm(rt_25m ~ ses_18m + rt_18m + awc_phr_18m, 
+         data = data_model)
+
+m3_labels_rt <- lm(rt_25m ~ ses_18m + rt_18m + labels, 
+         data = data_model)
+
+m4_gestures_rt <- lm(rt_25m ~ ses_18m + rt_18m + gestures, 
+         data = data_model)
+
+
+# model comparison: baseline vs. awc (total words)
+anova(m1_baseline_rt, m2_awc_rt)
+
+# model comparison: baseline vs. referential labels
+anova(m1_baseline_rt, m3_labels_rt)
+
+# model comparison: baseline vs. referential gestures
+anova(m1_baseline_rt, m4_gestures_rt)
+
+```
+
+
+## Regression table - RT
+```{r}
+stargazer(m1_baseline_rt, m2_awc_rt, m3_labels_rt, m4_gestures_rt, type = "text",
+         star.char = c(".","*","**","***"),
+         star.cutoffs = c(.1, .05, .01, .001),
+         notes = c(".p<0.1; *p<0.05; **p<0.01; ***p<0.001"),
+         notes.append = F,
+         notes.align = "l",
+         digits = 3,
+         font.size = "small",
+         dep.var.labels = c("25m Spanish Language Processing Speed (RT)"),
+         covariate.labels=c("18m SES", "18m RT",
+                            "18m AWC",
+                            "18m Labels",
+                            "18m Gestures"))
+```
+
+
+
+```{r}
+# Prepare data file
+# center predictors at 0 by subtracting mean to facilitate model fitting
+# remove lines with NAs to allow centering
+
+data_cdi_model <- socpop %>%
+  filter(cdi_18m != "NA",
+         cdi_25m != "NA",
+         gestures != "NA",
+         labels != "NA")%>%
+  mutate(gestures = scale(gestures, center = TRUE, scale = T),
+         labels = scale(labels, center = TRUE, scale = T),
+         # labels_w_gestures = scale(labels_w_gestures, center = TRUE, scale = T),
+         # labels_w_rel_gestures = scale(labels_w_rel_gestures, center = TRUE, scale = T),
+         # labels_me = scale(labels_me, center = TRUE, scale = T),
+         cdi_18m = scale(cdi_18m, center = TRUE, scale = T),
+         ses_18m = scale(ses_18m, center = TRUE, scale = T),
+                  awc_phr_18m = scale(awc_phr_18m, center = TRUE, scale = T))
+```
+
+
+## Comparing models - CDI
+For CDI, we actually see similar findings to what we see with the model comparisons where AWC and labels significantly predicted children’s vocabulary, though labels may yield more predictive power. Model 2 with AWC significantly added 11.6% additional variance above the baseline model, and Model 3 with labels significantly added 16.7% additional variance to the baseline model. 
+
+
+```{r}
+# All covariates and predictors are centered and scaled
+
+m1_baseline_cdi <- lm(cdi_25m ~ ses_18m + cdi_18m, 
+         data = data_cdi_model) # baseline model - just covariates
+
+m2_awc_cdi <- lm(cdi_25m ~ ses_18m + cdi_18m + awc_phr_18m, 
+         data = data_cdi_model)
+
+m3_labels_cdi <- lm(cdi_25m ~ ses_18m + cdi_18m + labels, 
+         data = data_cdi_model)
+
+m4_gestures_cdi <- lm(cdi_25m ~ ses_18m + cdi_18m + gestures, 
+         data = data_cdi_model)
+
+
+# model comparison: baseline vs. awc (total words)
+anova(m1_baseline_cdi, m2_awc_cdi)
+
+# model comparison: baseline vs. referential labels
+anova(m1_baseline_cdi, m3_labels_cdi)
+
+# model comparison: baseline vs. referential gestures
+anova(m1_baseline_cdi, m4_gestures_cdi)
+```
+
+
+## Regression table - CDI
+
+```{r}
+stargazer(m1_baseline_cdi, m2_awc_cdi, m3_labels_cdi, m4_gestures_cdi, type = "text",
+         star.char = c(".","*","**","***"),
+         star.cutoffs = c(.1, .05, .01, .001),
+         notes = c("*p<0.05; **p<0.01; ***p<0.001"),
+         notes.append = F,
+         notes.align = "l",
+         digits = 3,
+         font.size = "small",
+         dep.var.labels = c("25m Spanish Vocabulary Size (CDI)"),
+         covariate.labels=c("18m SES", "18m CDI",
+                            "18m AWC",
+                            "18m Labels",
+                            "18m Gestures"))
+
+```
+
+
+Based on these findings, we believe that the Bayesian model comparisons reported in the current study provide a similar bottom line in that caregivers’ use of labels are predictive of children’s vocabulary, but we also gain an additional understanding in our interpretation by quantifying the relative weight of different non-nested models. Thus, we can make conclusions that assess to what extent models differ from each other. In a standard regression approach, we are limited in our ability to quantify the difference between non-nested models.
